@@ -1,11 +1,25 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+
+      <View style={styles.top}>
+        <Text style={styles.topText}>SomeTrails</Text>
+
+        <View style={styles.topButtons}>
+          <Button title="Distance From Me" style={styles.button}/>
+          <Button title="activity" style={styles.button}/>
+        </View>
+
+        <View style={styles.nearbyCards}>
+
+          <View style={styles.card}>
+            <Text>Test</Text>
+          </View>
+        </View>
+      </View>
     </View>
   );
 }
@@ -13,8 +27,37 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#333',
     alignItems: 'center',
     justifyContent: 'center',
   },
+
+  top:{
+    flex: 1,
+    alignContent: 'stretch',
+    alignItems: 'center'
+  },
+
+  topText:{
+    fontWeight: 'bold',
+    fontSize: 30,
+    color: 'lightgreen',
+    paddingTop: 50,
+    paddingBottom: 50,
+  },
+  
+  topButtons:{
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+
+  button:{
+    paddingLeft: 10,
+  },
+
+  card:{
+    backgroundColor: 'lightgrey',
+    flex: 0.5
+
+  }
 });
