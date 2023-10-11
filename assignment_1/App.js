@@ -19,6 +19,13 @@ export default function App() {
             <Text>Test</Text>
           </View>
         </View>
+
+        <View style={styles.navBar}>
+          <Button title="test"/>
+          <Button title="test"/>
+          <Button title="test"/>
+          <Button title="test"/>
+        </View>
       </View>
     </View>
   );
@@ -43,21 +50,33 @@ const styles = StyleSheet.create({
     fontSize: 30,
     color: 'lightgreen',
     paddingTop: 50,
-    paddingBottom: 50,
+    paddingBottom: 20,
   },
   
   topButtons:{
     flexDirection: 'row',
     justifyContent: 'space-between',
+    paddingRight: 20,
   },
 
   button:{
     paddingLeft: 10,
+    borderRadius: 10,
   },
 
   card:{
     backgroundColor: 'lightgrey',
-    flex: 0.5
+    width: 300,
+    height:200,
+    borderRadius: 10,
+  },
 
+  nearbyCards:{
+    padding: 20,
+    flexDirection: "row",
+  },
+
+  navBar: {
+    flexDirection: "row",
   }
 });
