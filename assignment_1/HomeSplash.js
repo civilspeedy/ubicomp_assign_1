@@ -23,13 +23,6 @@ const HomeSplash = () => (
             </View>
             </View>
         </View>
-
-        <View style={styles.navBar}>
-            <Button title="test"/>
-            <Button title="test"/>
-            <Button title="test"/>
-            <Button title="test"/>
-        </View>
     </View>
 )
 
@@ -79,9 +72,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     },
 
-    navBar: {
-    flexDirection: "row",
-    }
 });
 
 export default HomeSplash;
