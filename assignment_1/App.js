@@ -1,13 +1,13 @@
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import HomeSplash from './HomeSplash';
-import { View, StyleSheet} from 'react-native';
+import { View, StyleSheet, Button} from 'react-native';
 import Navigation from './Navigation'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 
 const Stack = createNativeStackNavigator(); // from https://reactnative.dev/docs/navigation
 
-export default function App() {
+export default function App({navigation}) {
   return (
     <View style={homeStyle.container}> 
 
@@ -17,10 +17,21 @@ export default function App() {
             <Stack.Screen name="home" component={HomeSplash}/>
             <Stack.Screen name="Navigation" component={Navigation}/>
           </Stack.Navigator>
+
+          <HomeButton/>
         </NavigationContainer>
+        
+        
       </View>
     </View>
   )
+}
+
+
+const HomeButton = () =>{
+  const navigation = useNavigation();
+
+  return <Button title="home" onPress={() => navigation.navigate('home')}/>
 }
 
 const homeStyle= StyleSheet.create({

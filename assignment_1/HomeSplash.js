@@ -1,7 +1,7 @@
 import { Button, Pressable, StyleSheet, Text, View } from 'react-native';
 
 
-const HomeSplash = () => (
+const HomeSplash = ({navigation}) => (
     <View style={styles.container}>
 
         <View style={styles.top}>
