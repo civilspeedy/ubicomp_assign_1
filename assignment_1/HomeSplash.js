@@ -1,18 +1,34 @@
-import { Button, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View, ScrollView} from 'react-native';
+import { TextInput } from 'react-native-gesture-handler';
 
 
-const HomeSplash = ({navigation}) => (
-    <View style={styles.container}>
+const HomeSplash = () => (
+    <ScrollView style={styles.container}>
 
         <View style={styles.top}>
             <Text style={styles.topText}>SomeTrails</Text>
 
+            <TextInput value={search}></TextInput>
+
             <View style={styles.topButtons}>
+            <View style={{flex: 0.1}}/>
             <Pressable style={styles.button}>
-                <Text>Distance From Me</Text>
+                <Text style={styles.buttonText}>Distance From Me</Text>
             </Pressable>
+
+            <View style={{flex: 0.1}}/>
             <Pressable style={styles.button}>
-                <Text>Activity Type</Text>
+                <Text style={styles.buttonText}>Activity Type</Text>
+            </Pressable>
+
+            <View style={{flex: 0.1}}/>
+            <Pressable style={styles.button}>
+                <Text style={styles.buttonText}>Difficulty</Text>
+            </Pressable>
+
+            <View style={{flex: 0.1}}/>
+            <Pressable style={styles.button}>
+                <Text style={styles.buttonText}>Length</Text>
             </Pressable>
             </View>
 
@@ -21,17 +37,15 @@ const HomeSplash = ({navigation}) => (
             <View style={styles.card}>
                 <Text>Test</Text>
             </View>
-            </View>
         </View>
-    </View>
+        </View>
+    </ScrollView>
 )
 
 const styles = StyleSheet.create({
     container: {
     flex: 1,
     backgroundColor: '#333',
-    alignItems: 'center',
-    justifyContent: 'center',
     },
 
     top:{
@@ -58,6 +72,11 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     backgroundColor: 'lightgreen',
     alignContent: 'center',
+    padding: 5,
+    },
+
+    buttonText:{
+        fontWeight: 'bold'
     },
 
     card:{
@@ -71,6 +90,8 @@ const styles = StyleSheet.create({
     padding: 20,
     flexDirection: "row",
     },
+
+
 
 });
 
