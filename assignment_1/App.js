@@ -1,12 +1,11 @@
 import { NavigationContainer } from '@react-navigation/native';
 import HomeSplash from './HomeSplash';
 import { View, StyleSheet} from 'react-native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Navigation from './Navigation'
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-//ChatGPT was asked for basic code for a 'bottom nav bar', fragments from responce will be highlighted
 
-const Tab = createBottomTabNavigator() // from ChatGPT
+const Stack = createNativeStackNavigator(); // from https://reactnative.dev/docs/navigation
 
 export default function App() {
   return (
@@ -14,9 +13,10 @@ export default function App() {
 
       <View style={homeStyle.navBar}>
         <NavigationContainer>
-          <Tab.Navigator>
-            <Tab.Screen name='Home' component={HomeSplash}/>
-          </Tab.Navigator>
+          <Stack.Navigator>
+            <Stack.Screen name="home" component={HomeSplash}/>
+            <Stack.Screen name="Navigation" component={Navigation}/>
+          </Stack.Navigator>
         </NavigationContainer>
       </View>
     </View>
