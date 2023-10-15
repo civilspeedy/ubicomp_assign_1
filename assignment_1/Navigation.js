@@ -1,17 +1,18 @@
-import { View } from "react";
-import { StyleSheet } from "react-native";
+import {React} from "react";
+import {StyleSheet, View} from "react-native";
 import {MapView} from "react-native-maps";
 
 const Navigation  = () => {
-    <View>
-        <MapView style={styles.map}></MapView>
-    </View>
+    return(
+        <View style={styles.container}>
+            <MapView style={{flex: 1}}/>
+        </View>
+    )
 };
 
 const styles = StyleSheet.create({
-    map:{
-        width: '100%',
-        height: '100%'
+    container:{
+        flex: 1,
     }
 });
 

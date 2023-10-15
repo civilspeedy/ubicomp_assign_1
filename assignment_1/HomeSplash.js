@@ -1,3 +1,4 @@
+import React from 'react';
 import { Pressable, StyleSheet, Text, View, ScrollView} from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 
