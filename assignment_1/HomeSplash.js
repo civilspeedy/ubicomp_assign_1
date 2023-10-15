@@ -3,58 +3,60 @@ import { Pressable, StyleSheet, Text, View, ScrollView, Image} from 'react-nativ
 import { GestureHandlerRootView, TextInput } from 'react-native-gesture-handler';
 
 
-const search = ""
 
-const HomeSplash = () => (
-    <GestureHandlerRootView>
-        <ScrollView style={styles.container}>
+const HomeSplash = () => {
+    const [search, onChangeText] = React.useState('Search')
 
-            <View style={styles.top}>
-                <Text style={styles.topText}>SomeTrails</Text>
+    return(
+        <GestureHandlerRootView>
+            <ScrollView style={styles.container}>
 
-                <View style={styles.searchBox}>
-                    <TextInput style={styles.inputBox} value={search} multiline={true}/>
-                    <Pressable><Image source={"C:/Users/Charl/Documents/ubicomp_assignment/ubicomp_assign_1/assignment_1/assets/cog.png"}/></Pressable>
+                <View style={styles.top}>
+                    <Text style={styles.topText}>SomeTrails</Text>
+
+                    <View style={styles.searchBox}>
+                        <TextInput style={styles.inputBox} value={search} multiline={true} onChangeText={onChangeText}/>
+                        <Pressable style={styles.filterButton}><Text style={{color: 'white', fontWeight: 'bold'}}>Filters</Text></Pressable>
+                    </View>
+                    <View style={{padding: 10}}/>
+
+                    <View style={styles.topButtons}>
+                    <View style={{padding: 2}}/>
+                    <Pressable style={styles.button}>
+                        <Text style={styles.buttonText}>Distance From Me</Text>
+                    </Pressable>
+
+                    <View style={{padding: 2}}/>
+                    <Pressable style={styles.button}>
+                        <Text style={styles.buttonText}>Activity Type</Text>
+                    </Pressable>
+
+                    <View style={{padding: 2}}/>
+                    <Pressable style={styles.button}>
+                        <Text style={styles.buttonText}>Difficulty</Text>
+                    </Pressable>
+
+                    <View style={{padding: 2}}/>
+                    <Pressable style={styles.button}>
+                        <Text style={styles.buttonText}>Length</Text>
+                    </Pressable>
+                    </View>
+
+                    <View style={styles.nearbyCards}>
+
+                    <Pressable style={styles.card}>
+                        <Text>Test</Text>
+                    </Pressable>
                 </View>
-                <View style={{padding: 10}}/>
-
-                <View style={styles.topButtons}>
-                <View style={{padding: 1}}/>
-                <Pressable style={styles.button}>
-                    <Text style={styles.buttonText}>Distance From Me</Text>
-                </Pressable>
-
-                <View style={{padding: 1}}/>
-                <Pressable style={styles.button}>
-                    <Text style={styles.buttonText}>Activity Type</Text>
-                </Pressable>
-
-                <View style={{padding: 1}}/>
-                <Pressable style={styles.button}>
-                    <Text style={styles.buttonText}>Difficulty</Text>
-                </Pressable>
-
-                <View style={{padding: 1}}/>
-                <Pressable style={styles.button}>
-                    <Text style={styles.buttonText}>Length</Text>
-                </Pressable>
+                <Text style={styles.cardDescText}>Description</Text>
                 </View>
-
-                <View style={styles.nearbyCards}>
-
-                <View style={styles.card}>
-                    <Text>Test</Text>
-                </View>
-            </View>
-            </View>
-        </ScrollView>
-    </GestureHandlerRootView>
-)
-
+            </ScrollView>
+        </GestureHandlerRootView>
+        )
+    }
 const styles = StyleSheet.create({
     container: {
     flex: 1,
-    backgroundColor: '#333',
     },
 
     top:{
@@ -85,13 +87,12 @@ const styles = StyleSheet.create({
     },
 
     buttonText:{
-        fontWeight: 'bold'
+        fontWeight: 'bold',
     },
 
     card:{
     backgroundColor: 'lightgrey',
-    width: 300,
-    height:200,
+    width: '80%',
     borderRadius: 10,
     },
 
@@ -110,10 +111,24 @@ const styles = StyleSheet.create({
     },
 
     inputBox: {
-        width: '90%',
+        flex: 0.8,
+        color: 'white',
+        paddingLeft: 10,
+
+    },
+
+    filterButton: {
+        flex: 0.2,
+        borderWidth: 3,
+        borderColor: 'white',
+        borderRadius: 10,
+        alignContent: 'center',
+        justifyContent: 'center',
+    },
+
+    cardDescText: {
+        color: 'white',
     }
-
-
 });
 
 export default HomeSplash;
