@@ -1,19 +1,25 @@
-import {React} from "react";
-import {StyleSheet, View} from "react-native";
-import {MapView} from "react-native-maps";
+import React from 'react';
+import MapView from 'react-native-maps';
+import { StyleSheet, View, Text} from 'react-native';
 
-const Navigation  = () => {
-    return(
+export default function Navigation() {
+    return (
         <View style={styles.container}>
-            <MapView style={{flex: 1}}/>
+            <Text>test</Text>
+            <MapView style={styles.map} />
         </View>
-    )
-};
+        );
+}
 
 const styles = StyleSheet.create({
-    container:{
-        flex: 1,
-    }
+    container: {
+    flex: 1,
+    },
+    
+    map: {
+    width: '100%',
+    height: '100%',
+    borderColor: 'white',
+    backgroundColor: 'white',
+    },
 });
-
-export default Navigation

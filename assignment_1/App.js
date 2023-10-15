@@ -10,7 +10,7 @@ const Stack = createNativeStackNavigator(); // from https://reactnative.dev/docs
 export default function App({navigation}) {
   return (
     <View style={homeStyle.container}> 
-      <Navigation/>
+      <HomeSplash/>
     </View>
   )
 }

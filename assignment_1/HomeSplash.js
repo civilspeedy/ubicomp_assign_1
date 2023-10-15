@@ -1,46 +1,54 @@
 import React from 'react';
-import { Pressable, StyleSheet, Text, View, ScrollView} from 'react-native';
-import { TextInput } from 'react-native-gesture-handler';
+import { Pressable, StyleSheet, Text, View, ScrollView, Image} from 'react-native';
+import { GestureHandlerRootView, TextInput } from 'react-native-gesture-handler';
 
+
+const search = ""
 
 const HomeSplash = () => (
-    <ScrollView style={styles.container}>
+    <GestureHandlerRootView>
+        <ScrollView style={styles.container}>
 
-        <View style={styles.top}>
-            <Text style={styles.topText}>SomeTrails</Text>
+            <View style={styles.top}>
+                <Text style={styles.topText}>SomeTrails</Text>
 
-            <TextInput value={search}></TextInput>
+                <View style={styles.searchBox}>
+                    <TextInput style={styles.inputBox} value={search} multiline={true}/>
+                    <Pressable><Image source={"C:/Users/Charl/Documents/ubicomp_assignment/ubicomp_assign_1/assignment_1/assets/cog.png"}/></Pressable>
+                </View>
+                <View style={{padding: 10}}/>
 
-            <View style={styles.topButtons}>
-            <View style={{flex: 0.1}}/>
-            <Pressable style={styles.button}>
-                <Text style={styles.buttonText}>Distance From Me</Text>
-            </Pressable>
+                <View style={styles.topButtons}>
+                <View style={{padding: 1}}/>
+                <Pressable style={styles.button}>
+                    <Text style={styles.buttonText}>Distance From Me</Text>
+                </Pressable>
 
-            <View style={{flex: 0.1}}/>
-            <Pressable style={styles.button}>
-                <Text style={styles.buttonText}>Activity Type</Text>
-            </Pressable>
+                <View style={{padding: 1}}/>
+                <Pressable style={styles.button}>
+                    <Text style={styles.buttonText}>Activity Type</Text>
+                </Pressable>
 
-            <View style={{flex: 0.1}}/>
-            <Pressable style={styles.button}>
-                <Text style={styles.buttonText}>Difficulty</Text>
-            </Pressable>
+                <View style={{padding: 1}}/>
+                <Pressable style={styles.button}>
+                    <Text style={styles.buttonText}>Difficulty</Text>
+                </Pressable>
 
-            <View style={{flex: 0.1}}/>
-            <Pressable style={styles.button}>
-                <Text style={styles.buttonText}>Length</Text>
-            </Pressable>
+                <View style={{padding: 1}}/>
+                <Pressable style={styles.button}>
+                    <Text style={styles.buttonText}>Length</Text>
+                </Pressable>
+                </View>
+
+                <View style={styles.nearbyCards}>
+
+                <View style={styles.card}>
+                    <Text>Test</Text>
+                </View>
             </View>
-
-            <View style={styles.nearbyCards}>
-
-            <View style={styles.card}>
-                <Text>Test</Text>
             </View>
-        </View>
-        </View>
-    </ScrollView>
+        </ScrollView>
+    </GestureHandlerRootView>
 )
 
 const styles = StyleSheet.create({
@@ -60,7 +68,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     color: 'lightgreen',
     paddingTop: 50,
-    paddingBottom: 20,
+    paddingBottom: 10,
     },
     
     topButtons:{
@@ -92,6 +100,18 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     },
 
+    searchBox:{
+        flex: 1,
+        borderColor: 'white',
+        borderWidth: 3,
+        borderRadius: 10,
+        width: '75%',
+        flexDirection: 'row',
+    },
+
+    inputBox: {
+        width: '90%',
+    }
 
 
 });
