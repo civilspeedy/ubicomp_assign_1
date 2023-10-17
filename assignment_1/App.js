@@ -1,15 +1,11 @@
 import React from 'react';
-import HomeSplash from './HomeSplash';
-import { View, StyleSheet} from 'react-native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { View, Text, StyleSheet} from 'react-native';
 
-
-const Stack = createNativeStackNavigator(); // from https://reactnative.dev/docs/navigation
 
 export default function App({navigation}) {
   return (
-    <View style={homeStyle.container}> 
-      <HomeSplash/>
+    <View style={homeStyle.container}>
+      <Text style={{color:'white'}}>Hello</Text>
     </View>
   )
 }
