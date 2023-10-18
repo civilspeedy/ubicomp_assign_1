@@ -1,7 +1,7 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 
 import Home from './pages/Home';
 import Map from './pages/Map';
@@ -12,9 +12,10 @@ const Tab = createMaterialTopTabNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer style={homeStyle.container}>
-      <View style={{flex:0.1}}/>
-      <Tab.Navigator>
+    <NavigationContainer style={styles.container}>
+      <View style={styles.holePunchAvoider}/>
+      
+      <Tab.Navigator style={styles.navBar}>
         <Tab.Screen name="Home" component={Home}/>
         <Tab.Screen name="Map" component={Map}/>
         <Tab.Screen name="Saved" component={Saved}/>
@@ -24,11 +25,23 @@ export default function App() {
   )
 }
 
-
-const homeStyle= StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    },
+
+    holePunchAvoider: {
+      flex: 0.05,
+      alignContent: 'stretch',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+
+    navBar: {
+      flex: 0.95,
+      width: '100%',
+      height: '90%',
     }
 })
