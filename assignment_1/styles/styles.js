@@ -31,6 +31,8 @@ export const coreStyles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 30,
         paddingBottom: 10,
+        paddingTop: 10,
+        paddingLeft: 5,
         alignSelf: 'auto',
     },
 
@@ -39,5 +41,24 @@ export const coreStyles = StyleSheet.create({
         alignItems: "center",
         backgroundColor: "grey",
         borderRadius: 10,
+    },
+
+    savedFolder: {
+        backgroundColor: 'grey',
+        borderRadius: 10,
+        borderColor: '#404040',
+        borderWidth: 3,
+    },
+
+    mapContainer: {
+        flex: 0.6,
+    },
+
+    map: {
+    },
+
+    mapControlsContainer: {
+        backgroundColor: 'white',
+        flex: 0.4
     }
 })

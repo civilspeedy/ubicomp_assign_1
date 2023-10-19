@@ -17,7 +17,7 @@ const Card = ({ content }) => {
 export default function Home() {
   return (
     <GestureHandlerRootView style={coreStyles.gestureHandlerRootView}>
-      <Text style={coreStyles.h1}>Trails Near to Me</Text>
+      <Text style={coreStyles.h1}>Trails Near You</Text>
       <ScrollView style={coreStyles.scrollView}>
         <Card content=<Text>Hello</Text> />
       </ScrollView>
