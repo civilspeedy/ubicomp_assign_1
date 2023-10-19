@@ -60,5 +60,10 @@ export const coreStyles = StyleSheet.create({
     mapControlsContainer: {
         backgroundColor: 'white',
         flex: 0.4
+    },
+
+    trailPage: {
+        flex: 1,
+        
     }
 })

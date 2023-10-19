@@ -2,10 +2,11 @@ import React from "react";
 import { Pressable, Text, View } from "react-native";
 import { coreStyles } from "../styles/styles";
 import { GestureHandlerRootView, ScrollView } from "react-native-gesture-handler";
+import { NavigationContainer } from "@react-navigation/native";
 
-const Folder = () => {
+const Folder = ({navigation}) => {
     return (
-        <Pressable style={coreStyles.savedFolder}>
+        <Pressable style={coreStyles.savedFolder onclick={() => navigation.navigate()}} >
             <Text style={coreStyles.h1}>Folder #1</Text>
         </Pressable>
     )
