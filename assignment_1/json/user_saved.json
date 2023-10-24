@@ -1,6 +1,8 @@
 {
     "folders": {
-        "saved #1": {},
+        "saved #1": {
+            "name": "test name"
+        },
         "saved #2": {}
     }
 }

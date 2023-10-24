@@ -1,0 +1,36 @@
+{
+    "trails": [
+        {
+            "id": 1,
+            "name": "Coastal Path",
+            "description": "Enjoy stunning coastal views as you walk along the Bournemouth coast.",
+            "distance": "5 miles",
+            "difficulty": "Easy",
+            "image": "coastal_path.jpg"
+        },
+        {
+            "id": 2,
+            "name": "Hengistbury Head Trail",
+            "description": "Explore Hengistbury Head Nature Reserve and its unique landscapes.",
+            "distance": "3 miles",
+            "difficulty": "Moderate",
+            "image": "hengistbury_head.jpg"
+        },
+        {
+            "id": 3,
+            "name": "Bournemouth Gardens Walk",
+            "description": "Stroll through the beautiful Bournemouth Gardens in the city center.",
+            "distance": "2 miles",
+            "difficulty": "Easy",
+            "image": "bournemouth_gardens.jpg"
+        },
+        {
+            "id": 4,
+            "name": "New Forest Walk",
+            "description": "Discover the natural beauty of the New Forest just outside Bournemouth.",
+            "distance": "8 miles",
+            "difficulty": "Moderate",
+            "image": "new_forest.jpg"
+        }
+    ]
+}

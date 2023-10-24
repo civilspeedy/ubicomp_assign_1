@@ -41,6 +41,29 @@ export const coreStyles = StyleSheet.create({
         alignItems: "center",
         backgroundColor: "grey",
         borderRadius: 10,
+        borderColor: '#404040',
+        borderWidth: 3,
+    },
+
+    cardHeader: {
+        fontWeight: 'bold',
+        fontSize: 20,
+        flex: 1,
+    },
+
+    cardText: {
+        alignSelf: 'flex-start',
+        flex: 1,
+    },
+
+    cardStats: {
+        display: 'flex',
+        flexDirection: 'row',
+        flex: 1,
+    },
+
+    cardDesc: {
+        textAlign: 'left',
     },
 
     savedFolder: {
@@ -48,6 +71,7 @@ export const coreStyles = StyleSheet.create({
         borderRadius: 10,
         borderColor: '#404040',
         borderWidth: 3,
+        flex: 1,
     },
 
     mapContainer: {
@@ -64,6 +88,5 @@ export const coreStyles = StyleSheet.create({
 
     trailPage: {
         flex: 1,
-        
     }
 })

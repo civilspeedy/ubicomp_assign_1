@@ -4,10 +4,15 @@ import { coreStyles } from "../styles/styles";
 import { GestureHandlerRootView, ScrollView } from "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 
-const Folder = ({navigation}) => {
+
+//from: https://stackoverflow.com/questions/29452822/how-to-fetch-data-from-local-json-file-on-react-native
+const savedData = require('../json/user_saved.json');
+const folders = savedData.folders;
+
+const Folder = ({ navigation }) => {
     return (
-        <Pressable style={coreStyles.savedFolder onclick={() => navigation.navigate()}} >
-            <Text style={coreStyles.h1}>Folder #1</Text>
+        <Pressable style={coreStyles.savedFolder} >
+            <Text style={coreStyles.h1}>{folders["saved #1"].name}</Text>
         </Pressable>
     )
 }
