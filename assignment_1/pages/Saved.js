@@ -11,7 +11,7 @@ const folders = savedData.folders;
 
 const Folder = ({ navigation }) => {
     return (
-        <Pressable style={coreStyles.savedFolder} >
+        <Pressable style={coreStyles.card} >
             <Text style={coreStyles.h1}>{folders["saved #1"].name}</Text>
         </Pressable>
     )

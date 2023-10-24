@@ -21,8 +21,25 @@ export const coreStyles = StyleSheet.create({
     },
 
     scrollView: {
-        flex: 1,
+        flex: 0.85,
     },
+
+    homeTop: {
+        flex: 0.15,
+        flexDirection: 'row',
+        margin: 10,
+    },
+
+    distButton: {
+        flex: 1,
+        borderRadius: 10,
+        backgroundColor: 'lightgreen',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 50,
+
+    },
+
     gestureHandlerRootView: {
         flex: 1,
     },
@@ -43,6 +60,8 @@ export const coreStyles = StyleSheet.create({
         borderRadius: 10,
         borderColor: '#404040',
         borderWidth: 3,
+        marginLeft: 10,
+        marginRight: 10,
     },
 
     cardHeader: {
@@ -79,11 +98,15 @@ export const coreStyles = StyleSheet.create({
     },
 
     map: {
+        width: 400,
+        height: 400,
+        alignSelf: 'center',
     },
 
     mapControlsContainer: {
         backgroundColor: 'white',
-        flex: 0.4
+        flex: 0.4,
+        color: 'black',
     },
 
     trailPage: {

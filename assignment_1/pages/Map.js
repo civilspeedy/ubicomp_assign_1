@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, Image, Pressable } from "react-native";
+import { Text, View, Image, Pressable, Button } from "react-native";
 import { coreStyles } from "../styles/styles";
 
 const MapControls = () => {
@@ -15,8 +15,7 @@ export default function Map() {
     return (
         <View>
             <View style={coreStyles.mapContainer}>
-                <Image source={require('../assets/placeholdermap.jpg')} style={coreStyles.map} resizeMode="stretch" />
-                <MapControls />
+                <Image source={require('../assets/placeholdermap.jpg')} style={coreStyles.map} />
             </View>
         </View>
     )
