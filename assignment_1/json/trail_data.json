@@ -4,33 +4,64 @@
             "id": 1,
             "name": "Coastal Path",
             "description": "Enjoy stunning coastal views as you walk along the Bournemouth coast.",
-            "distance": "5 miles",
-            "difficulty": "Easy",
-            "image": "coastal_path.jpg"
+            "distance": "5 mls",
+            "difficulty": "E",
+            "image": "coastal_path.jpg",
+            "distanceFromUser": "1.2 mls"
         },
         {
             "id": 2,
             "name": "Hengistbury Head Trail",
             "description": "Explore Hengistbury Head Nature Reserve and its unique landscapes.",
-            "distance": "3 miles",
-            "difficulty": "Moderate",
-            "image": "hengistbury_head.jpg"
+            "distance": "3 mls",
+            "difficulty": "M",
+            "image": "hengistbury_head.jpg",
+            "distanceFromUser": "0.8 mls"
         },
         {
             "id": 3,
             "name": "Bournemouth Gardens Walk",
             "description": "Stroll through the beautiful Bournemouth Gardens in the city center.",
-            "distance": "2 miles",
-            "difficulty": "Easy",
-            "image": "bournemouth_gardens.jpg"
+            "distance": "2 mls",
+            "difficulty": "E",
+            "image": "bournemouth_gardens.jpg",
+            "distanceFromUser": "0.5 mls"
         },
         {
             "id": 4,
             "name": "New Forest Walk",
             "description": "Discover the natural beauty of the New Forest just outside Bournemouth.",
-            "distance": "8 miles",
-            "difficulty": "Moderate",
-            "image": "new_forest.jpg"
+            "distance": "8 mls",
+            "difficulty": "M",
+            "image": "new_forest.jpg",
+            "distanceFromUser": "2.5 mls"
+        },
+        {
+            "id": 5,
+            "name": "Cliffside Trail",
+            "description": "Follow the rugged cliffside path with breathtaking ocean views.",
+            "distance": "6 mls",
+            "difficulty": "M",
+            "image": "cliffside.jpg",
+            "distanceFromUser": "1.8 mls"
+        },
+        {
+            "id": 6,
+            "name": "Woodland Adventure",
+            "description": "A serene walk through the enchanting woods and wildlife.",
+            "distance": "4 mls",
+            "difficulty": "E",
+            "image": "woodland.jpg",
+            "distanceFromUser": "1.0 mls"
+        },
+        {
+            "id": 7,
+            "name": "Mountain Peak Hike",
+            "description": "An adventurous hike to the top of the nearby mountain peak.",
+            "distance": "10 mls",
+            "difficulty": "C",
+            "image": "mountain_peak.jpg",
+            "distanceFromUser": "3.2 mls"
         }
     ]
 }

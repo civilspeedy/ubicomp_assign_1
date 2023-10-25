@@ -1,5 +1,7 @@
 import { StyleSheet } from "react-native";
 
+const darkgrey = '#404040';
+
 export const coreStyles = StyleSheet.create({
     mainStyle: {
         fontFamily: 'Droid Sans',
@@ -21,23 +23,27 @@ export const coreStyles = StyleSheet.create({
     },
 
     scrollView: {
-        flex: 0.85,
+        flex: 0.90,
+        borderRadius: 10,
     },
 
     homeTop: {
-        flex: 0.15,
+        flex: 0.10,
         flexDirection: 'row',
-        margin: 10,
+        marginLeft: 10,
+        marginRight: 10,
+        marginTop: 10,
     },
 
     distButton: {
         flex: 1,
         borderRadius: 10,
-        backgroundColor: 'lightgreen',
+        backgroundColor: "#abbd9a",
         alignItems: 'center',
         justifyContent: 'center',
         height: 50,
-        fontWeight: 'bold',
+        borderColor: '#404040',
+        borderWidth: 3,
     },
 
     gestureHandlerRootView: {
@@ -47,7 +53,6 @@ export const coreStyles = StyleSheet.create({
     h1: {
         fontWeight: 'bold',
         fontSize: 30,
-        paddingBottom: 10,
         paddingTop: 10,
         paddingLeft: 5,
         alignSelf: 'auto',
@@ -56,7 +61,7 @@ export const coreStyles = StyleSheet.create({
     card: {
         flex: 1,
         alignItems: "center",
-        backgroundColor: "grey",
+        backgroundColor: "#abbd9a",
         borderRadius: 10,
         borderColor: '#404040',
         borderWidth: 3,
@@ -111,5 +116,15 @@ export const coreStyles = StyleSheet.create({
 
     trailPage: {
         flex: 1,
-    }
+    },
+
+    trailModal: {
+        backgroundColor: 'white',
+        width: '100%',
+        height: '100%',
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        padding: 20,
+    },
 })
