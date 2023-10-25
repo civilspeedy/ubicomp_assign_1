@@ -1,8 +1,12 @@
-import React from "react"
-import { Alert, Modal, View } from "react-native"
+import React, {useState} from "react"
+import { Alert, Modal, Pressable, View, Text} from "react-native"
 
-export default function Trail(trail) {
-    const [seeModal, setModal] = useState(false);
+export default function Trail() {
+    const [seeModal, setModal] = useState(false); //Modal fragments from https://reactnative.dev/docs/modal
+
+    //need to create seperate functions to open and close the modal
+
+
     return (
         <View>
             <Modal
@@ -10,11 +14,15 @@ export default function Trail(trail) {
                 transparent={true}
                 visible={seeModal}
                 onRequestClose={() => {
-                    Alert.alert('closed model');
-                    setModal(!seeModal)
-                }}>
-
+                    Alert.alert('closed modal');
+                    setModal(!seeModal) }}>
+                        <View>
+                            <Pressable onPress={() => setModal(!seeModal)}><Text>Close</Text></Pressable>
+                        </View>
             </Modal>
+
+            <Pressable onPress={() => setModal(true)}><Text>Button</Text></Pressable>
+
         </View>
     )
 }
