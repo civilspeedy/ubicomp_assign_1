@@ -1,10 +1,20 @@
 import React from "react"
-import { View } from "react-native"
+import { Alert, Modal, View } from "react-native"
 
-export default function Trail(trail){
+export default function Trail(trail) {
+    const [seeModal, setModal] = useState(false);
     return (
         <View>
-            <Text>{trail.name}</Text>
+            <Modal
+                animationType='fade'
+                transparent={true}
+                visible={seeModal}
+                onRequestClose={() => {
+                    Alert.alert('closed model');
+                    setModal(!seeModal)
+                }}>
+
+            </Modal>
         </View>
     )
 }

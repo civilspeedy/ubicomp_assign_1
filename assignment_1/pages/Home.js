@@ -28,9 +28,6 @@ const Card = ({ content }) => {
 
 
 export default function Home() {
-  const [seeModal, setModal] = useState(false);// from https://stackoverflow.com/questions/68350980/react-native-floating-or-popup-screen-question
-
-
   return (
     <GestureHandlerRootView style={coreStyles.gestureHandlerRootView}>
 
@@ -38,7 +35,7 @@ export default function Home() {
         <Text style={coreStyles.h1}>Trails Near You</Text>
         <View style={{ padding: 10 }} />
         <Pressable style={coreStyles.distButton}>
-          <Text>Max Distance</Text>
+          <Text style={{ fontWeight: 'bold', fontSize: 20 }}>Max Distance</Text>
         </Pressable>
       </View>
 
