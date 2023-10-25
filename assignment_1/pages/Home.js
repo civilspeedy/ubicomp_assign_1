@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Text, View, StyleSheet, Dimensions, SafeAreaView, Button, Pressable } from "react-native";
 import { GestureHandlerRootView, ScrollView } from "react-native-gesture-handler";
 import { coreStyles } from "../styles/styles";

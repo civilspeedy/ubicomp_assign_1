@@ -37,7 +37,6 @@ export const coreStyles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         height: 50,
-
     },
 
     gestureHandlerRootView: {
