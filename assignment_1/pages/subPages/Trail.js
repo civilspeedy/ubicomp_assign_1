@@ -21,12 +21,20 @@ const Card = ({ trail }) => {
     )
 }
 
+const TrailModal = ({ trail, closeTrail }) => {
+    return (
+        <View style={coreStyles.trailModal}>
+            <Text style={coreStyles.h1}>{trail.name}</Text>
+            <Pressable onPress={closeTrail}><Text>Close</Text></Pressable>
+        </View>
+    )
+}
+
 /**Trail is a pressable that toggles a modal to appear showcasing more detail around a trail*/
 export default function Trail({ trail }) {
     const [seeModal, setModal] = useState(false); //Modal fragments from https://reactnative.dev/docs/modal
 
     const openTrail = () => setModal(true);
-
     const closeTrail = () => setModal(false);
 
     return (
@@ -38,10 +46,7 @@ export default function Trail({ trail }) {
                 onRequestClose={() => {
                     setModal(!seeModal)
                 }}>
-                <View style={coreStyles.trailModal}>
-                    <Text style={coreStyles.h1}>{trail.name}</Text>
-                    <Pressable onPress={closeTrail}><Text>Close</Text></Pressable>
-                </View>
+                <TrailModal trail={trail} closeTrail={closeTrail} />
             </Modal>
 
             <Pressable onPress={openTrail}>

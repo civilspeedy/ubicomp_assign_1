@@ -127,4 +127,16 @@ export const coreStyles = StyleSheet.create({
         alignItems: "center",
         padding: 20,
     },
+
+    distModal: {
+        width: '100%',
+        height: '25%',
+        backgroundColor: 'white',
+        borderRadius: 10,
+    },
+
+    distModalContainer: {
+        justifyContent: 'flex-end',
+        flex: 1
+    },
 })
