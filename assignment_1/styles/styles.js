@@ -1,6 +1,5 @@
 import { StyleSheet } from "react-native";
 
-const darkgrey = '#404040';
 
 export const coreStyles = StyleSheet.create({
     mainStyle: {
@@ -132,7 +131,10 @@ export const coreStyles = StyleSheet.create({
         width: '100%',
         height: '25%',
         backgroundColor: 'white',
-        borderRadius: 10,
+        borderRadius: 50,
+        shadowOpacity: '100%',
+        shadowColor: 'black',
+        shadowOffset: 1,
     },
 
     distModalContainer: {
@@ -142,7 +144,7 @@ export const coreStyles = StyleSheet.create({
 
     distSlider: {
         width: '75%',
-        height: '10%',
+        height: 1,
     },
 
     sliderContainer: {

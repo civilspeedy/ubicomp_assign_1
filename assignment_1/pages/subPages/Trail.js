@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Alert, Modal, Pressable, View, Text } from "react-native"
+import { Modal, Pressable, View, Text } from "react-native"
 import { coreStyles } from "../../styles/styles";
 
 /**A card is used to display the basic details of a trail*/

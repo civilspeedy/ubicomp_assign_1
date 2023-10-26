@@ -3,6 +3,7 @@ import { Modal, View, Text, Pressable } from "react-native";
 import { coreStyles } from "../../styles/styles";
 import Slider from "@react-native-community/slider";
 
+const currentMaxDist = require('../../json/user_pref.json')["trails near you"].MaxDistance
 
 const MaxDistanceModal = ({ closeModal }) => {
     return ( //from https://www.npmjs.com/package/@react-native-community/slider
@@ -14,8 +15,10 @@ const MaxDistanceModal = ({ closeModal }) => {
                 <Slider style={coreStyles.distSlider}
                     minimumValue={0}
                     maximumValue={10}
-                    minimumTrackTintColor="#404040"
-                    maximumTrackTintColor="#abbd9a" />
+                    value={currentMaxDist}
+                    minimumTrackTintColor="#abbd9a"
+                    thumbTintColor="#abbd9a"
+                    tapToSeek="true" />
             </View>
         </View>
     )
