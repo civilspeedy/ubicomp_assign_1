@@ -1,13 +1,22 @@
 import React, { useState } from "react"
 import { Modal, View, Text, Pressable } from "react-native";
 import { coreStyles } from "../../styles/styles";
+import Slider from "@react-native-community/slider";
+
 
 const MaxDistanceModal = ({ closeModal }) => {
-    return (
+    return ( //from https://www.npmjs.com/package/@react-native-community/slider
         <View style={coreStyles.distModal}>
             <Pressable onPress={closeModal}><Text>close</Text></Pressable>
-            <Text>Select Max Distance:</Text>
-            { //slider here}
+            <View style={coreStyles.sliderContainer}>
+                <Text style={{ fontWeight: 'bold', fontSize: 25 }}>Select Max Distance:</Text>
+                <View style={{ padding: 10 }} />
+                <Slider style={coreStyles.distSlider}
+                    minimumValue={0}
+                    maximumValue={10}
+                    minimumTrackTintColor="#404040"
+                    maximumTrackTintColor="#abbd9a" />
+            </View>
         </View>
     )
 

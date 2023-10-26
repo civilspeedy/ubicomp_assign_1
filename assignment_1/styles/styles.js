@@ -139,4 +139,15 @@ export const coreStyles = StyleSheet.create({
         justifyContent: 'flex-end',
         flex: 1
     },
+
+    distSlider: {
+        width: '75%',
+        height: '10%',
+    },
+
+    sliderContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        flex: 1,
+    },
 })
