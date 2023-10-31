@@ -25,6 +25,11 @@ const TrailModal = ({ trail, closeTrail }) => {
     return (
         <View style={coreStyles.trailModal}>
             <Text style={coreStyles.h1}>{trail.name}</Text>
+            <Text>{trail.description}</Text>
+            <Pressable style={coreStyles.saveButton}>
+                <Text>Save</Text>
+            </Pressable>
+
             <Pressable onPress={closeTrail}><Text>Close</Text></Pressable>
         </View>
     )
