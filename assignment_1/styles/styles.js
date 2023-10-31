@@ -1,10 +1,16 @@
 import { StyleSheet } from "react-native";
 
+const Colours = {
+    primary: '#C6EACD',
+    secondary: '#A0DCAD',
+    border: '#404040'
+}
 
 export const coreStyles = StyleSheet.create({
     mainStyle: {
         fontFamily: 'Droid Sans',
         fontWeight: 'bold',
+        flex: 1,
     },
 
     holePunchAvoider: {
@@ -16,7 +22,7 @@ export const coreStyles = StyleSheet.create({
     },
 
     navBar: {
-        flex: 0.95,
+        flex: 1,
         width: '100%',
         height: '90%',
     },
@@ -37,12 +43,14 @@ export const coreStyles = StyleSheet.create({
     distButton: {
         flex: 1,
         borderRadius: 10,
-        backgroundColor: "#abbd9a",
+        backgroundColor: Colours.primary,
         alignItems: 'center',
         justifyContent: 'center',
         height: 50,
-        borderColor: '#404040',
+        borderColor: Colours.border,
         borderWidth: 3,
+        padding: 10,
+        margin: 10
     },
 
     gestureHandlerRootView: {
@@ -60,9 +68,9 @@ export const coreStyles = StyleSheet.create({
     card: {
         flex: 1,
         alignItems: "center",
-        backgroundColor: "#abbd9a",
+        backgroundColor: Colours.primary,
         borderRadius: 10,
-        borderColor: '#404040',
+        borderColor: Colours.border,
         borderWidth: 3,
         marginLeft: 10,
         marginRight: 10,
@@ -90,9 +98,9 @@ export const coreStyles = StyleSheet.create({
     },
 
     savedFolder: {
-        backgroundColor: 'grey',
+        backgroundColor: Colours.primary,
         borderRadius: 10,
-        borderColor: '#404040',
+        borderColor: Colours.border,
         borderWidth: 3,
         flex: 1,
     },
@@ -111,18 +119,14 @@ export const coreStyles = StyleSheet.create({
         color: 'black',
     },
 
-    trailPage: {
-        flex: 1,
-    },
-
     trailModal: {
-        backgroundColor: 'white',
-        width: '100%',
-        height: '100%',
+        backgroundColor: Colours.secondary,
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
         padding: 20,
+        borderRadius: 20,
+        marginTop: 15,
     },
 
     distModal: {
@@ -130,14 +134,14 @@ export const coreStyles = StyleSheet.create({
         height: '25%',
         backgroundColor: 'white',
         borderRadius: 50,
-        shadowOpacity: '100%',
-        shadowColor: 'black',
-        shadowOffset: 1,
+        borderColor: Colours.border,
+        borderWidth: 3,
     },
 
     distModalContainer: {
-        justifyContent: 'flex-end',
-        flex: 1
+        justifyContent: 'flex-start',
+        flex: 1,
+        marginTop: 15,
     },
 
     distSlider: {

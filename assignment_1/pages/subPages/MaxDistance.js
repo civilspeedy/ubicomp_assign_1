@@ -33,7 +33,7 @@ export default function MaxDistance() {
     return (
         <View>
             <Modal
-                animationType="slide"
+                animationType="fade"
                 transparent={true}
                 visible={seeModal}
                 onRequestClose={() => {
