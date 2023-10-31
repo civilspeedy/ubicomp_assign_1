@@ -99,11 +99,9 @@ export const coreStyles = StyleSheet.create({
 
     mapContainer: {
         flex: 0.8,
-        borderRadius: 10,
     },
 
     map: {
-        borderRadius: 10,
         flex: 1,
     },
 

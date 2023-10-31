@@ -15,7 +15,6 @@ const MaxDistanceModal = ({ closeModal }) => {
                 <Slider style={coreStyles.distSlider}
                     minimumValue={0}
                     maximumValue={10}
-                    value={currentMaxDist}
                     minimumTrackTintColor="#abbd9a"
                     thumbTintColor="#abbd9a"
                     tapToSeek="true" />
