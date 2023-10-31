@@ -59,9 +59,81 @@
             "name": "Mountain Peak Hike",
             "description": "An adventurous hike to the top of the nearby mountain peak.",
             "distance": "10 mls",
-            "difficulty": "C",
+            "difficulty": "H",
             "image": "mountain_peak.jpg",
             "distanceFromUser": "3.2 mls"
+        },
+        {
+            "id": 8,
+            "name": "Riverbank Walk",
+            "description": "Enjoy a leisurely stroll along the serene riverbank, surrounded by nature.",
+            "distance": "3 mls",
+            "difficulty": "E",
+            "image": "riverbank.jpg",
+            "distanceFromUser": "0.7 mls"
+        },
+        {
+            "id": 9,
+            "name": "Ancient Ruins Trail",
+            "description": "Explore the historical ancient ruins scattered throughout the countryside.",
+            "distance": "7 mls",
+            "difficulty": "M",
+            "image": "ancient_ruins.jpg",
+            "distanceFromUser": "2.0 mls"
+        },
+        {
+            "id": 10,
+            "name": "Wildlife Safari Expedition",
+            "description": "Embark on a wildlife safari adventure through a nearby nature reserve.",
+            "distance": "9 mls",
+            "difficulty": "M",
+            "image": "wildlife_safari.jpg",
+            "distanceFromUser": "2.8 mls"
+        },
+        {
+            "id": 11,
+            "name": "Lakeside Tranquility",
+            "description": "Take a peaceful walk around a picturesque lakeside surrounded by lush greenery.",
+            "distance": "4 mls",
+            "difficulty": "E",
+            "image": "lakeside.jpg",
+            "distanceFromUser": "1.2 mls"
+        },
+        {
+            "id": 12,
+            "name": "Heritage Village Hike",
+            "description": "Explore a heritage village with preserved historic buildings and culture.",
+            "distance": "6 mls",
+            "difficulty": "M",
+            "image": "heritage_village.jpg",
+            "distanceFromUser": "1.5 mls"
+        },
+        {
+            "id": 13,
+            "name": "Meadow Picnic Path",
+            "description": "A leisurely path through a wildflower meadow, perfect for a relaxing picnic.",
+            "distance": "2 mls",
+            "difficulty": "E",
+            "image": "meadow_picnic.jpg",
+            "distanceFromUser": "0.6 mls"
+        },
+        {
+            "id": 14,
+            "name": "Countryside Cycle Route",
+            "description": "Cycle through scenic countryside roads and rolling hills for a two-wheeled adventure.",
+            "distance": "12 mls",
+            "difficulty": "H",
+            "image": "countryside_cycle.jpg",
+            "distanceFromUser": "4.0 mls"
+        },
+        {
+            "id": 15,
+            "name": "Waterfall Exploration",
+            "description": "Discover hidden waterfalls on this off-the-beaten-path exploration.",
+            "distance": "5 mls",
+            "difficulty": "M",
+            "image": "waterfall.jpg",
+            "distanceFromUser": "1.7 mls"
         }
     ]
 }

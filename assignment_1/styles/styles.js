@@ -98,13 +98,13 @@ export const coreStyles = StyleSheet.create({
     },
 
     mapContainer: {
-        flex: 0.6,
+        flex: 0.8,
+        borderRadius: 10,
     },
 
     map: {
-        width: 400,
-        height: 400,
-        alignSelf: 'center',
+        borderRadius: 10,
+        flex: 1,
     },
 
     mapControlsContainer: {
