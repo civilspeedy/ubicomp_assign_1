@@ -97,12 +97,20 @@ export const coreStyles = StyleSheet.create({
         textAlign: 'left',
     },
 
+    folderContainer:{
+        
+    },
+
     savedFolder: {
         backgroundColor: Colours.primary,
         borderRadius: 10,
         borderColor: Colours.border,
         borderWidth: 3,
         flex: 1,
+        marginRight: '50%',
+    },
+
+    fodlerText:{
     },
 
     mapContainer: {

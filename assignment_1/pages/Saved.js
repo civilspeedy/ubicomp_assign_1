@@ -11,18 +11,24 @@ const folders = savedData.folders;
 
 const Folder = ({ navigation }) => {
     return (
-        <Pressable style={coreStyles.card} >
-            <Text style={coreStyles.h1}>{folders["saved #1"].name}</Text>
+        <Pressable style={coreStyles.savedFolder} >
+            <Text style={coreStyles.folderText}>{folders["saved #1"].name}</Text>
         </Pressable>
     )
+}
+
+const AddFolder = () => {
+    // this will be a button to add a new folder
 }
 
 export default function Saved() {
     return (
         <GestureHandlerRootView style={coreStyles.gestureHandlerRootView}>
+            <Text style={coreStyles.h1}>Your Saved Trails</Text>
             <ScrollView>
-                <Text style={coreStyles.h1}>Your Saved Trails</Text>
-                <Folder />
+                <View style={coreStyles.folderContainer}>
+                    <Folder />  
+                </View>
             </ScrollView>
         </GestureHandlerRootView>
     )
