@@ -4,6 +4,9 @@ import { coreStyles } from "../styles/styles";
 import { GestureHandlerRootView, ScrollView } from "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 
+//set up saving functionality
+//set up saved reading functionality
+
 
 //from: https://stackoverflow.com/questions/29452822/how-to-fetch-data-from-local-json-file-on-react-native
 const savedData = require('../json/user_saved.json');

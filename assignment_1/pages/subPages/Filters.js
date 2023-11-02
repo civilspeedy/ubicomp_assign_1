@@ -14,13 +14,13 @@ const FiltersModal = ({ closeModal }) => {
                     minimumValue={0}
                     maximumValue={10}
                     minimumTrackTintColor="#abbd9a"
-                    thumbTintColor="#abbd9a"
-                    tapToSeek="true" />
+                    thumbTintColor="#abbd9a"/>
             </View>
         </View>
     )
-
 }
+
+//add aproprate filters
 
 export default function Filters() {
     const [seeModal, setModal] = useState(false);

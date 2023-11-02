@@ -32,7 +32,7 @@ const TrailModal = ({ trail, closeTrail }) => {
         <View style={coreStyles.trailModal}>
             <Text style={coreStyles.h1}>{trail.name}</Text>
             <CardStats trail={trail} />
-            <Text>{trail.description}</Text>
+            <Text style={coreStyles.description}>{trail.description}</Text>
 
 
             <Pressable style={coreStyles.saveButton}>
@@ -54,7 +54,7 @@ export default function Trail({ trail }) {
     return (
         <View>
             <Modal
-                animationType='fade'
+                animationType='slide'
                 transparent={true}
                 visible={seeModal}
                 onRequestClose={() => {

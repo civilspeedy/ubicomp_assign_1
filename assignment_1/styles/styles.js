@@ -200,4 +200,12 @@ export const coreStyles = StyleSheet.create({
         borderRadius: 5,
         margin: 10,
     },
+
+    description: {
+        borderColor: Colours.border,
+        borderWidth: 3,
+        borderRadius: 5,
+        padding: 5,
+        backgroundColor: 'white',
+    },
 })
