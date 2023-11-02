@@ -1,25 +1,27 @@
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
-import { View, Text, StyleSheet} from 'react-native';
+import { View, Text } from 'react-native';
 
+import Home from './pages/Home';
+import Map from './pages/Map';
+import Saved from './pages/Saved';
 
-export default function App({navigation}) {
+import { coreStyles } from './styles/styles';
+
+const Tab = createMaterialTopTabNavigator();
+
+export default function App() {
   return (
-    <View style={homeStyle.container}>
-      <Text style={{color:'white'}}>Hello</Text>
-    </View>
+    <NavigationContainer style={coreStyles.mainStyle}>
+      <View style={coreStyles.holePunchAvoider} />
+      <View style={{ flex: 1 }}>
+        <Tab.Navigator style={coreStyles.navBar} >
+          <Tab.Screen name="Home" component={Home} />
+          <Tab.Screen name="Map" component={Map} />
+          <Tab.Screen name="Saved" component={Saved} />
+        </Tab.Navigator>
+      </View>
+    </NavigationContainer>
   )
 }
-
-
-const homeStyle= StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'black',
-    alignItems: 'center',
-    justifyContent: 'center',
-    },
-  navBar: {
-    flexDirection: 'row',
-    backgroundColor: 'lightgreen',
-    },
-})
