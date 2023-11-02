@@ -9,16 +9,21 @@ import { NavigationContainer } from "@react-navigation/native";
 const savedData = require('../json/user_saved.json');
 const folders = savedData.folders;
 
-const Folder = ({ navigation }) => {
+const Folder = () => {
     return (
         <Pressable style={coreStyles.savedFolder} >
             <Text style={coreStyles.folderText}>{folders["saved #1"].name}</Text>
         </Pressable>
-    )
+    );
 }
 
 const AddFolder = () => {
     // this will be a button to add a new folder
+    return (
+        <Pressable style={coreStyles.savedFolder}>
+            <Text style={coreStyles.folderText}>+</Text>
+        </Pressable>
+    )
 }
 
 export default function Saved() {
@@ -27,7 +32,8 @@ export default function Saved() {
             <Text style={coreStyles.h1}>Your Saved Trails</Text>
             <ScrollView>
                 <View style={coreStyles.folderContainer}>
-                    <Folder />  
+                    <Folder />
+                    <AddFolder />
                 </View>
             </ScrollView>
         </GestureHandlerRootView>

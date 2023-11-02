@@ -9,14 +9,20 @@ const Card = ({ trail }) => {
             <View style={coreStyles.card}>
                 <Text style={coreStyles.cardHeader}>{trail.name}</Text>
 
-                <View style={coreStyles.cardStats}>
-                    <Text><Text style={{ fontWeight: 'bold' }}>Distance: </Text>{trail.distance} |</Text>
-                    <Text> <Text style={{ fontWeight: 'bold' }}>Difficulty:</Text> {trail.difficulty} |</Text>
-                    <Text> <Text style={{ fontWeight: 'bold' }}>Distance From You:</Text> {trail.distanceFromUser}</Text>
-                </View>
+                <CardStats trail={trail} />
             </View>
 
             <View style={{ padding: 10 }} />
+        </View>
+    )
+}
+
+const CardStats = ({ trail }) => {
+    return (
+        <View style={coreStyles.cardStats}>
+            <Text style={coreStyles.statstext}><Text style={{ fontWeight: 'bold' }}>Distance: </Text>{trail.distance} |</Text>
+            <Text style={coreStyles.statstext}> <Text style={{ fontWeight: 'bold' }}>Difficulty:</Text> {trail.difficulty} |</Text>
+            <Text style={coreStyles.statstext}> <Text style={{ fontWeight: 'bold' }}>Distance From You:</Text> {trail.distanceFromUser}</Text>
         </View>
     )
 }
@@ -25,12 +31,15 @@ const TrailModal = ({ trail, closeTrail }) => {
     return (
         <View style={coreStyles.trailModal}>
             <Text style={coreStyles.h1}>{trail.name}</Text>
+            <CardStats trail={trail} />
             <Text>{trail.description}</Text>
+
+
             <Pressable style={coreStyles.saveButton}>
                 <Text>Save</Text>
             </Pressable>
 
-            <Pressable onPress={closeTrail}><Text>Close</Text></Pressable>
+            <Pressable style={coreStyles.closeButton} onPress={closeTrail}><Text style={{ fontSize: 15, padding: 10 }}>Close</Text></Pressable>
         </View>
     )
 }

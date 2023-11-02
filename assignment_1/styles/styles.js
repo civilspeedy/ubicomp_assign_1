@@ -1,9 +1,24 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, PixelRatio } from "react-native";
+
+
+//2.625
+console.log("Pixel Ratio:", PixelRatio.get())
+//from https://stackoverflow.com/questions/33628677/react-native-responsive-font-size
+let smallTextSize = 12;
+if (PixelRatio.get() > 3.125 || PixelRatio.get() < 3) {
+    smallTextSize = 14;
+}
+if (PixelRatio.get() < 3.5 && PixelRatio.get() > 3) {
+    smallTextSize = 11;
+}
+
+console.log("Small Text Size:", smallTextSize);
 
 const Colours = {
     primary: '#C6EACD',
     secondary: '#A0DCAD',
-    border: '#404040'
+    border: '#404040',
+    complementary: '#DCA0CF',
 }
 
 export const coreStyles = StyleSheet.create({
@@ -35,22 +50,16 @@ export const coreStyles = StyleSheet.create({
     homeTop: {
         flex: 0.10,
         flexDirection: 'row',
-        marginLeft: 10,
-        marginRight: 10,
-        marginTop: 10,
+        margin: 10,
     },
 
-    distButton: {
+    filterButton: {
         flex: 1,
         borderRadius: 10,
         backgroundColor: Colours.primary,
-        alignItems: 'center',
         justifyContent: 'center',
-        height: 50,
         borderColor: Colours.border,
         borderWidth: 3,
-        padding: 10,
-        margin: 10
     },
 
     gestureHandlerRootView: {
@@ -62,7 +71,18 @@ export const coreStyles = StyleSheet.create({
         fontSize: 30,
         paddingTop: 10,
         paddingLeft: 5,
-        alignSelf: 'auto',
+        alignSelf: 'flex-start',
+        marginRight: 10,
+    },
+
+    homeHeader: {
+        flex: 1,
+        fontWeight: 'bold',
+        fontSize: 30,
+        paddingTop: 10,
+        paddingLeft: 5,
+        alignSelf: 'flex-start',
+        marginRight: 10,
     },
 
     card: {
@@ -90,15 +110,19 @@ export const coreStyles = StyleSheet.create({
     cardStats: {
         display: 'flex',
         flexDirection: 'row',
-        flex: 1,
+        marginHorizontal: 10,
+    },
+
+    statstext: {
+        fontSize: smallTextSize,
     },
 
     cardDesc: {
         textAlign: 'left',
     },
 
-    folderContainer:{
-        
+    folderContainer: {
+        flex: 0.9,
     },
 
     savedFolder: {
@@ -107,10 +131,12 @@ export const coreStyles = StyleSheet.create({
         borderColor: Colours.border,
         borderWidth: 3,
         flex: 1,
-        marginRight: '50%',
+        alignItems: 'center',
+        margin: 10,
     },
 
-    fodlerText:{
+    folderText: {
+        fontSize: 20,
     },
 
     mapContainer: {
@@ -161,5 +187,17 @@ export const coreStyles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         flex: 1,
+    },
+
+    saveButton: {
+        borderRadius: 5,
+        backgroundColor: 'cyan',
+        padding: 2,
+    },
+
+    closeButton: {
+        backgroundColor: Colours.complementary,
+        borderRadius: 5,
+        margin: 10,
     },
 })

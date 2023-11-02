@@ -3,7 +3,7 @@ import { Modal, View, Text, Pressable } from "react-native";
 import { coreStyles } from "../../styles/styles";
 import Slider from "@react-native-community/slider";
 
-const MaxDistanceModal = ({ closeModal }) => {
+const FiltersModal = ({ closeModal }) => {
     return ( //from https://www.npmjs.com/package/@react-native-community/slider
         <View style={coreStyles.distModal}>
             <Pressable onPress={closeModal}><Text>close</Text></Pressable>
@@ -22,7 +22,7 @@ const MaxDistanceModal = ({ closeModal }) => {
 
 }
 
-export default function MaxDistance() {
+export default function Filters() {
     const [seeModal, setModal] = useState(false);
 
     const openModal = () => setModal(true);
@@ -38,12 +38,12 @@ export default function MaxDistance() {
                     setModal(!seeModal)
                 }}>
                 <View style={coreStyles.distModalContainer}>
-                    <MaxDistanceModal closeModal={closeModal} />
+                    <FiltersModal closeModal={closeModal} />
                 </View>
             </Modal>
 
-            <Pressable style={coreStyles.distButton} onPress={openModal}>
-                <Text style={{ fontWeight: 'bold', fontSize: 20 }}>Max Distance</Text>
+            <Pressable style={coreStyles.filterButton} onPress={openModal}>
+                <Text style={{ fontWeight: 'bold', fontSize: 20 }}>Filters</Text>
             </Pressable>
         </View>
     )
