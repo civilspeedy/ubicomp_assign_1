@@ -165,7 +165,7 @@ export const coreStyles = StyleSheet.create({
 
     distModal: {
         width: '100%',
-        height: '25%',
+        height: '40%',
         backgroundColor: 'white',
         borderRadius: 50,
         borderColor: Colours.border,
@@ -180,7 +180,10 @@ export const coreStyles = StyleSheet.create({
 
     distSlider: {
         width: '75%',
-        height: 1,
+    },
+
+    checkBoxContainer: {
+        flex: 1,
     },
 
     sliderContainer: {
