@@ -1,6 +1,7 @@
 import React, { useState } from "react"
-import { Modal, Pressable, View, Text } from "react-native"
+import { Modal, Pressable, View, Text, Image } from "react-native"
 import { coreStyles } from "../../styles/styles";
+import BouncyCheckbox from "react-native-bouncy-checkbox";
 
 /**A card is used to display the basic details of a trail*/
 const Card = ({ trail }) => {
@@ -35,9 +36,14 @@ const TrailModal = ({ trail, closeTrail }) => {
             <Text style={coreStyles.description}>{trail.description}</Text>
 
 
-            <Pressable style={coreStyles.saveButton}>
-                <Text>Save</Text>
-            </Pressable>
+            <BouncyCheckbox
+                fillColor='#00FF28'
+                unfillColor='white'
+                size={60}
+                disableText={true}
+                innerIconStyle={{ borderColor: 'black', borderWidth: 3 }}
+                imageComponent={<Image source={require('../../assets/saved.png')} style={{ width: 50, height: 50 }} />}
+            />
 
             <Pressable style={coreStyles.closeButton} onPress={closeTrail}><Text style={{ fontSize: 15, padding: 10 }}>Close</Text></Pressable>
         </View>

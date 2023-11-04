@@ -55,6 +55,8 @@ export default function Filters() {
                             {/*from https://github.com/WrathChaos/react-native-bouncy-checkbox*/}
                             <View style={coreStyles.checkBoxTextContainer}>
                                 <BouncyCheckbox
+                                    disableText={true}
+                                    size={40}
                                     style={coreStyles.checkBox}
                                     fillColor={Colours.secondary}
                                     onPress={(isChecked) => setEasy(isChecked)}
@@ -64,6 +66,8 @@ export default function Filters() {
                             {/*chatgpt was asked how to store the state of checkbox -> onPress={(isChecked) => setEasy(isChecked)}*/}
                             <View style={coreStyles.checkBoxTextContainer}>
                                 <BouncyCheckbox
+                                    disableText={true}
+                                    size={40}
                                     style={coreStyles.checkBox}
                                     fillColor={Colours.secondary}
                                     onPress={(isChecked) => setMedium(isChecked)}
@@ -73,6 +77,8 @@ export default function Filters() {
 
                             <View style={coreStyles.checkBoxTextContainer}>
                                 <BouncyCheckbox
+                                    disableText={true}
+                                    size={40}
                                     style={coreStyles.checkBox}
                                     fillColor={Colours.secondary}
                                     onPress={(isChecked) => setHard(isChecked)}
