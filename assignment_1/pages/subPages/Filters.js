@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { Modal, View, Text, Pressable } from "react-native";
-import { coreStyles } from "../../styles/styles";
+import { Colours, coreStyles } from "../../styles/styles";
 import Slider from "@react-native-community/slider";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 
@@ -18,7 +18,12 @@ const CustomSlider = () => {
 //add aproprate filters
 
 export default function Filters() {
-    const [seeModal, setModal] = useState(false);
+    const [showModal, setModal] = useState(false);
+
+    const [showEasy, setEasy] = useState(true);
+    const [showMedium, setMedium] = useState(true);
+    const [showHard, setHard] = useState(true);
+
 
     const openModal = () => setModal(true);
     const closeModal = () => setModal(false);
@@ -28,9 +33,9 @@ export default function Filters() {
             <Modal
                 animationType="fade"
                 transparent={true}
-                visible={seeModal}
+                visible={showModal}
                 onRequestClose={() => {
-                    setModal(!seeModal)
+                    setModal(!showModal)
                 }}>
                 <View style={coreStyles.distModalContainer}>
                     <View style={coreStyles.distModal}>
@@ -46,9 +51,34 @@ export default function Filters() {
                         </View>
 
                         <View style={coreStyles.checkBoxContainer}>
-                            <BouncyCheckbox onPress={(isChecked) => { }} />
-                            {/*from https://github.com/WrathChaos/react-native-bouncy-checkbox*/}
 
+                            {/*from https://github.com/WrathChaos/react-native-bouncy-checkbox*/}
+                            <View style={coreStyles.checkBoxTextContainer}>
+                                <BouncyCheckbox
+                                    style={coreStyles.checkBox}
+                                    fillColor={Colours.secondary}
+                                    onPress={(isChecked) => setEasy(isChecked)}
+                                    isChecked={showEasy} />
+                                <Text>Easy</Text>
+                            </View>
+                            {/*chatgpt was asked how to store the state of checkbox -> onPress={(isChecked) => setEasy(isChecked)}*/}
+                            <View style={coreStyles.checkBoxTextContainer}>
+                                <BouncyCheckbox
+                                    style={coreStyles.checkBox}
+                                    fillColor={Colours.secondary}
+                                    onPress={(isChecked) => setMedium(isChecked)}
+                                    isChecked={showMedium} />
+                                <Text>Medium</Text>
+                            </View>
+
+                            <View style={coreStyles.checkBoxTextContainer}>
+                                <BouncyCheckbox
+                                    style={coreStyles.checkBox}
+                                    fillColor={Colours.secondary}
+                                    onPress={(isChecked) => setHard(isChecked)}
+                                    isChecked={showHard} />
+                                <Text>Hard</Text>
+                            </View>
                         </View>
                     </View>
                 </View>

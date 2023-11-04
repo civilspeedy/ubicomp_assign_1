@@ -14,7 +14,7 @@ if (PixelRatio.get() < 3.5 && PixelRatio.get() > 3) {
 
 console.log("Small Text Size:", smallTextSize);
 
-const Colours = {
+export const Colours = {
     primary: '#C6EACD',
     secondary: '#A0DCAD',
     border: '#404040',
@@ -102,6 +102,8 @@ export const coreStyles = StyleSheet.create({
         flex: 1,
     },
 
+
+
     cardText: {
         alignSelf: 'flex-start',
         flex: 1,
@@ -184,6 +186,20 @@ export const coreStyles = StyleSheet.create({
 
     checkBoxContainer: {
         flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+    },
+
+    checkBox: {
+        alignSelf: 'center',
+    },
+
+
+    checkBoxTextContainer: {
+        justifyContent: 'center',
+        alignContent: 'center',
+        padding: 10,
+        paddingHorizontal: 20,
     },
 
     sliderContainer: {
