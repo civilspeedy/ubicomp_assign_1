@@ -2,18 +2,20 @@ import React, { useState } from "react"
 import { Modal, Pressable, View, Text, Image } from "react-native"
 import { coreStyles } from "../../styles/styles";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
+import { getSavedTrail, saveTrail } from "../../store";
+import MapView from "react-native-maps";
+
 
 /**A card is used to display the basic details of a trail*/
 const Card = ({ trail }) => {
     return (
-        <View>
+        <View style={{ marginBottom: 10 }}>
             <View style={coreStyles.card}>
                 <Text style={coreStyles.cardHeader}>{trail.name}</Text>
 
                 <CardStats trail={trail} />
             </View>
 
-            <View style={{ padding: 10 }} />
         </View>
     )
 }
@@ -35,6 +37,9 @@ const TrailModal = ({ trail, closeTrail }) => {
             <CardStats trail={trail} />
             <Text style={coreStyles.description}>{trail.description}</Text>
 
+            <Pressable >
+                <Text>Start Trail</Text>
+            </Pressable>
 
             <BouncyCheckbox
                 fillColor='#00FF28'

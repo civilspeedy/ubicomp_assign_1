@@ -1,10 +1,23 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const saveTrail = async (trail) => {
+export const saveTrail = async (trail) => {
     try {
-        const json = JSON.stringify(trail);
-        await AsyncStorage.setItem('trail', json);
-    } catch (e) {
-        console.log(e)
+        await AsyncStorage.setItem('key', JSON.stringify(trail));
+        console.log("Saved")
     }
-};
+    catch (e) {
+        console.error(e);
+    }
+}
+
+export const getSavedTrail = async () => {
+    try {
+        const response = await AsyncStorage.getItem('key');
+        console.log("get successful")
+        const jsonResponse = JSON.parse(response)
+        return jsonResponse.id
+    }
+    catch (e) {
+        console.error(e);
+    }
+}

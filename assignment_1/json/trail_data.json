@@ -1,276 +1,274 @@
-{
-  "trails": [
-    {
-      "id": 1,
-      "name": "Coastal Walk",
-      "description": "Take a scenic coastal walk along the shores of Bournemouth. Enjoy the sound of the waves, the salty breeze, and breathtaking views of the coastline. As you stroll along this 5.2 km trail, you'll encounter sandy beaches, rugged cliffs, and picturesque coves. Keep an eye out for seabirds and marine life. There are several viewpoints along the way for you to pause and take in the stunning scenery.",
-      "distance": 5.2,
-      "difficulty": "M",
-      "distanceFromUser": 2.3,
-      "startLong": -1.8796,
-      "startLat": 50.7150,
-      "endLong": -1.8890,
-      "endLat": 50.7175,
-      "midpoints": [
-        {
-          "long": -1.8825,
-          "lat": 50.7158
-        },
-        {
-          "long": -1.8847,
-          "lat": 50.7162
-        },
-        {
-          "long": -1.8863,
-          "lat": 50.7165
-        }
-      ]
-    },
-    {
-      "id": 2,
-      "name": "Woodland Hike",
-      "description": "Immerse yourself in nature on this peaceful hike through the Bournemouth woods. Experience the tranquility of the forest and its rich biodiversity. This 3.8 km trail leads you through dense woodlands, with towering trees and a variety of flora and fauna. Listen to the rustling leaves and bird songs as you explore. It's an excellent opportunity for birdwatching and enjoying the natural beauty.",
-      "distance": 3.8,
-      "difficulty": "E",
-      "distanceFromUser": 1.7,
-      "startLong": -1.8682,
-      "startLat": 50.7354,
-      "endLong": -1.8598,
-      "endLat": 50.7320,
-      "midpoints": [
-        {
-          "long": -1.8650,
-          "lat": 50.7342
-        },
-        {
-          "long": -1.8626,
-          "lat": 50.7331
-        }
-      ]
-    },
-    {
-      "id": 3,
-      "name": "Cliffside Trek",
-      "description": "Embark on a challenging trek along the Bournemouth cliffs. This trail is for adventure-seekers looking for a physically demanding experience. The 7.5 km route takes you along dramatic cliff edges, offering panoramic views of the sea below. You'll encounter steep ascents and descents, so be prepared for a strenuous hike. The reward is the breathtaking vistas and a sense of accomplishment.",
-      "distance": 7.5,
-      "difficulty": "H",
-      "distanceFromUser": 3.9,
-      "startLong": -1.8987,
-      "startLat": 50.7225,
-      "endLong": -1.8843,
-      "endLat": 50.7201,
-      "midpoints": [
-        {
-          "long": -1.8945,
-          "lat": 50.7218
-        },
-        {
-          "long": -1.8899,
-          "lat": 50.7214
-        },
-        {
-          "long": -1.8876,
-          "lat": 50.7209
-        }
-      ]
-    },
-    {
-      "id": 4,
-      "name": "Forest Trail",
-      "description": "Discover serenity on this 4.6 km trail through the Bournemouth forest. Lose yourself in the lush greenery and the soothing sounds of the forest. This trail winds through a tranquil forest, with a well-marked path and occasional clearings. The trees create a canopy overhead, providing shade and a calming atmosphere. Look for wildlife and enjoy the fresh forest air.",
-      "distance": 4.6,
-      "difficulty": "M",
-      "distanceFromUser": 1.5,
-      "startLong": -1.8591,
-      "startLat": 50.7462,
-      "endLong": -1.8530,
-      "endLat": 50.7487,
-      "midpoints": [
-        {
-          "long": -1.8573,
-          "lat": 50.7475
-        },
-        {
-          "long": -1.8548,
-          "lat": 50.7470
-        }
-      ]
-    },
-    {
-      "id": 5,
-      "name": "City Walk",
-      "description": "Explore the streets of Bournemouth on this 2.4 km urban walk. Dive into the heart of the city, where you'll find history, culture, and vibrant neighborhoods. This easy walk takes you through the city's bustling streets, passing by historic buildings, shops, cafes, and local attractions. It's a great way to absorb the urban vibe and discover the city's unique character.",
-      "distance": 2.4,
-      "difficulty": "E",
-      "distanceFromUser": 0.8,
-      "startLong": -1.8750,
-      "startLat": 50.7227,
-      "endLong": -1.8639,
-      "endLat": 50.7222,
-      "midpoints": [
-        {
-          "long": -1.8712,
-          "lat": 50.7226
-        },
-        {
-          "long": -1.8675,
-          "lat": 50.7224
-        }
-      ]
-    },
-    {
-      "id": 6,
-      "name": "Marshland Trail",
-      "description": "Traverse the marshlands of Bournemouth on this 4.1 km trail. Experience the unique ecosystem of marshes and wetlands. The trail winds through marshy terrain, with boardwalks and footpaths. Keep an eye out for wetland birds, plants, and perhaps even amphibians. The landscape is tranquil and a stark contrast to the city.",
-      "distance": 4.1,
-      "difficulty": "M",
-      "distanceFromUser": 1.9,
-      "startLong": -1.8456,
-      "startLat": 50.7578,
-      "endLong": -1.8537,
-      "endLat": 50.7589,
-      "midpoints": [
-        {
-          "long": -1.8489,
-          "lat": 50.7585
-        },
-        {
-          "long": -1.8512,
-          "lat": 50.7587
-        }
-      ]
-    },
-    {
-      "id": 7,
-      "name": "Moorland Hike",
-      "description": "Embark on a challenging 6.2 km hike through the Bournemouth moorlands. This trail offers a rugged and demanding experience. The moorlands are characterized by open, expansive landscapes with rolling hills. Expect steep ascents and descents, providing a physical challenge. The panoramic views from the heights are breathtaking.",
-      "distance": 6.2,
-      "difficulty": "H",
-      "distanceFromUser": 2.8,
-      "startLong": -1.8314,
-      "startLat": 50.7652,
-      "endLong": -1.8236,
-      "endLat": 50.7620,
-      "midpoints": [
-        {
-          "long": -1.8285,
-          "lat": 50.7640
-        },
-        {
-          "long": -1.8260,
-          "lat": 50.7630
-        }
-      ]
-    },
-    {
-      "id": 8,
-      "name": "Beachside Stroll",
-      "description": "Take a leisurely 3.0 km walk along Bournemouth's sandy beach. Feel the sand between your toes and enjoy the calming sound of the waves. This easy stroll is perfect for relaxing. You can walk along the beach, dip your toes in the sea, and collect seashells. Enjoy the stunning sunsets over the water.",
-      "distance": 3.0,
-      "difficulty": "E",
-      "distanceFromUser": 1.0,
-      "startLong": -1.8837,
-      "startLat": 50.7109,
-      "endLong": -1.8748,
-      "endLat": 50.7101,
-      "midpoints": [
-        {
-          "long": -1.8812,
-          "lat": 50.7106
-        },
-        {
-          "long": -1.8778,
-          "lat": 50.7105
-        }
-      ]
-    },
-    {
-      "id": 9,
-      "name": "Riverside Trail",
-      "description": "Follow the 4.9 km trail along the Bournemouth riverside, where you'll encounter the beauty of the water and its surroundings. This trail meanders alongside the river, offering serene views and opportunities for wildlife observation. The trail is easy to navigate, making it suitable for a peaceful and scenic walk.",
-      "distance": 4.9,
-      "difficulty": "M",
-      "distanceFromUser": 2.1,
-      "startLong": -1.8315,
-      "startLat": 50.7423,
-      "endLong": -1.8212,
-      "endLat": 50.7427,
-      "midpoints": [
-        {
-          "long": -1.8280,
-          "lat": 50.7424
-        },
-        {
-          "long": -1.8246,
-          "lat": 50.7425
-        }
-      ]
-    },
-    {
-      "id": 10,
-      "name": "Scenic Drive",
-      "description": "Enjoy a picturesque 20.3 km drive through the Bournemouth countryside. This route provides a relaxing and scenic tour of the region. You'll pass through idyllic countryside with rolling hills, farmlands, and quaint villages. There are plenty of places to stop for photos and take in the rural charm of the area.",
-      "distance": 20.3,
-      "difficulty": "E",
-      "distanceFromUser": 5.6,
-      "startLong": -1.7964,
-      "startLat": 50.7201,
-      "endLong": -1.8147,
-      "endLat": 50.7185,
-      "midpoints": [
-        {
-          "long": -1.8055,
-          "lat": 50.7194
-        },
-        {
-          "long": -1.7999,
-          "lat": 50.7189
-        }
-      ]
-    },
-    {
-      "id": 11,
-      "name": "Hillside Hike",
-      "description": "Challenge yourself with an 8.7 km hike up the Bournemouth hills. This trail offers breathtaking vistas and a rigorous workout. The trail involves steep ascents and descents, leading to spectacular views from the hilltops. The effort is rewarded with unobstructed panoramas of the surrounding landscape.",
-      "distance": 8.7,
-      "difficulty": "H",
-      "distanceFromUser": 4.2,
-      "startLong": -1.8673,
-      "startLat": 50.7520,
-      "endLong": -1.8602,
-      "endLat": 50.7587,
-      "midpoints": [
-        {
-          "long": -1.8655,
-          "lat": 50.7548
-        },
-        {
-          "long": -1.8629,
-          "lat": 50.7567
-        }
-      ]
-    },
-    {
-      "id": 12,
-      "name": "Historic Tour",
-      "description": "Take a 2.9 km walking tour of Bournemouth's historic landmarks. Discover the city's rich history and architectural heritage. This easy walk will lead you to iconic historic sites, museums, and architectural gems. Learn about the city's past and appreciate the beauty of its heritage buildings.",
-      "distance": 2.9,
-      "difficulty": "E",
-      "distanceFromUser": 1.2,
-      "startLong": -1.8790,
-      "startLat": 50.7252,
-      "endLong": -1.8698,
-      "endLat": 50.7259,
-      "midpoints": [
-        {
-          "long": -1.8750,
-          "lat": 50.7255
-        },
-        {
-          "long": -1.8724,
-          "lat": 50.7257
-        }
-      ]
-    }
-  ]
-}
+[
+  {
+    "id": 1,
+    "name": "Coastal Walk",
+    "description": "Take a scenic coastal walk along the shores of Bournemouth. Enjoy the sound of the waves, the salty breeze, and breathtaking views of the coastline. As you stroll along this 5.2 km trail, you'll encounter sandy beaches, rugged cliffs, and picturesque coves. Keep an eye out for seabirds and marine life. There are several viewpoints along the way for you to pause and take in the stunning scenery.",
+    "distance": 5.2,
+    "difficulty": "M",
+    "distanceFromUser": 2.3,
+    "startLong": -1.8796,
+    "startLat": 50.7150,
+    "endLong": -1.8890,
+    "endLat": 50.7175,
+    "midpoints": [
+      {
+        "long": -1.8825,
+        "lat": 50.7158
+      },
+      {
+        "long": -1.8847,
+        "lat": 50.7162
+      },
+      {
+        "long": -1.8863,
+        "lat": 50.7165
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Woodland Hike",
+    "description": "Immerse yourself in nature on this peaceful hike through the Bournemouth woods. Experience the tranquility of the forest and its rich biodiversity. This 3.8 km trail leads you through dense woodlands, with towering trees and a variety of flora and fauna. Listen to the rustling leaves and bird songs as you explore. It's an excellent opportunity for birdwatching and enjoying the natural beauty.",
+    "distance": 3.8,
+    "difficulty": "E",
+    "distanceFromUser": 1.7,
+    "startLong": -1.8682,
+    "startLat": 50.7354,
+    "endLong": -1.8598,
+    "endLat": 50.7320,
+    "midpoints": [
+      {
+        "long": -1.8650,
+        "lat": 50.7342
+      },
+      {
+        "long": -1.8626,
+        "lat": 50.7331
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Cliffside Trek",
+    "description": "Embark on a challenging trek along the Bournemouth cliffs. This trail is for adventure-seekers looking for a physically demanding experience. The 7.5 km route takes you along dramatic cliff edges, offering panoramic views of the sea below. You'll encounter steep ascents and descents, so be prepared for a strenuous hike. The reward is the breathtaking vistas and a sense of accomplishment.",
+    "distance": 7.5,
+    "difficulty": "H",
+    "distanceFromUser": 3.9,
+    "startLong": -1.8987,
+    "startLat": 50.7225,
+    "endLong": -1.8843,
+    "endLat": 50.7201,
+    "midpoints": [
+      {
+        "long": -1.8945,
+        "lat": 50.7218
+      },
+      {
+        "long": -1.8899,
+        "lat": 50.7214
+      },
+      {
+        "long": -1.8876,
+        "lat": 50.7209
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Forest Trail",
+    "description": "Discover serenity on this 4.6 km trail through the Bournemouth forest. Lose yourself in the lush greenery and the soothing sounds of the forest. This trail winds through a tranquil forest, with a well-marked path and occasional clearings. The trees create a canopy overhead, providing shade and a calming atmosphere. Look for wildlife and enjoy the fresh forest air.",
+    "distance": 4.6,
+    "difficulty": "M",
+    "distanceFromUser": 1.5,
+    "startLong": -1.8591,
+    "startLat": 50.7462,
+    "endLong": -1.8530,
+    "endLat": 50.7487,
+    "midpoints": [
+      {
+        "long": -1.8573,
+        "lat": 50.7475
+      },
+      {
+        "long": -1.8548,
+        "lat": 50.7470
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "City Walk",
+    "description": "Explore the streets of Bournemouth on this 2.4 km urban walk. Dive into the heart of the city, where you'll find history, culture, and vibrant neighborhoods. This easy walk takes you through the city's bustling streets, passing by historic buildings, shops, cafes, and local attractions. It's a great way to absorb the urban vibe and discover the city's unique character.",
+    "distance": 2.4,
+    "difficulty": "E",
+    "distanceFromUser": 0.8,
+    "startLong": -1.8750,
+    "startLat": 50.7227,
+    "endLong": -1.8639,
+    "endLat": 50.7222,
+    "midpoints": [
+      {
+        "long": -1.8712,
+        "lat": 50.7226
+      },
+      {
+        "long": -1.8675,
+        "lat": 50.7224
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Marshland Trail",
+    "description": "Traverse the marshlands of Bournemouth on this 4.1 km trail. Experience the unique ecosystem of marshes and wetlands. The trail winds through marshy terrain, with boardwalks and footpaths. Keep an eye out for wetland birds, plants, and perhaps even amphibians. The landscape is tranquil and a stark contrast to the city.",
+    "distance": 4.1,
+    "difficulty": "M",
+    "distanceFromUser": 1.9,
+    "startLong": -1.8456,
+    "startLat": 50.7578,
+    "endLong": -1.8537,
+    "endLat": 50.7589,
+    "midpoints": [
+      {
+        "long": -1.8489,
+        "lat": 50.7585
+      },
+      {
+        "long": -1.8512,
+        "lat": 50.7587
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Moorland Hike",
+    "description": "Embark on a challenging 6.2 km hike through the Bournemouth moorlands. This trail offers a rugged and demanding experience. The moorlands are characterized by open, expansive landscapes with rolling hills. Expect steep ascents and descents, providing a physical challenge. The panoramic views from the heights are breathtaking.",
+    "distance": 6.2,
+    "difficulty": "H",
+    "distanceFromUser": 2.8,
+    "startLong": -1.8314,
+    "startLat": 50.7652,
+    "endLong": -1.8236,
+    "endLat": 50.7620,
+    "midpoints": [
+      {
+        "long": -1.8285,
+        "lat": 50.7640
+      },
+      {
+        "long": -1.8260,
+        "lat": 50.7630
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Beachside Stroll",
+    "description": "Take a leisurely 3.0 km walk along Bournemouth's sandy beach. Feel the sand between your toes and enjoy the calming sound of the waves. This easy stroll is perfect for relaxing. You can walk along the beach, dip your toes in the sea, and collect seashells. Enjoy the stunning sunsets over the water.",
+    "distance": 3.0,
+    "difficulty": "E",
+    "distanceFromUser": 1.0,
+    "startLong": -1.8837,
+    "startLat": 50.7109,
+    "endLong": -1.8748,
+    "endLat": 50.7101,
+    "midpoints": [
+      {
+        "long": -1.8812,
+        "lat": 50.7106
+      },
+      {
+        "long": -1.8778,
+        "lat": 50.7105
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "name": "Riverside Trail",
+    "description": "Follow the 4.9 km trail along the Bournemouth riverside, where you'll encounter the beauty of the water and its surroundings. This trail meanders alongside the river, offering serene views and opportunities for wildlife observation. The trail is easy to navigate, making it suitable for a peaceful and scenic walk.",
+    "distance": 4.9,
+    "difficulty": "M",
+    "distanceFromUser": 2.1,
+    "startLong": -1.8315,
+    "startLat": 50.7423,
+    "endLong": -1.8212,
+    "endLat": 50.7427,
+    "midpoints": [
+      {
+        "long": -1.8280,
+        "lat": 50.7424
+      },
+      {
+        "long": -1.8246,
+        "lat": 50.7425
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "name": "Scenic Drive",
+    "description": "Enjoy a picturesque 20.3 km drive through the Bournemouth countryside. This route provides a relaxing and scenic tour of the region. You'll pass through idyllic countryside with rolling hills, farmlands, and quaint villages. There are plenty of places to stop for photos and take in the rural charm of the area.",
+    "distance": 20.3,
+    "difficulty": "E",
+    "distanceFromUser": 5.6,
+    "startLong": -1.7964,
+    "startLat": 50.7201,
+    "endLong": -1.8147,
+    "endLat": 50.7185,
+    "midpoints": [
+      {
+        "long": -1.8055,
+        "lat": 50.7194
+      },
+      {
+        "long": -1.7999,
+        "lat": 50.7189
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "name": "Hillside Hike",
+    "description": "Challenge yourself with an 8.7 km hike up the Bournemouth hills. This trail offers breathtaking vistas and a rigorous workout. The trail involves steep ascents and descents, leading to spectacular views from the hilltops. The effort is rewarded with unobstructed panoramas of the surrounding landscape.",
+    "distance": 8.7,
+    "difficulty": "H",
+    "distanceFromUser": 4.2,
+    "startLong": -1.8673,
+    "startLat": 50.7520,
+    "endLong": -1.8602,
+    "endLat": 50.7587,
+    "midpoints": [
+      {
+        "long": -1.8655,
+        "lat": 50.7548
+      },
+      {
+        "long": -1.8629,
+        "lat": 50.7567
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "name": "Historic Tour",
+    "description": "Take a 2.9 km walking tour of Bournemouth's historic landmarks. Discover the city's rich history and architectural heritage. This easy walk will lead you to iconic historic sites, museums, and architectural gems. Learn about the city's past and appreciate the beauty of its heritage buildings.",
+    "distance": 2.9,
+    "difficulty": "E",
+    "distanceFromUser": 1.2,
+    "startLong": -1.8790,
+    "startLat": 50.7252,
+    "endLong": -1.8698,
+    "endLat": 50.7259,
+    "midpoints": [
+      {
+        "long": -1.8750,
+        "lat": 50.7255
+      },
+      {
+        "long": -1.8724,
+        "lat": 50.7257
+      }
+    ]
+  }
+]

@@ -142,11 +142,13 @@ export const coreStyles = StyleSheet.create({
     },
 
     mapContainer: {
-        flex: 0.8,
+        flex: 1,
     },
 
     map: {
         flex: 1,
+        width: '100%',
+        height: '100%'
     },
 
     mapControlsContainer: {
@@ -227,4 +229,8 @@ export const coreStyles = StyleSheet.create({
         padding: 5,
         backgroundColor: 'white',
     },
+
+    trailModalMapContainer: {
+        flex: 1,
+    }
 })
