@@ -12,6 +12,9 @@ import AllTrails from './pages/AllTrails';
 
 const Tab = createMaterialTopTabNavigator();
 
+
+
+
 export default function App() {
   return (
     <NavigationContainer style={coreStyles.mainStyle}>

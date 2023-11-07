@@ -8,6 +8,7 @@ import { TrailList } from "./NearYou";
 const trails = require('../json/trail_data.json');
 
 export default function AllTrails() {
+    //not working for some reason
     return (
         <GestureHandlerRootView>
             <Text style={coreStyles.h1}>All Trails</Text>

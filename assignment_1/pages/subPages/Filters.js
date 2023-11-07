@@ -1,21 +1,52 @@
 import React, { useState } from "react"
 import { Modal, View, Text, Pressable } from "react-native";
 import { Colours, coreStyles } from "../../styles/styles";
-import Slider from "@react-native-community/slider";
+import { Slider } from "react-native-awesome-slider";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
+import { useSharedValue } from 'react-native-reanimated';
+
+import { filterJson } from "../../store";
+import RNReactNativeHapticFeedback from "react-native-haptic-feedback";
+
+const easyFilter = (value) => filterJson.easy = value;
+const medFilter = (value) => filterJson.medium = value;
+const hardFilter = (value) => filterJson.hard = value;
 
 const CustomSlider = () => {
-    return (
-        //from https://www.npmjs.com/package/@react-native-community/slider
-        <Slider style={coreStyles.distSlider}
-            minimumValue={0}
-            maximumValue={10}
-            minimumTrackTintColor="#abbd9a"
-            thumbTintColor="#abbd9a" />
-    )
-}
+    const valueNow = 0;
 
-//add aproprate filters
+    // initial fragment from https://github.com/alantoa/react-native-awesome-slider
+    return (
+        <Slider
+            style={{ width: '75%', height: 30, zIndex: 10 }}
+            progress={useSharedValue(valueNow)}
+            minimumValue={useSharedValue(0)}
+            maximumValue={useSharedValue(50)}
+            disable={false}
+            step={1}
+            theme={{
+                maximumTrackTintColor: Colours.primary,
+                minimumTrackTintColor: Colours.secondary
+            }}
+            onHapticFeedback={() => {
+                RNReactNativeHapticFeedback.trigger('impactLight', {
+                    enableVibrateFallback: true,
+                    ignoreAndroidSystemSettings: false,
+                });
+            }}
+            onValueChange={e => {
+                this.setState(() => {
+                    return { currentValue: e }
+                })
+            }}
+            onSlidingComplete={e => {
+                this.setState(() => {
+                    return { valueNow: e }
+                })
+            }}
+        />
+    );
+}
 
 export default function Filters() {
     const [showModal, setModal] = useState(false);
@@ -39,7 +70,12 @@ export default function Filters() {
                 }}>
                 <View style={coreStyles.distModalContainer}>
                     <View style={coreStyles.distModal}>
-                        <Pressable onPress={closeModal}><Text>close</Text></Pressable>
+
+                        <Pressable style={{ margin: 20, backgroundColor: Colours.complementary, borderRadius: 10, padding: 10 }}
+                            onPress={closeModal}>
+                            <Text style={{ alignSelf: 'center' }}>Close</Text>
+                        </Pressable>
+
                         <View style={coreStyles.sliderContainer}>
                             <Text>Select Max Distance From You:</Text>
                             <CustomSlider />
@@ -59,7 +95,7 @@ export default function Filters() {
                                     size={40}
                                     style={coreStyles.checkBox}
                                     fillColor={Colours.secondary}
-                                    onPress={(isChecked) => setEasy(isChecked)}
+                                    onPress={(isChecked) => (setEasy(isChecked), easyFilter(isChecked))}
                                     isChecked={showEasy} />
                                 <Text>Easy</Text>
                             </View>
@@ -70,7 +106,7 @@ export default function Filters() {
                                     size={40}
                                     style={coreStyles.checkBox}
                                     fillColor={Colours.secondary}
-                                    onPress={(isChecked) => setMedium(isChecked)}
+                                    onPress={(isChecked) => (setMedium(isChecked), medFilter(isChecked))}
                                     isChecked={showMedium} />
                                 <Text>Medium</Text>
                             </View>
@@ -81,7 +117,7 @@ export default function Filters() {
                                     size={40}
                                     style={coreStyles.checkBox}
                                     fillColor={Colours.secondary}
-                                    onPress={(isChecked) => setHard(isChecked)}
+                                    onPress={(isChecked) => (setHard(isChecked), hardFilter(isChecked))}
                                     isChecked={showHard} />
                                 <Text>Hard</Text>
                             </View>
