@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Modal, View, Text, Pressable } from "react-native";
+import { Modal, View, Text, Pressable, StyleSheet } from "react-native";
 import { Colours, coreStyles } from "../../styles/styles";
 import { Slider } from "react-native-awesome-slider";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
@@ -60,75 +60,121 @@ export default function Filters() {
     const closeModal = () => setModal(false);
 
     return (
-        <View>
+        <View style={{ flex: 1 }}>
             <Modal
-                animationType="fade"
+                animationType="slide"
                 transparent={true}
                 visible={showModal}
                 onRequestClose={() => {
                     setModal(!showModal)
                 }}>
-                <View style={coreStyles.distModalContainer}>
-                    <View style={coreStyles.distModal}>
+                <View style={filterPageStyles.filterModalContainer}>
+                    <View style={filterPageStyles.filterModal}>
 
-                        <Pressable style={{ margin: 20, backgroundColor: Colours.complementary, borderRadius: 10, padding: 10 }}
-                            onPress={closeModal}>
-                            <Text style={{ alignSelf: 'center' }}>Close</Text>
-                        </Pressable>
-
-                        <View style={coreStyles.sliderContainer}>
+                        <View style={filterPageStyles.sliderContainer}>
                             <Text>Select Max Distance From You:</Text>
                             <CustomSlider />
                         </View>
 
-                        <View style={coreStyles.sliderContainer}>
+                        <View style={filterPageStyles.sliderContainer}>
                             <Text>Select Max Trail Distance:</Text>
                             <CustomSlider />
                         </View>
 
-                        <View style={coreStyles.checkBoxContainer}>
+                        <View style={filterPageStyles.checkBoxContainer}>
 
                             {/*from https://github.com/WrathChaos/react-native-bouncy-checkbox*/}
-                            <View style={coreStyles.checkBoxTextContainer}>
+                            <View style={filterPageStyles.checkBoxTextContainer}>
                                 <BouncyCheckbox
                                     disableText={true}
                                     size={40}
-                                    style={coreStyles.checkBox}
+                                    style={filterPageStyles.checkBox}
                                     fillColor={Colours.secondary}
                                     onPress={(isChecked) => (setEasy(isChecked), easyFilter(isChecked))}
                                     isChecked={showEasy} />
                                 <Text>Easy</Text>
                             </View>
                             {/*chatgpt was asked how to store the state of checkbox -> onPress={(isChecked) => setEasy(isChecked)}*/}
-                            <View style={coreStyles.checkBoxTextContainer}>
+                            <View style={filterPageStyles.checkBoxTextContainer}>
                                 <BouncyCheckbox
                                     disableText={true}
                                     size={40}
-                                    style={coreStyles.checkBox}
+                                    style={filterPageStyles.checkBox}
                                     fillColor={Colours.secondary}
                                     onPress={(isChecked) => (setMedium(isChecked), medFilter(isChecked))}
                                     isChecked={showMedium} />
                                 <Text>Medium</Text>
                             </View>
 
-                            <View style={coreStyles.checkBoxTextContainer}>
+                            <View style={filterPageStyles.checkBoxTextContainer}>
                                 <BouncyCheckbox
                                     disableText={true}
                                     size={40}
-                                    style={coreStyles.checkBox}
+                                    style={filterPageStyles.checkBox}
                                     fillColor={Colours.secondary}
                                     onPress={(isChecked) => (setHard(isChecked), hardFilter(isChecked))}
                                     isChecked={showHard} />
                                 <Text>Hard</Text>
                             </View>
+
                         </View>
+
+                        <Pressable style={{ margin: 20, backgroundColor: Colours.complementary, borderRadius: 10, padding: 10 }}
+                            onPress={closeModal}>
+                            <Text style={{ alignSelf: 'center' }}>Close</Text>
+                        </Pressable>
                     </View>
                 </View>
             </Modal>
 
-            <Pressable style={coreStyles.filterButton} onPress={openModal}>
-                <Text style={{ fontWeight: 'bold', fontSize: 20 }}>Filters</Text>
+            <Pressable style={coreStyles.bottomButtons} onPress={openModal}>
+                <Text style={{ fontWeight: 'bold', fontSize: 20, alignSelf: 'center' }}>Filters</Text>
             </Pressable>
         </View>
     )
 }
+
+const filterPageStyles = StyleSheet.create({
+    checkBoxContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+    },
+
+    checkBox: {
+        alignSelf: 'center',
+    },
+
+    filterModalContainer: {
+        justifyContent: 'flex-end',
+        flex: 1,
+        marginTop: 15,
+    },
+
+    distSlider: {
+        width: '75%',
+    },
+
+    filterModal: {
+        width: '100%',
+        height: '40%',
+        backgroundColor: 'white',
+        borderRadius: 50,
+        borderColor: Colours.border,
+        borderWidth: 3,
+    },
+
+    sliderContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        flex: 1,
+    },
+
+    checkBoxTextContainer: {
+        justifyContent: 'center',
+        alignContent: 'center',
+        padding: 10,
+        paddingHorizontal: 20,
+    },
+
+})

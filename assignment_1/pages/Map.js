@@ -3,7 +3,7 @@ import { Text, View, Image, Pressable, Button } from "react-native";
 import { coreStyles } from "../styles/styles";
 import { Marker } from "react-native-maps";
 import MapView from "react-native-maps/lib/MapView";
-import { TrailList } from "./NearYou";
+import { TrailList } from "./AllTrails";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 

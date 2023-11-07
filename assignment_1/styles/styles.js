@@ -42,25 +42,10 @@ export const coreStyles = StyleSheet.create({
         height: '90%',
     },
 
-    scrollView: {
-        flex: 0.90,
-        borderRadius: 10,
-    },
 
-    homeTop: {
-        flex: 0.10,
-        flexDirection: 'row',
-        margin: 10,
-    },
 
-    filterButton: {
-        flex: 1,
-        borderRadius: 10,
-        backgroundColor: Colours.primary,
-        justifyContent: 'center',
-        borderColor: Colours.border,
-        borderWidth: 3,
-    },
+
+
 
     gestureHandlerRootView: {
         flex: 1,
@@ -167,48 +152,6 @@ export const coreStyles = StyleSheet.create({
         marginTop: 15,
     },
 
-    distModal: {
-        width: '100%',
-        height: '40%',
-        backgroundColor: 'white',
-        borderRadius: 50,
-        borderColor: Colours.border,
-        borderWidth: 3,
-    },
-
-    distModalContainer: {
-        justifyContent: 'flex-start',
-        flex: 1,
-        marginTop: 15,
-    },
-
-    distSlider: {
-        width: '75%',
-    },
-
-    checkBoxContainer: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'center',
-    },
-
-    checkBox: {
-        alignSelf: 'center',
-    },
-
-
-    checkBoxTextContainer: {
-        justifyContent: 'center',
-        alignContent: 'center',
-        padding: 10,
-        paddingHorizontal: 20,
-    },
-
-    sliderContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        flex: 1,
-    },
 
     saveButton: {
         borderRadius: 5,
@@ -232,5 +175,13 @@ export const coreStyles = StyleSheet.create({
 
     trailModalMapContainer: {
         flex: 1,
-    }
+    },
+
+    bottomButtons: {
+        backgroundColor: Colours.complementary,
+        padding: 10,
+        borderRadius: 10,
+        marginHorizontal: 20,
+        width: 125
+    },
 })
