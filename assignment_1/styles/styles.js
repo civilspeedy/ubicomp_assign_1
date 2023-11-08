@@ -42,11 +42,6 @@ export const coreStyles = StyleSheet.create({
         height: '90%',
     },
 
-
-
-
-
-
     gestureHandlerRootView: {
         flex: 1,
     },
@@ -70,22 +65,7 @@ export const coreStyles = StyleSheet.create({
         marginRight: 10,
     },
 
-    card: {
-        flex: 1,
-        alignItems: "center",
-        backgroundColor: Colours.primary,
-        borderRadius: 10,
-        borderColor: Colours.border,
-        borderWidth: 3,
-        marginLeft: 10,
-        marginRight: 10,
-    },
 
-    cardHeader: {
-        fontWeight: 'bold',
-        fontSize: 20,
-        flex: 1,
-    },
 
 
 
@@ -142,36 +122,10 @@ export const coreStyles = StyleSheet.create({
         color: 'black',
     },
 
-    trailModal: {
-        backgroundColor: Colours.secondary,
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        padding: 20,
-        borderRadius: 20,
-        marginTop: 15,
-    },
 
 
-    saveButton: {
-        borderRadius: 5,
-        backgroundColor: 'cyan',
-        padding: 2,
-    },
 
-    closeButton: {
-        backgroundColor: Colours.complementary,
-        borderRadius: 5,
-        margin: 10,
-    },
 
-    description: {
-        borderColor: Colours.border,
-        borderWidth: 3,
-        borderRadius: 5,
-        padding: 5,
-        backgroundColor: 'white',
-    },
 
     trailModalMapContainer: {
         flex: 1,

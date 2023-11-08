@@ -1,17 +1,23 @@
 import React, { useState } from "react"
-import { Modal, Pressable, View, Text, Image } from "react-native"
-import { coreStyles } from "../../styles/styles";
+import { Modal, Pressable, View, Text, Image, StyleSheet } from "react-native"
+import { coreStyles, Colours } from "../../styles/styles";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { getSavedTrail, saveTrail } from "../../store";
 import MapView from "react-native-maps";
+import * as Haptics from 'expo-haptics';
+
+const startTrail = (trail) => {
+    Haptics.notificationAsync(
+        Haptics.NotificationFeedbackType.Success)
+}
 
 
 /**A card is used to display the basic details of a trail*/
 const Card = ({ trail }) => {
     return (
-        <View style={{ marginBottom: 10 }}>
-            <View style={coreStyles.card}>
-                <Text style={coreStyles.cardHeader}>{trail.name}</Text>
+        <View style={{ marginTop: 10 }}>
+            <View style={trailStyles.card}>
+                <Text style={trailStyles.cardHeader}>{trail.name}</Text>
 
                 <CardStats trail={trail} />
             </View>
@@ -32,13 +38,13 @@ const CardStats = ({ trail }) => {
 
 const TrailModal = ({ trail, closeTrail }) => {
     return (
-        <View style={coreStyles.trailModal}>
+        <View style={trailStyles.trailModal}>
             <Text style={coreStyles.h1}>{trail.name}</Text>
             <CardStats trail={trail} />
-            <Text style={coreStyles.description}>{trail.description}</Text>
+            <Text style={trailStyles.description}>{trail.description}</Text>
 
-            <Pressable >
-                <Text>Start Trail</Text>
+            <Pressable style={trailStyles.button} onPress={startTrail}>
+                <Text style={{ padding: 10 }}>Start Trail</Text>
             </Pressable>
 
             <BouncyCheckbox
@@ -50,7 +56,7 @@ const TrailModal = ({ trail, closeTrail }) => {
                 imageComponent={<Image source={require('../../assets/saved.png')} style={{ width: 50, height: 50 }} />}
             />
 
-            <Pressable style={coreStyles.closeButton} onPress={closeTrail}><Text style={{ fontSize: 15, padding: 10 }}>Close</Text></Pressable>
+            <Pressable style={trailStyles.button} onPress={closeTrail}><Text style={{ fontSize: 15, padding: 10 }}>Close</Text></Pressable>
         </View>
     )
 }
@@ -81,3 +87,49 @@ export default function Trail({ trail }) {
         </View>
     )
 }
+
+const trailStyles = StyleSheet.create({
+    button: {
+        backgroundColor: Colours.complementary,
+        borderRadius: 5,
+        margin: 10,
+    },
+    trailModal: {
+        backgroundColor: Colours.secondary,
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        padding: 20,
+        borderRadius: 20,
+        marginTop: 15,
+    },
+    saveButton: {
+        borderRadius: 5,
+        backgroundColor: 'cyan',
+        padding: 2,
+    },
+    description: {
+        borderColor: Colours.border,
+        borderWidth: 3,
+        borderRadius: 5,
+        padding: 5,
+        backgroundColor: 'white',
+    },
+    card: {
+        flex: 1,
+        alignItems: "center",
+        backgroundColor: Colours.primary,
+        borderRadius: 10,
+        borderColor: Colours.border,
+        borderWidth: 3,
+        marginLeft: 10,
+        marginRight: 10,
+    },
+
+    cardHeader: {
+        fontWeight: 'bold',
+        fontSize: 20,
+        flex: 1,
+    },
+
+});

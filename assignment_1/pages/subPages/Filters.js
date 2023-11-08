@@ -1,49 +1,26 @@
 import React, { useState } from "react"
-import { Modal, View, Text, Pressable, StyleSheet } from "react-native";
+import { Modal, View, Text, Pressable, StyleSheet, Image } from "react-native";
 import { Colours, coreStyles } from "../../styles/styles";
-import { Slider } from "react-native-awesome-slider";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
-import { useSharedValue } from 'react-native-reanimated';
-
 import { filterJson } from "../../store";
-import RNReactNativeHapticFeedback from "react-native-haptic-feedback";
+import Slider from "@react-native-community/slider";
+import * as Haptics from 'expo-haptics';
 
 const easyFilter = (value) => filterJson.easy = value;
 const medFilter = (value) => filterJson.medium = value;
 const hardFilter = (value) => filterJson.hard = value;
 
-const CustomSlider = () => {
-    const valueNow = 0;
 
-    // initial fragment from https://github.com/alantoa/react-native-awesome-slider
+const CustomSlider = ({ updateFunc, constValue }) => {
     return (
-        <Slider
-            style={{ width: '75%', height: 30, zIndex: 10 }}
-            progress={useSharedValue(valueNow)}
-            minimumValue={useSharedValue(0)}
-            maximumValue={useSharedValue(50)}
-            disable={false}
+        <Slider style={filterPageStyles.distSlider}
+            minimumValue={0}
+            maximumValue={100}
+            minimumTrackTintColor={Colours.secondary}
             step={1}
-            theme={{
-                maximumTrackTintColor: Colours.primary,
-                minimumTrackTintColor: Colours.secondary
-            }}
-            onHapticFeedback={() => {
-                RNReactNativeHapticFeedback.trigger('impactLight', {
-                    enableVibrateFallback: true,
-                    ignoreAndroidSystemSettings: false,
-                });
-            }}
-            onValueChange={e => {
-                this.setState(() => {
-                    return { currentValue: e }
-                })
-            }}
-            onSlidingComplete={e => {
-                this.setState(() => {
-                    return { valueNow: e }
-                })
-            }}
+            value={constValue}
+            onValueChange={(value) => (updateFunc(value), Haptics.selectionAsync())}
+            thumbTintColor={Colours.secondary}
         />
     );
 }
@@ -51,13 +28,22 @@ const CustomSlider = () => {
 export default function Filters() {
     const [showModal, setModal] = useState(false);
 
+    const openModal = () => setModal(true);
+    const closeModal = () => (setModal(false), Haptics.notificationAsync(
+        Haptics.NotificationFeedbackType.Success));
+
+
     const [showEasy, setEasy] = useState(true);
     const [showMedium, setMedium] = useState(true);
     const [showHard, setHard] = useState(true);
 
 
-    const openModal = () => setModal(true);
-    const closeModal = () => setModal(false);
+    const [maxDistanceFromUserValue, setMDFUV] = useState(100);
+    const updateMDFUV = (value) => (setMDFUV(value), filterJson.maxDistanceFromUser = value);
+
+    const [maxDistance, setMaxDistance] = useState(100);
+    const upDateMaxDistance = (value) => (setMaxDistance(value), filterJson.maxDistance = value);
+
 
     return (
         <View style={{ flex: 1 }}>
@@ -71,14 +57,20 @@ export default function Filters() {
                 <View style={filterPageStyles.filterModalContainer}>
                     <View style={filterPageStyles.filterModal}>
 
-                        <View style={filterPageStyles.sliderContainer}>
-                            <Text>Select Max Distance From You:</Text>
-                            <CustomSlider />
+                        <View style={filterPageStyles.overallSliderContainer}>
+                            <View style={filterPageStyles.sliderContainer}>
+                                <Text>Select Max Distance From You:</Text>
+                                <CustomSlider updateFunc={updateMDFUV} constValue={maxDistanceFromUserValue} />
+                            </View>
+                            <Text style={{ flex: 1, alignSelf: 'center' }}>{maxDistanceFromUserValue}m</Text>
                         </View>
 
-                        <View style={filterPageStyles.sliderContainer}>
-                            <Text>Select Max Trail Distance:</Text>
-                            <CustomSlider />
+                        <View style={filterPageStyles.overallSliderContainer}>
+                            <View style={filterPageStyles.sliderContainer}>
+                                <Text>Select Max Trail Distance:</Text>
+                                <CustomSlider updateFunc={upDateMaxDistance} constValue={maxDistance} />
+                            </View>
+                            <Text style={{ flex: 1, alignSelf: 'center' }}>{maxDistance}m</Text>
                         </View>
 
                         <View style={filterPageStyles.checkBoxContainer}>
@@ -152,16 +144,17 @@ const filterPageStyles = StyleSheet.create({
     },
 
     distSlider: {
-        width: '75%',
+        width: '80%',
     },
 
     filterModal: {
-        width: '100%',
+        width: '90%',
         height: '40%',
         backgroundColor: 'white',
         borderRadius: 50,
         borderColor: Colours.border,
         borderWidth: 3,
+        alignSelf: 'center',
     },
 
     sliderContainer: {
@@ -176,5 +169,8 @@ const filterPageStyles = StyleSheet.create({
         padding: 10,
         paddingHorizontal: 20,
     },
-
+    overallSliderContainer: {
+        flex: 1,
+        margin: 20,
+    },
 })

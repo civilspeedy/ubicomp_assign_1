@@ -12,7 +12,7 @@
       "backgroundColor": "#ffffff"
     },
     "assetBundlePatterns": [
-      "**/*"
+      "../../assets/walker.png"
     ],
     "ios": {
       "supportsTablet": true
