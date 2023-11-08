@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Pressable, Text } from "react-native";
+import { StyleSheet, View, Pressable, Text, Image } from "react-native";
 import { Modal } from "react-native";
-
 import { Colours, coreStyles } from "../../styles/styles";
+import * as Haptics from 'expo-haptics';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default function Search() {
     const [showModal, setModal] = useState(false);
 
-    const openModal = () => setModal(true);
-    const closeModal = () => setModal(false);
+    const openModal = () => (setModal(true), Haptics.notificationAsync());
+    const closeModal = () => (setModal(false), Haptics.notificationAsync());
 
 
     return (
@@ -28,8 +29,9 @@ export default function Search() {
                 </View>
 
             </Modal>
+
             <Pressable style={coreStyles.bottomButtons} onPress={openModal}>
-                <Text style={{ fontWeight: 'bold', fontSize: 20, alignSelf: 'center' }}>Search</Text>
+                <MaterialCommunityIcons name="map-search" size={50} />
             </Pressable>
         </View>
     )

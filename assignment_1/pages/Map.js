@@ -1,17 +1,14 @@
 import React from "react";
-import { Text, View, Image, Pressable, Button } from "react-native";
+import { Text, View, Image, Pressable, Button, StyleSheet } from "react-native";
 import { coreStyles } from "../styles/styles";
 import { Marker } from "react-native-maps";
 import MapView from "react-native-maps/lib/MapView";
-import { TrailList } from "./AllTrails";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
-
 
 const trailsJson = require("../json/trail_data.json");
 
 export default function Map() {
     return (
-        <View style={coreStyles.mapContainer}>
+        <View style={{ flex: 0.8 }}>
             <MapView
                 style={{ flex: 1 }}
                 initialRegion={{
@@ -30,9 +27,6 @@ export default function Map() {
                     ))
                 }
             </MapView>
-            <GestureHandlerRootView style={{ flex: 0.4, marginTop: 10 }}>
-                <TrailList trails={trailsJson} />
-            </GestureHandlerRootView>
         </View >
     )
 }

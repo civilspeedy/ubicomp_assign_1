@@ -5,17 +5,18 @@ import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { filterJson } from "../../store";
 import Slider from "@react-native-community/slider";
 import * as Haptics from 'expo-haptics';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const easyFilter = (value) => filterJson.easy = value;
 const medFilter = (value) => filterJson.medium = value;
 const hardFilter = (value) => filterJson.hard = value;
 
 
-const CustomSlider = ({ updateFunc, constValue }) => {
+export const CustomSlider = ({ updateFunc, constValue }) => {
     return (
         <Slider style={filterPageStyles.distSlider}
             minimumValue={0}
-            maximumValue={100}
+            maximumValue={10}
             minimumTrackTintColor={Colours.secondary}
             step={1}
             value={constValue}
@@ -28,7 +29,7 @@ const CustomSlider = ({ updateFunc, constValue }) => {
 export default function Filters() {
     const [showModal, setModal] = useState(false);
 
-    const openModal = () => setModal(true);
+    const openModal = () => (setModal(true), Haptics.notificationAsync());
     const closeModal = () => (setModal(false), Haptics.notificationAsync(
         Haptics.NotificationFeedbackType.Success));
 
@@ -38,10 +39,10 @@ export default function Filters() {
     const [showHard, setHard] = useState(true);
 
 
-    const [maxDistanceFromUserValue, setMDFUV] = useState(100);
+    const [maxDistanceFromUserValue, setMDFUV] = useState(10);
     const updateMDFUV = (value) => (setMDFUV(value), filterJson.maxDistanceFromUser = value);
 
-    const [maxDistance, setMaxDistance] = useState(100);
+    const [maxDistance, setMaxDistance] = useState(10);
     const upDateMaxDistance = (value) => (setMaxDistance(value), filterJson.maxDistance = value);
 
 
@@ -59,18 +60,16 @@ export default function Filters() {
 
                         <View style={filterPageStyles.overallSliderContainer}>
                             <View style={filterPageStyles.sliderContainer}>
-                                <Text>Select Max Distance From You:</Text>
+                                <Text>Select Max Distance From You: <Text style={{ fontWeight: 'bold' }}>{maxDistanceFromUserValue}</Text> miles</Text>
                                 <CustomSlider updateFunc={updateMDFUV} constValue={maxDistanceFromUserValue} />
                             </View>
-                            <Text style={{ flex: 1, alignSelf: 'center' }}>{maxDistanceFromUserValue}m</Text>
                         </View>
 
                         <View style={filterPageStyles.overallSliderContainer}>
                             <View style={filterPageStyles.sliderContainer}>
-                                <Text>Select Max Trail Distance:</Text>
+                                <Text>Select Max Trail Distance: <Text style={{ fontWeight: 'bold' }}>{maxDistance}</Text> miles</Text>
                                 <CustomSlider updateFunc={upDateMaxDistance} constValue={maxDistance} />
                             </View>
-                            <Text style={{ flex: 1, alignSelf: 'center' }}>{maxDistance}m</Text>
                         </View>
 
                         <View style={filterPageStyles.checkBoxContainer}>
@@ -120,9 +119,9 @@ export default function Filters() {
             </Modal>
 
             <Pressable style={coreStyles.bottomButtons} onPress={openModal}>
-                <Text style={{ fontWeight: 'bold', fontSize: 20, alignSelf: 'center' }}>Filters</Text>
-            </Pressable>
-        </View>
+                <MaterialCommunityIcons name="menu" size={50} />
+            </Pressable >
+        </View >
     )
 }
 
@@ -145,6 +144,7 @@ const filterPageStyles = StyleSheet.create({
 
     distSlider: {
         width: '80%',
+        alignSelf: 'center',
     },
 
     filterModal: {

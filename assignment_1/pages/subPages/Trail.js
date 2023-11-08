@@ -15,7 +15,7 @@ const startTrail = (trail) => {
 /**A card is used to display the basic details of a trail*/
 const Card = ({ trail }) => {
     return (
-        <View style={{ marginTop: 10 }}>
+        <View style={{ marginTop: 20 }}>
             <View style={trailStyles.card}>
                 <Text style={trailStyles.cardHeader}>{trail.name}</Text>
 
@@ -53,7 +53,6 @@ const TrailModal = ({ trail, closeTrail }) => {
                 size={60}
                 disableText={true}
                 innerIconStyle={{ borderColor: 'black', borderWidth: 3 }}
-                imageComponent={<Image source={require('../../assets/saved.png')} style={{ width: 50, height: 50 }} />}
             />
 
             <Pressable style={trailStyles.button} onPress={closeTrail}><Text style={{ fontSize: 15, padding: 10 }}>Close</Text></Pressable>
@@ -124,6 +123,7 @@ const trailStyles = StyleSheet.create({
         borderWidth: 3,
         marginLeft: 10,
         marginRight: 10,
+        padding: 10,
     },
 
     cardHeader: {

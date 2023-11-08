@@ -88,20 +88,6 @@ export const coreStyles = StyleSheet.create({
         textAlign: 'left',
     },
 
-    folderContainer: {
-        flex: 0.9,
-    },
-
-    savedFolder: {
-        backgroundColor: Colours.primary,
-        borderRadius: 10,
-        borderColor: Colours.border,
-        borderWidth: 3,
-        flex: 1,
-        alignItems: 'center',
-        margin: 10,
-    },
-
     folderText: {
         fontSize: 20,
     },
@@ -122,20 +108,19 @@ export const coreStyles = StyleSheet.create({
         color: 'black',
     },
 
-
-
-
-
-
     trailModalMapContainer: {
         flex: 1,
     },
 
     bottomButtons: {
         backgroundColor: Colours.complementary,
-        padding: 10,
-        borderRadius: 10,
+        borderRadius: 20,
+        borderWidth: 3,
+        borderColor: 'black',
         marginHorizontal: 20,
-        width: 125
+        width: '50%',
+        alignItems: 'center',
+        alignSelf: 'center',
+        marginBottom: 10,
     },
 })
