@@ -4,7 +4,7 @@ import { StyleSheet, PixelRatio } from "react-native";
 //2.625
 console.log("Pixel Ratio:", PixelRatio.get())
 //from https://stackoverflow.com/questions/33628677/react-native-responsive-font-size
-let smallTextSize = 12;
+export let smallTextSize = 12;
 if (PixelRatio.get() > 3.125 || PixelRatio.get() < 3) {
     smallTextSize = 14;
 }
@@ -26,6 +26,7 @@ export const coreStyles = StyleSheet.create({
         fontFamily: 'Droid Sans',
         fontWeight: 'bold',
         flex: 1,
+        backgroundColor: 'white',
     },
 
     holePunchAvoider: {
@@ -64,10 +65,6 @@ export const coreStyles = StyleSheet.create({
         alignSelf: 'flex-start',
         marginRight: 10,
     },
-
-
-
-
 
     cardText: {
         alignSelf: 'flex-start',

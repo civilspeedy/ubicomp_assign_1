@@ -52,7 +52,7 @@ export default function AllTrails() {
 
   return (
     <GestureHandlerRootView style={coreStyles.gestureHandlerRootView}>
-      <ScrollView>
+      <ScrollView style={{ backgroundColor: 'white' }}>
         {filteredList.map((trail, index) => (
           <Trail key={index} trail={trail} />
         ))}
@@ -68,18 +68,10 @@ export default function AllTrails() {
 
 
 const allTrailsStyles = StyleSheet.create({
-  homeTop: {
-    flex: 0.09,
-    margin: 10,
-  },
-
-  trailList: {
-    flex: 0.91,
-    borderRadius: 10,
-  },
   bottomRow: {
     flexDirection: 'row',
     justifyContent: 'center',
     padding: 10,
+    backgroundColor: 'white',
   },
 });

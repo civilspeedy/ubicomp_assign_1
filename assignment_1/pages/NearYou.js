@@ -4,6 +4,7 @@ import { GestureHandlerRootView, ScrollView } from "react-native-gesture-handler
 import { StyleSheet } from "react-native";
 import { CustomSlider } from "./subPages/Filters";
 import Trail from "./subPages/Trail";
+import { smallTextSize } from "../styles/styles";
 
 const trails = require('../json/trail_data.json');
 
@@ -28,7 +29,7 @@ export default function NearYou() {
     //needs a use state to update automatically
     return (
         <GestureHandlerRootView>
-            <Text style={{ alignSelf: 'center', margin: 10 }}>Max Distance From You: <Text style={{ fontWeight: 'bold' }}>{maxDistanceFromUser}</Text> miles</Text>
+            <Text style={{ alignSelf: 'center', margin: 10, fontSize: smallTextSize + 4 }}>Max Distance From You: <Text style={{ fontWeight: 'bold' }}>{maxDistanceFromUser}</Text> miles</Text>
             <View style={nearYouStyles.sliderContainer}>
                 <CustomSlider updateFunc={updateMDFUV} contValue={maxDistanceFromUser} />
             </View>
@@ -46,7 +47,6 @@ const nearYouStyles = StyleSheet.create({
         flex: 1,
     },
     sliderContainer: {
-        marginBottom: 10,
         padding: 10,
         justifyContent: 'center',
         alignContent: 'center',
