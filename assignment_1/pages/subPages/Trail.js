@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { Modal, Pressable, View, Text, Image, StyleSheet } from "react-native"
-import { coreStyles, Colours } from "../../styles/styles";
+import { coreStyles, Colours, smallTextSize } from "../../styles/styles";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { getSavedTrail, saveTrail } from "../../store";
 import MapView from "react-native-maps";
@@ -15,7 +15,7 @@ const startTrail = (trail) => {
 /**A card is used to display the basic details of a trail*/
 const Card = ({ trail }) => {
     return (
-        <View style={{ marginTop: 20 }}>
+        <View style={{ marginTop: 20, flex: 1, marginBottom: 3,}}>
             <View style={trailStyles.card}>
                 <Text style={trailStyles.cardHeader}>{trail.name}</Text>
 
@@ -28,10 +28,10 @@ const Card = ({ trail }) => {
 
 const CardStats = ({ trail }) => {
     return (
-        <View style={coreStyles.cardStats}>
-            <Text style={coreStyles.statstext}><Text style={{ fontWeight: 'bold' }}>Distance: </Text>{trail.distance} |</Text>
-            <Text style={coreStyles.statstext}> <Text style={{ fontWeight: 'bold' }}>Difficulty:</Text> {trail.difficulty} |</Text>
-            <Text style={coreStyles.statstext}> <Text style={{ fontWeight: 'bold' }}>Distance From You:</Text> {trail.distanceFromUser}</Text>
+        <View style={trailStyles.cardStats}>
+            <Text style={trailStyles.statstext}><Text style={{ fontWeight: 'bold' }}>Distance: </Text>{trail.distance}</Text>
+            <Text style={trailStyles.statstext}><Text style={{ fontWeight: 'bold' }}>Difficulty:</Text> {trail.difficulty}</Text>
+            <Text style={trailStyles.statstext}><Text style={{ fontWeight: 'bold' }}>Distance From You:</Text> {trail.distanceFromUser}</Text>
         </View>
     )
 }
@@ -70,6 +70,7 @@ export default function Trail({ trail }) {
     return (
         <View>
             <Modal
+                style={{alignItems: 'flex-end', flex: 1}}
                 animationType='slide'
                 transparent={true}
                 visible={seeModal}
@@ -79,7 +80,7 @@ export default function Trail({ trail }) {
                 <TrailModal trail={trail} closeTrail={closeTrail} />
             </Modal>
 
-            <Pressable onPress={openTrail}>
+            <Pressable onPress={openTrail} style={{flex: 1,}}>
                 <Card trail={trail} />
             </Pressable>
 
@@ -95,7 +96,6 @@ const trailStyles = StyleSheet.create({
     },
     trailModal: {
         backgroundColor: Colours.secondary,
-        flex: 1,
         justifyContent: "center",
         alignItems: "center",
         padding: 20,
@@ -115,6 +115,7 @@ const trailStyles = StyleSheet.create({
         backgroundColor: 'white',
     },
     card: {
+        flexDirection: 'row',
         flex: 1,
         alignItems: "center",
         backgroundColor: Colours.primary,
@@ -128,8 +129,18 @@ const trailStyles = StyleSheet.create({
 
     cardHeader: {
         fontWeight: 'bold',
-        fontSize: 20,
+        fontSize: smallTextSize + 8.5,
+        flex: 1,
+        alignSelf: 'center',
+    },
+    cardText: {
+        alignSelf: 'flex-start',
         flex: 1,
     },
 
+    cardStats: {
+        display: 'flex',
+
+        marginHorizontal: 10,
+    },
 });

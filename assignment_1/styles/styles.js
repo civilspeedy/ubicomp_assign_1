@@ -6,9 +6,12 @@ console.log("Pixel Ratio:", PixelRatio.get())
 //from https://stackoverflow.com/questions/33628677/react-native-responsive-font-size
 export let smallTextSize = 12;
 if (PixelRatio.get() > 3.125 || PixelRatio.get() < 3) {
+    smallTextSize = 16;
+}
+if (PixelRatio.get() == 2.875){
     smallTextSize = 14;
 }
-if (PixelRatio.get() < 3.5 && PixelRatio.get() > 3) {
+if (PixelRatio.get() > 3.5 && PixelRatio.get() > 3) {
     smallTextSize = 11;
 }
 
@@ -66,16 +69,7 @@ export const coreStyles = StyleSheet.create({
         marginRight: 10,
     },
 
-    cardText: {
-        alignSelf: 'flex-start',
-        flex: 1,
-    },
 
-    cardStats: {
-        display: 'flex',
-        flexDirection: 'row',
-        marginHorizontal: 10,
-    },
 
     statstext: {
         fontSize: smallTextSize,

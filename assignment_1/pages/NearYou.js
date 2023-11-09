@@ -28,12 +28,15 @@ export default function NearYou() {
 
     //needs a use state to update automatically
     return (
-        <GestureHandlerRootView>
-            <Text style={{ alignSelf: 'center', margin: 10, fontSize: smallTextSize + 4 }}>Max Distance From You: <Text style={{ fontWeight: 'bold' }}>{maxDistanceFromUser}</Text> miles</Text>
-            <View style={nearYouStyles.sliderContainer}>
+        <GestureHandlerRootView style={{flex: 1}}>
+            <View style={{flex: 0.1}}>
+                <Text style={{ alignSelf: 'center', margin: 10, fontSize: smallTextSize + 4 }}>Max Distance From You: <Text style={{ fontWeight: 'bold' }}>{maxDistanceFromUser}</Text> miles</Text>
+                <View style={nearYouStyles.sliderContainer}>
                 <CustomSlider updateFunc={updateMDFUV} contValue={maxDistanceFromUser} />
             </View>
-            <ScrollView>
+            </View>
+            
+            <ScrollView style={{flex: 1}}>
                 {getNearBy(maxDistanceFromUser).map((trail, index) => (
                     <Trail key={index} trail={trail} />
                 ))}
