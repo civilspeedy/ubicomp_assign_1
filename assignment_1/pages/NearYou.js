@@ -51,6 +51,7 @@ const nearYouStyles = StyleSheet.create({
     },
     sliderContainer: {
         marginBottom: 10,
+        padding: 10,
         justifyContent: 'center',
         alignContent: 'center',
         flex: 1,
