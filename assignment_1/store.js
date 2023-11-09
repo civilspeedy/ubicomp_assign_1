@@ -21,12 +21,3 @@ export const getSavedTrail = async () => {
         console.error(e);
     }
 }
-
-// store for filters
-export let filterJson = {
-    maxDistanceFromUser: 50,
-    maxDistance: 50,
-    hard: true,
-    medium: true,
-    easy: true,
-};

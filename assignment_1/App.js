@@ -1,20 +1,15 @@
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
-import { View, Text } from 'react-native';
-
+import { View } from 'react-native';
 import AllTrails from './pages/AllTrails';
 import Map from './pages/Map';
 import Saved from './pages/Saved';
-
 import { coreStyles } from './styles/styles';
 import NearYou from './pages/NearYou';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
+
 const Tab = createMaterialTopTabNavigator();
-
-
-
 
 export default function App() {
   return (

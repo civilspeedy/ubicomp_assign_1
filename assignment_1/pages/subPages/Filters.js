@@ -2,11 +2,17 @@ import React, { useState } from "react"
 import { Modal, View, Text, Pressable, StyleSheet, Image } from "react-native";
 import { Colours, coreStyles } from "../../styles/styles";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
-import { filterJson } from "../../store";
 import Slider from "@react-native-community/slider";
 import * as Haptics from 'expo-haptics';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import AllTrails, { filterApply } from "../AllTrails";
+
+let filterJson = {
+    maxDistanceFromUser: 10,
+    maxDistance: 10,
+    hard: true,
+    medium: true,
+    easy: true,
+};
 
 const easyFilter = (value) => filterJson.easy = value;
 const medFilter = (value) => filterJson.medium = value;
@@ -27,12 +33,12 @@ export const CustomSlider = ({ updateFunc, constValue }) => {
     );
 }
 
-export default function Filters() {
+export default function Filters({ update }) {
     const [showModal, setModal] = useState(false);
 
     const openModal = () => (setModal(true), Haptics.notificationAsync());
     const closeModal = () => (setModal(false), Haptics.notificationAsync(
-        Haptics.NotificationFeedbackType.Success), filterApply());
+        Haptics.NotificationFeedbackType.Success), update(filterJson));
 
 
     const [showEasy, setEasy] = useState(true);

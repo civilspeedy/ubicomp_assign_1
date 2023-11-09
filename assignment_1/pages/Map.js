@@ -1,6 +1,5 @@
 import React from "react";
-import { Text, View, Image, Pressable, Button, StyleSheet } from "react-native";
-import { coreStyles } from "../styles/styles";
+import { View } from "react-native";
 import { Marker } from "react-native-maps";
 import MapView from "react-native-maps/lib/MapView";
 

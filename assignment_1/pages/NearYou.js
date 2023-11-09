@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import { Text, View } from "react-native";
-import * as Haptics from 'expo-haptics';
 import { GestureHandlerRootView, ScrollView } from "react-native-gesture-handler";
-import { Colours, coreStyles } from "../styles/styles";
-import { TrailList } from "./AllTrails";
-import Slider from "@react-native-community/slider";
 import { StyleSheet } from "react-native";
 import { CustomSlider } from "./subPages/Filters";
 import Trail from "./subPages/Trail";
