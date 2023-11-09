@@ -6,6 +6,7 @@ import { filterJson } from "../../store";
 import Slider from "@react-native-community/slider";
 import * as Haptics from 'expo-haptics';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import AllTrails, { filterApply } from "../AllTrails";
 
 const easyFilter = (value) => filterJson.easy = value;
 const medFilter = (value) => filterJson.medium = value;
@@ -31,7 +32,7 @@ export default function Filters() {
 
     const openModal = () => (setModal(true), Haptics.notificationAsync());
     const closeModal = () => (setModal(false), Haptics.notificationAsync(
-        Haptics.NotificationFeedbackType.Success));
+        Haptics.NotificationFeedbackType.Success), filterApply());
 
 
     const [showEasy, setEasy] = useState(true);
