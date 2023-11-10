@@ -15,7 +15,7 @@ const startTrail = (trail) => {
 /**A card is used to display the basic details of a trail*/
 const Card = ({ trail }) => {
     return (
-        <View style={{ marginTop: 20, flex: 1, marginBottom: 3,}}>
+        <View style={{ marginTop: 20, flex: 1, marginBottom: 3, }}>
             <View style={trailStyles.card}>
                 <Text style={trailStyles.cardHeader}>{trail.name}</Text>
 
@@ -70,7 +70,7 @@ export default function Trail({ trail }) {
     return (
         <View>
             <Modal
-                style={{alignItems: 'flex-end', flex: 1}}
+                style={{ alignItems: 'flex-end', flex: 1 }}
                 animationType='slide'
                 transparent={true}
                 visible={seeModal}
@@ -80,7 +80,7 @@ export default function Trail({ trail }) {
                 <TrailModal trail={trail} closeTrail={closeTrail} />
             </Modal>
 
-            <Pressable onPress={openTrail} style={{flex: 1,}}>
+            <Pressable onPress={openTrail} style={{ flex: 1, }}>
                 <Card trail={trail} />
             </Pressable>
 
@@ -142,5 +142,9 @@ const trailStyles = StyleSheet.create({
         display: 'flex',
 
         marginHorizontal: 10,
+    },
+
+    statstext: {
+        fontSize: smallTextSize,
     },
 });

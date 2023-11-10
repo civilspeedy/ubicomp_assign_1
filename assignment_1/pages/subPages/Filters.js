@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { Modal, View, Text, Pressable, StyleSheet, Image } from "react-native";
-import { Colours, coreStyles } from "../../styles/styles";
+import { Colours, coreStyles, smallTextSize } from "../../styles/styles";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import Slider from "@react-native-community/slider";
 import * as Haptics from 'expo-haptics';
@@ -67,14 +67,14 @@ export default function Filters({ update }) {
 
                         <View style={filterPageStyles.overallSliderContainer}>
                             <View style={filterPageStyles.sliderContainer}>
-                                <Text>Select Max Distance From You: <Text style={{ fontWeight: 'bold' }}>{maxDistanceFromUserValue}</Text> miles</Text>
+                                <Text style={filterPageStyles.sliderText}>Select Max Distance From You: <Text style={{ fontWeight: 'bold' }}>{maxDistanceFromUserValue}</Text> miles</Text>
                                 <CustomSlider updateFunc={updateMDFUV} constValue={maxDistanceFromUserValue} />
                             </View>
                         </View>
 
                         <View style={filterPageStyles.overallSliderContainer}>
                             <View style={filterPageStyles.sliderContainer}>
-                                <Text>Select Max Trail Distance: <Text style={{ fontWeight: 'bold' }}>{maxDistance}</Text> miles</Text>
+                                <Text style={filterPageStyles.sliderText}>Select Max Trail Distance: <Text style={{ fontWeight: 'bold' }}>{maxDistance}</Text> miles</Text>
                                 <CustomSlider updateFunc={upDateMaxDistance} constValue={maxDistance} />
                             </View>
                         </View>
@@ -123,7 +123,7 @@ export default function Filters({ update }) {
                         </Pressable>
                     </View>
                 </View>
-            </Modal>
+            </Modal >
 
             <Pressable style={coreStyles.bottomButtons} onPress={openModal}>
                 <MaterialCommunityIcons name="menu" size={50} />
@@ -176,8 +176,13 @@ const filterPageStyles = StyleSheet.create({
         padding: 10,
         paddingHorizontal: 20,
     },
+
     overallSliderContainer: {
         flex: 1,
         margin: 20,
+    },
+
+    sliderText: {
+        fontSize: smallTextSize,
     },
 })

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Modal, Pressable, StyleSheet, Text, View } from "react-native";
-import { Colours, coreStyles } from "../styles/styles";
+import { Colours, coreStyles, smallTextSize } from "../styles/styles";
 import { GestureHandlerRootView, ScrollView } from "react-native-gesture-handler";
-
+import * as Haptics from 'expo-haptics';
 //set up saving functionality
 //set up saved reading functionality
 
@@ -14,7 +14,7 @@ const folders = savedData.folders;
 const Folder = () => {
     return (
         <Pressable style={savedStyles.savedFolder} >
-            <Text style={savedStyles.folderText}>{folders["saved #1"].name}</Text>
+            <Text style={savedStyles.folderText}>{folders["favorites"].name}</Text>
         </Pressable>
     );
 }
@@ -22,8 +22,8 @@ const Folder = () => {
 const AddFolder = () => {
     const [seeModal, setModal] = useState(false);
 
-    const openModal = () => setModal(true);
-    const closeModal = () => setModal(false);
+    const openModal = () => (setModal(true), Haptics.notificationAsync());
+    const closeModal = () => (setModal(false), Haptics.notificationAsync());
 
     // this will be a button to add a new folder
     return (
@@ -55,7 +55,7 @@ const AddFolder = () => {
 export default function Saved() {
     return (
         <GestureHandlerRootView style={coreStyles.gestureHandlerRootView}>
-            <Text style={coreStyles.h1}>Your Saved Trails</Text>
+            <Text style={coreStyles.h1}>Folders</Text>
             <ScrollView>
                 <View style={savedStyles.folderContainer}>
                     <Folder />
@@ -86,5 +86,8 @@ const savedStyles = StyleSheet.create({
         alignSelf: 'center',
         width: '100%',
         height: '25%'
+    },
+    folderText: {
+        fontSize: smallTextSize + 6,
     },
 })

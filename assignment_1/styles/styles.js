@@ -8,7 +8,7 @@ export let smallTextSize = 12;
 if (PixelRatio.get() > 3.125 || PixelRatio.get() < 3) {
     smallTextSize = 16;
 }
-if (PixelRatio.get() == 2.875){
+if (PixelRatio.get() == 2.875) {
     smallTextSize = 14;
 }
 if (PixelRatio.get() > 3.5 && PixelRatio.get() > 3) {
@@ -71,16 +71,10 @@ export const coreStyles = StyleSheet.create({
 
 
 
-    statstext: {
-        fontSize: smallTextSize,
-    },
+
 
     cardDesc: {
         textAlign: 'left',
-    },
-
-    folderText: {
-        fontSize: 20,
     },
 
     mapContainer: {
