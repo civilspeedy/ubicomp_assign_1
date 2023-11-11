@@ -17,6 +17,7 @@ const Folder = () => {
 }
 
 const AddFolder = () => {
+    // maybe rewrite with just fs 
     let currentfolder = "";
 
     const [seeModal, setModal] = useState(false);
