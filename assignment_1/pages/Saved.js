@@ -1,11 +1,8 @@
 import React, { useState } from "react";
-import { Modal, Pressable, StyleSheet, Text, View } from "react-native";
-import { Colours, coreStyles, smallTextSize } from "../styles/styles";
+import { Modal, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import { Colours, coreStyles, defaultImpact, smallTextSize } from "../styles/styles";
 import { GestureHandlerRootView, ScrollView } from "react-native-gesture-handler";
-import * as Haptics from 'expo-haptics';
-//set up saving functionality
-//set up saved reading functionality
-
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 //from: https://stackoverflow.com/questions/29452822/how-to-fetch-data-from-local-json-file-on-react-native
 const savedData = require('../json/user_saved.json');
@@ -20,29 +17,74 @@ const Folder = () => {
 }
 
 const AddFolder = () => {
+    let folderName = "";
+
     const [seeModal, setModal] = useState(false);
+    const [inputText, changeText] = useState("");
+    const openModal = () => (setModal(true), defaultImpact());
+    const closeModal = () => (setModal(false), defaultImpact());
 
-    const openModal = () => (setModal(true), Haptics.notificationAsync());
-    const closeModal = () => (setModal(false), Haptics.notificationAsync());
+    // name is comming up undefined 
+    const createFolder = async ({ name }) => {
+        //from https://react-native-async-storage.github.io/async-storage/docs/
+        let data = {
+            name: name,
+            trails: "folder is empty"
+        }
 
-    // this will be a button to add a new folder
+        try {
+            console.log(data.trails);
+            await AsyncStorage.setItem("trails", JSON.stringify(data));
+        }
+        catch (e) {
+            console.error(e);
+        }
+        closeModal();
+    };
+
+    const getFolder = async ({ name }) => {
+        try {
+            const folder = await AsyncStorage.getItem("trails");
+            return folder;
+        }
+        catch (e) {
+            console.error(e);
+        }
+    };
+
+    console.log(getFolder().trails); // only return undefined need to check keys
+
     return (
 
         //needs aligning 
-        <View style={{ flex: 1 }}>
+        <View>
             <Modal
-                style={{ flex: 1 }}
                 animationType='slide'
                 transparent={true}
                 visible={seeModal}
                 onRequestClose={() => {
                     setModal(!seeModal)
                 }}>
-                <View style={savedStyles.createFolder}>
-                    <Pressable onPress={closeModal}>
-                        <Text>close</Text>
-                    </Pressable>
-                </View>
+
+                <View style={savedStyles.container}>
+                    <View style={savedStyles.createFolder}>
+                        <TextInput
+                            style={savedStyles.input}
+                            value={inputText}
+                            placeholder="Give your folder a name."
+                            onChangeText={changeText} />
+
+                        <View style={savedStyles.buttonContainer}>
+                            <Pressable onPress={createFolder(inputText)} style={savedStyles.button}>
+                                <Text style={{ fontSize: smallTextSize }}>Create</Text>
+                            </Pressable>
+
+                            <Pressable onPress={closeModal} style={savedStyles.button}>
+                                <Text style={{ fontSize: smallTextSize }}>Cancel</Text>
+                            </Pressable>
+                        </View>
+                    </View>
+                </View >
             </Modal>
 
             <Pressable style={savedStyles.savedFolder} onPress={openModal}>
@@ -67,6 +109,17 @@ export default function Saved() {
 }
 
 const savedStyles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 10,
+        alignItems: 'center',
+        alignContent: 'center',
+        justifyContent: 'center',
+        alignContent: 'center',
+    },
+
     savedFolder: {
         backgroundColor: Colours.primary,
         borderRadius: 10,
@@ -83,11 +136,43 @@ const savedStyles = StyleSheet.create({
     },
     createFolder: {
         backgroundColor: 'white',
-        alignSelf: 'center',
-        width: '100%',
-        height: '25%'
+        alignItems: 'center',
+        alignContent: 'center',
+        justifyContent: 'center',
+        alignContent: 'center',
+        height: 140,
+        borderRadius: 20,
+        padding: 10,
+        borderWidth: 3,
+        borderColor: Colours.border,
     },
     folderText: {
         fontSize: smallTextSize + 6,
+    },
+    input: {
+        alignSelf: 'center',
+        borderWidth: 3,
+        borderColor: Colours.border,
+        paddingHorizontal: 10,
+        borderRadius: 20,
+    },
+
+    buttonContainer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+    },
+
+    button: {
+        margin: 20,
+        borderWidth: 3,
+        borderColor: Colours.border,
+        borderRadius: 20,
+        padding: 10,
+        flex: 1,
+        alignItems: 'center',
+        alignContent: 'center',
+        justifyContent: 'center',
+        alignContent: 'center',
+        backgroundColor: Colours.complementary,
     },
 })

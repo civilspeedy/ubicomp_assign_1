@@ -1,9 +1,8 @@
 import React, { useState } from "react"
 import { Modal, View, Text, Pressable, StyleSheet, Image } from "react-native";
-import { Colours, coreStyles, smallTextSize } from "../../styles/styles";
+import { Colours, coreStyles, defaultImpact, sliderImpacts, smallTextSize } from "../../styles/styles";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import Slider from "@react-native-community/slider";
-import * as Haptics from 'expo-haptics';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 let filterJson = {
@@ -27,7 +26,7 @@ export const CustomSlider = ({ updateFunc, constValue }) => {
             minimumTrackTintColor={Colours.secondary}
             step={1}
             value={constValue}
-            onValueChange={(value) => (updateFunc(value), Haptics.selectionAsync())}
+            onValueChange={(value) => (updateFunc(value), sliderImpacts())}
             thumbTintColor={Colours.secondary}
         />
     );
@@ -36,9 +35,8 @@ export const CustomSlider = ({ updateFunc, constValue }) => {
 export default function Filters({ update }) {
     const [showModal, setModal] = useState(false);
 
-    const openModal = () => (setModal(true), Haptics.notificationAsync());
-    const closeModal = () => (setModal(false), Haptics.notificationAsync(
-        Haptics.NotificationFeedbackType.Success), update(filterJson));
+    const openModal = () => (setModal(true), defaultImpact());
+    const closeModal = () => (setModal(false), defaultImpact(), update(filterJson));
 
 
     const [showEasy, setEasy] = useState(true);

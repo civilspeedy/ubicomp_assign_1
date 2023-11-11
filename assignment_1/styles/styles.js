@@ -1,4 +1,9 @@
 import { StyleSheet, PixelRatio } from "react-native";
+import * as Haptics from 'expo-haptics';
+
+export const defaultImpact = () => Haptics.impactAsync();
+export const sliderImpacts = () => Haptics.selectionAsync();
+
 
 
 //2.625
@@ -68,9 +73,6 @@ export const coreStyles = StyleSheet.create({
         alignSelf: 'flex-start',
         marginRight: 10,
     },
-
-
-
 
 
     cardDesc: {

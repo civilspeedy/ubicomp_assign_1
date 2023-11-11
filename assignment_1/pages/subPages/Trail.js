@@ -2,13 +2,9 @@ import React, { useState } from "react"
 import { Modal, Pressable, View, Text, Image, StyleSheet } from "react-native"
 import { coreStyles, Colours, smallTextSize } from "../../styles/styles";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
-import { getSavedTrail, saveTrail } from "../../store";
-import MapView from "react-native-maps";
-import * as Haptics from 'expo-haptics';
 
 const startTrail = (trail) => {
-    Haptics.notificationAsync(
-        Haptics.NotificationFeedbackType.Success)
+    defaultImpact()
 }
 
 
