@@ -17,7 +17,7 @@ const Folder = () => {
 }
 
 const AddFolder = () => {
-    let folderName = "";
+    let currentfolder = "";
 
     const [seeModal, setModal] = useState(false);
     const [inputText, changeText] = useState("");
@@ -25,34 +25,38 @@ const AddFolder = () => {
     const closeModal = () => (setModal(false), defaultImpact());
 
     // name is comming up undefined 
-    const createFolder = async ({ name }) => {
-        //from https://react-native-async-storage.github.io/async-storage/docs/
+    const createFolder = async (name) => {
+        let trailName = name;
+        //from https://react-native-async-storage.github.io/async-storage/docs/usage
         let data = {
-            name: name,
-            trails: "folder is empty"
+            data: {
+                name: trailName,
+                trails: "folder is empty"
+            }
         }
-
         try {
-            console.log(data.trails);
-            await AsyncStorage.setItem("trails", JSON.stringify(data));
-        }
-        catch (e) {
-            console.error(e);
-        }
-        closeModal();
-    };
-
-    const getFolder = async ({ name }) => {
-        try {
-            const folder = await AsyncStorage.getItem("trails");
-            return folder;
+            console.log(data.data.name + " <- name");
+            await AsyncStorage.setItem("trails", JSON.stringify(data.data));
         }
         catch (e) {
             console.error(e);
         }
     };
 
-    console.log(getFolder().trails); // only return undefined need to check keys
+    const getFolder = async (name) => {
+        try {
+            const folder = await AsyncStorage.getItem('trails');
+            currentfolder = folder != null ? JSON.parse(folder) : null;
+        }
+        catch (e) {
+            console.error(e);
+        }
+    };
+
+
+    createFolder('trails');
+    getFolder('trails') // only return undefined need to check keys
+    console.log(currentfolder.data);
 
     return (
 
@@ -75,7 +79,7 @@ const AddFolder = () => {
                             onChangeText={changeText} />
 
                         <View style={savedStyles.buttonContainer}>
-                            <Pressable onPress={createFolder(inputText)} style={savedStyles.button}>
+                            <Pressable onPress={() => (createFolder(inputText), closeModal())} style={savedStyles.button}>
                                 <Text style={{ fontSize: smallTextSize }}>Create</Text>
                             </Pressable>
 
@@ -85,12 +89,12 @@ const AddFolder = () => {
                         </View>
                     </View>
                 </View >
-            </Modal>
+            </Modal >
 
             <Pressable style={savedStyles.savedFolder} onPress={openModal}>
                 <Text>+</Text>
             </Pressable>
-        </View>
+        </View >
     )
 }
 
