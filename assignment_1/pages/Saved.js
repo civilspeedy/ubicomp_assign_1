@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { Colours, coreStyles, defaultImpact, smallTextSize } from "../styles/styles";
 import { GestureHandlerRootView, ScrollView } from "react-native-gesture-handler";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as sql from 'expo-sqlite';
 
 //from: https://stackoverflow.com/questions/29452822/how-to-fetch-data-from-local-json-file-on-react-native
 const savedData = require('../json/user_saved.json');
@@ -16,6 +16,65 @@ const Folder = () => {
     );
 }
 
+const database = sql.openDatabase('userSaved.db');
+const createDatabase = () => {
+    // from Week6_Part2(Thursday)-1.pdf
+    database.transaction(transaction => {
+        transaction.executeSql(
+            "CREATE TABLE saved_trails (id INTEGER PRIMARY KEY AUTOINCREMENT, trail_name VARCHAR(20), distance DECIMAL, difficulty VARCHAR(1), distance_from_user DECIMAL, folder_name VARCHAR(20))",
+            null,
+            () => console.log("Success"),
+            () => console.error("something went wrong")
+        );
+    });
+}
+
+const addTrail = (name, distance, difficulty, distanceFromUser, folderName) => {
+    database.transaction(transaction => {
+        transaction.executeSql(
+            "INSERT INTO saved_trails (trail_name, distance, difficulty, distance_from_user, folder_name) VALUES (?, ?, ?, ?, ?)",
+            [name, distance, difficulty, distanceFromUser, folderName],
+            () => console.log("Add Success"),
+            (error) => console.error("something went wrong -> ", error)
+        );
+    });
+};
+
+const getFolder = (name) => {
+    database.transaction(transaction => {
+        transaction.executeSql(
+            "SELECT * FROM saved_trails WHERE folder_name=?",
+            [name],
+            (transaction, result) => { console.log("Get Succes ->", result.rows._array) },
+            (e) => console.log("Err -> ", e)
+        );
+    });
+}
+
+const getAllFolders = () => {
+    let returnReults = [];
+    database.transaction(transaction => {
+        transaction.executeSql("SELECT * FROM saved_trails",
+            [],
+            (transaction, result) => { console.log(result.rows._array), returnReults = result.rows._array },
+            (e) => console.error(e),
+        );
+        return returnReults;
+    });
+};
+
+const dropTable = () => {
+    database.transaction(transaction => {
+        transaction.executeSql("DROP TABLE IF EXISTS saved_trails",
+            [],
+            () => console.log("table dropped"),
+            (e) => console.error("err -> ", e),
+        );
+    });
+};
+
+dropTable();
+
 const AddFolder = () => {
     // maybe rewrite with just fs 
     let currentfolder = "";
@@ -24,40 +83,6 @@ const AddFolder = () => {
     const [inputText, changeText] = useState("");
     const openModal = () => (setModal(true), defaultImpact());
     const closeModal = () => (setModal(false), defaultImpact());
-
-    // name is comming up undefined 
-    const createFolder = async (name) => {
-        let trailName = name;
-        //from https://react-native-async-storage.github.io/async-storage/docs/usage
-        let data = {
-            data: {
-                name: trailName,
-                trails: "folder is empty"
-            }
-        }
-        try {
-            console.log(data.data.name + " <- name");
-            await AsyncStorage.setItem("trails", JSON.stringify(data.data));
-        }
-        catch (e) {
-            console.error(e);
-        }
-    };
-
-    const getFolder = async (name) => {
-        try {
-            const folder = await AsyncStorage.getItem('trails');
-            currentfolder = folder != null ? JSON.parse(folder) : null;
-        }
-        catch (e) {
-            console.error(e);
-        }
-    };
-
-
-    createFolder('trails');
-    getFolder('trails') // only return undefined need to check keys
-    console.log(currentfolder.data);
 
     return (
 
