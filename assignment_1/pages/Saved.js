@@ -4,27 +4,16 @@ import { Colours, coreStyles, defaultImpact, smallTextSize } from "../styles/sty
 import { GestureHandlerRootView, ScrollView } from "react-native-gesture-handler";
 import * as sql from 'expo-sqlite';
 
-//from: https://stackoverflow.com/questions/29452822/how-to-fetch-data-from-local-json-file-on-react-native
-const savedData = require('../json/user_saved.json');
-const folders = savedData.folders;
-
-const Folder = () => {
-    return (
-        <Pressable style={savedStyles.savedFolder} >
-            <Text style={savedStyles.folderText}>{folders["favorites"].name}</Text>
-        </Pressable>
-    );
-}
-
 const database = sql.openDatabase('userSaved.db');
-const createDatabase = () => {
+
+const createTrailTable = () => {
     // from Week6_Part2(Thursday)-1.pdf
     database.transaction(transaction => {
         transaction.executeSql(
             "CREATE TABLE saved_trails (id INTEGER PRIMARY KEY AUTOINCREMENT, trail_name VARCHAR(20), distance DECIMAL, difficulty VARCHAR(1), distance_from_user DECIMAL, folder_name VARCHAR(20))",
             null,
-            () => console.log("Success"),
-            () => console.error("something went wrong")
+            () => console.log("saved_trails table created"),
+            (e) => console.error("err -> ", e)
         );
     });
 }
@@ -34,49 +23,90 @@ const addTrail = (name, distance, difficulty, distanceFromUser, folderName) => {
         transaction.executeSql(
             "INSERT INTO saved_trails (trail_name, distance, difficulty, distance_from_user, folder_name) VALUES (?, ?, ?, ?, ?)",
             [name, distance, difficulty, distanceFromUser, folderName],
-            () => console.log("Add Success"),
-            (error) => console.error("something went wrong -> ", error)
+            () => console.log("trail add Success"),
+            (e) => console.error("err in addTrail() -> ", e)
         );
     });
 };
 
-const getFolder = (name) => {
+const getTrails = (name) => {
+    let returnTrails = [];
     database.transaction(transaction => {
         transaction.executeSql(
             "SELECT * FROM saved_trails WHERE folder_name=?",
             [name],
-            (transaction, result) => { console.log("Get Succes ->", result.rows._array) },
-            (e) => console.log("Err -> ", e)
+            (transaction, result) => { console.log("Get Succes ->", result.rows._array), returnTrails = result.rows._array },
+            (e) => console.log("Err in getTrails() -> ", e)
         );
     });
 }
 
-const getAllFolders = () => {
-    let returnReults = [];
+const getAllTrails = () => {
+    let returnTrails = [];
     database.transaction(transaction => {
         transaction.executeSql("SELECT * FROM saved_trails",
-            [],
+            null,
             (transaction, result) => { console.log(result.rows._array), returnReults = result.rows._array },
             (e) => console.error(e),
         );
-        return returnReults;
+        return returnTrails;
     });
 };
 
 const dropTable = () => {
     database.transaction(transaction => {
         transaction.executeSql("DROP TABLE IF EXISTS saved_trails",
-            [],
+            null,
             () => console.log("table dropped"),
-            (e) => console.error("err -> ", e),
+            (e) => console.error("err in dropTable() -> ", e),
         );
     });
 };
 
+const createFolderTable = () => {
+    database.transaction(transaction => {
+        transaction.executeSql(
+            "CREATE TABLE folders (name VARCHAR(20) PRIMARY KEY)",
+            null,
+            () => console.log("folders table created"),
+            (e) => console.error("err in createFolderTable() ->", e),
+        );
+    });
+};
+
+const addFolder = (name) => {
+    database.transaction(transaction => {
+        transaction.executeSql(
+            "INSERT INTO folders (name) VALUES (?)",
+            [name],
+            () => console.log("folder add success"),
+            (e) => console.error("err in addFolder() -> ", e),
+        )
+    });
+};
+
+const getAllFolders = () => {
+    let returnFolders = [];
+    database.transaction(transaction => {
+        transaction.executeSql(
+            "SELECT * FROM folders",
+            null,
+            (transaction, result) => { console.log(result.rows._array), returnFolders = result.rows._array },
+            (e) => console.error("err in getAllFolders() -> ", e)
+        );
+        return returnFolders;
+    })
+};
+
+const Folder = ({ name }) => {
+    return (
+        <Pressable style={savedStyles.savedFolder} >
+            <Text style={savedStyles.folderText}>{name}</Text>
+        </Pressable>
+    );
+}
 
 const AddFolder = () => {
-    // maybe rewrite with just fs 
-    let currentfolder = "";
 
     const [seeModal, setModal] = useState(false);
     const [inputText, changeText] = useState("");
@@ -104,7 +134,7 @@ const AddFolder = () => {
                             onChangeText={changeText} />
 
                         <View style={savedStyles.buttonContainer}>
-                            <Pressable onPress={() => (createFolder(inputText), closeModal())} style={savedStyles.button}>
+                            <Pressable onPress={() => (closeModal())} style={savedStyles.button}>
                                 <Text style={{ fontSize: smallTextSize }}>Create</Text>
                             </Pressable>
 
@@ -124,14 +154,16 @@ const AddFolder = () => {
 }
 
 export default function Saved() {
+    const folders = getAllFolders();
+    console.log("folders ->  ", folders); //undefined for some reason
+
     return (
         <GestureHandlerRootView style={coreStyles.gestureHandlerRootView}>
             <Text style={coreStyles.h1}>Folders</Text>
             <ScrollView>
-                <View style={savedStyles.folderContainer}>
-                    <Folder />
-                    <AddFolder />
-                </View>
+                {folders.map((folder, index) => (
+                    <Folder key={index} name={folder.name} />
+                ))}
             </ScrollView>
         </GestureHandlerRootView>
     )
