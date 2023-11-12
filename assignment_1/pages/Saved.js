@@ -73,7 +73,6 @@ const dropTable = () => {
     });
 };
 
-dropTable();
 
 const AddFolder = () => {
     // maybe rewrite with just fs 
