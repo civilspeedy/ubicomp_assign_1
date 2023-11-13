@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Modal, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { Colours, coreStyles, defaultImpact, smallTextSize } from "../styles/styles";
 import { GestureHandlerRootView, ScrollView } from "react-native-gesture-handler";
@@ -6,6 +6,8 @@ import * as sql from 'expo-sqlite';
 
 const database = sql.openDatabase('userSaved.db');
 
+
+/**Creates table containg all the saved trails */
 const createTrailTable = () => {
     // from Week6_Part2(Thursday)-1.pdf
     database.transaction(transaction => {
@@ -18,6 +20,7 @@ const createTrailTable = () => {
     });
 }
 
+/**Inserts a trail into the saved_trails table */
 const addTrail = (name, distance, difficulty, distanceFromUser, folderName) => {
     database.transaction(transaction => {
         transaction.executeSql(
@@ -29,31 +32,43 @@ const addTrail = (name, distance, difficulty, distanceFromUser, folderName) => {
     });
 };
 
+/**Fetches a trail  from saved_trails*/
 const getTrails = (name) => {
-    let returnTrails = [];
-    database.transaction(transaction => {
-        transaction.executeSql(
-            "SELECT * FROM saved_trails WHERE folder_name=?",
-            [name],
-            (transaction, result) => { console.log("Get Succes ->", result.rows._array), returnTrails = result.rows._array },
-            (e) => console.log("Err in getTrails() -> ", e)
-        );
-    });
-}
-
-const getAllTrails = () => {
-    let returnTrails = [];
-    database.transaction(transaction => {
-        transaction.executeSql("SELECT * FROM saved_trails",
-            null,
-            (transaction, result) => { console.log(result.rows._array), returnReults = result.rows._array },
-            (e) => console.error(e),
-        );
-        return returnTrails;
+    //needs an async useState when called
+    return new Promise((resolve, reject) => { // chatGPT was asked how to return a value in function containing expo sqlite. Lines 33, 38 and 42.
+        database.transaction(transaction => {
+            transaction.executeSql(
+                "SELECT * FROM saved_trails WHERE folder_name=?",
+                [name],
+                (transaction, result) => resolve(result.rows._array),
+                (e) => {
+                    console.error("err in getAllFolders() -> ", e);
+                    reject(e);
+                }
+            );
+        });
     });
 };
 
-const dropTable = () => {
+/**Fetches all the trails in saved_trails */
+const getAllTrails = () => {
+    return new Promise((resolve, reject) => {
+        database.transaction(transaction => {
+            transaction.executeSql(
+                "SELECT * FROM saved_trails",
+                null,
+                (transaction, result) => resolve(result.rows._array),
+                (e) => {
+                    console.error("err in getAllFolders() -> ", e);
+                    reject(e);
+                }
+            );
+        });
+    });
+};
+
+/**drops saved_trails table and creates it again */
+const dropTrails = () => {
     database.transaction(transaction => {
         transaction.executeSql("DROP TABLE IF EXISTS saved_trails",
             null,
@@ -61,8 +76,10 @@ const dropTable = () => {
             (e) => console.error("err in dropTable() -> ", e),
         );
     });
+    createTrailTable();
 };
 
+/**Creates a table for storing all the folder names */
 const createFolderTable = () => {
     database.transaction(transaction => {
         transaction.executeSql(
@@ -74,29 +91,49 @@ const createFolderTable = () => {
     });
 };
 
-const addFolder = (name) => {
+/** Drops folders table  and calls createFolderTable()*/
+const resetFolders = () => {
+    database.transaction(transaction => {
+        transaction.executeSql("DROP TABLE IF EXISTS folders",
+            null,
+            () => console.log("table dropped"),
+            (e) => console.error("err in dropTable() -> ", e),
+        );
+    });
+    createFolderTable();
+};
+
+/**Inserts a folder name into folders table */
+const addFolderDb = (name) => {
     database.transaction(transaction => {
         transaction.executeSql(
             "INSERT INTO folders (name) VALUES (?)",
             [name],
             () => console.log("folder add success"),
-            (e) => console.error("err in addFolder() -> ", e),
+            (e) => console.error("err in addFolderDb() -> ", e),
         )
     });
 };
 
+/**Fetches all the folder names in folders table*/
 const getAllFolders = () => {
-    let returnFolders = [];
-    database.transaction(transaction => {
-        transaction.executeSql(
-            "SELECT * FROM folders",
-            null,
-            (transaction, result) => { console.log(result.rows._array), returnFolders = result.rows._array },
-            (e) => console.error("err in getAllFolders() -> ", e)
-        );
-        return returnFolders;
-    })
+    return new Promise((resolve, reject) => {
+        database.transaction(transaction => {
+            transaction.executeSql(
+                "SELECT * FROM folders",
+                null,
+                (transaction, result) => {
+                    resolve(result.rows._array);
+                },
+                (e) => {
+                    console.error("err in getAllFolders() -> ", e);
+                    reject(e);
+                }
+            );
+        });
+    });
 };
+
 
 const Folder = ({ name }) => {
     return (
@@ -154,8 +191,21 @@ const AddFolder = () => {
 }
 
 export default function Saved() {
-    const folders = getAllFolders();
-    console.log("folders ->  ", folders); //undefined for some reason
+    const [folders, setFolders] = useState([]);
+
+    useEffect(() => {
+        async function getAllFoldersAsync() {
+            try {
+                const result = await getAllFolders();
+                setFolders(result);
+                console.log("getAllFolders() ->", result);
+            } catch (error) {
+                console.error("Err in getAllFoldersAsync() ->", error);
+            }
+        }
+
+        getAllFoldersAsync();
+    }, []);
 
     return (
         <GestureHandlerRootView style={coreStyles.gestureHandlerRootView}>
@@ -164,6 +214,7 @@ export default function Saved() {
                 {folders.map((folder, index) => (
                     <Folder key={index} name={folder.name} />
                 ))}
+                <AddFolder />
             </ScrollView>
         </GestureHandlerRootView>
     )
