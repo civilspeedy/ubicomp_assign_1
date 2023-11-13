@@ -3,16 +3,16 @@ import { Modal, Pressable, StyleSheet, Text, TextInput, View } from "react-nativ
 import { Colours, coreStyles, defaultImpact, smallTextSize } from "../styles/styles";
 import { GestureHandlerRootView, ScrollView } from "react-native-gesture-handler";
 import * as sql from 'expo-sqlite';
+import Trail from "./subPages/Trail";
 
 const database = sql.openDatabase('userSaved.db');
-
 
 /**Creates table containg all the saved trails */
 const createTrailTable = () => {
     // from Week6_Part2(Thursday)-1.pdf
     database.transaction(transaction => {
         transaction.executeSql(
-            "CREATE TABLE saved_trails (id INTEGER PRIMARY KEY AUTOINCREMENT, trail_name VARCHAR(20), distance DECIMAL, difficulty VARCHAR(1), distance_from_user DECIMAL, folder_name VARCHAR(20))",
+            "CREATE TABLE saved_trails IF NOT EXISTS (id INTEGER PRIMARY KEY AUTOINCREMENT, trail_name VARCHAR(20), distance DECIMAL, difficulty VARCHAR(1), distance_from_user DECIMAL, folder_name VARCHAR(20))",
             null,
             () => console.log("saved_trails table created"),
             (e) => console.error("err -> ", e)
@@ -40,9 +40,11 @@ const getTrails = (name) => {
             transaction.executeSql(
                 "SELECT * FROM saved_trails WHERE folder_name=?",
                 [name],
-                (transaction, result) => resolve(result.rows._array),
+                (transaction, result) => {
+                    resolve(result.rows._array);
+                },
                 (e) => {
-                    console.error("err in getAllFolders() -> ", e);
+                    console.error("err in getTrails() -> ", e);
                     reject(e);
                 }
             );
@@ -59,7 +61,7 @@ const getAllTrails = () => {
                 null,
                 (transaction, result) => resolve(result.rows._array),
                 (e) => {
-                    console.error("err in getAllFolders() -> ", e);
+                    console.error("err in getAllTrails() -> ", e);
                     reject(e);
                 }
             );
@@ -126,7 +128,7 @@ const getAllFolders = () => {
                     resolve(result.rows._array);
                 },
                 (e) => {
-                    console.error("err in getAllFolders() -> ", e);
+                    console.error("err in getAllFolders() -> ", e)
                     reject(e);
                 }
             );
@@ -134,21 +136,86 @@ const getAllFolders = () => {
     });
 };
 
-
 const Folder = ({ name }) => {
+    const [showModal, setModal] = useState(false);
+    const openModal = () => setModal(true);
+    const closeModal = () => setModal(false);
+
+    const [trails, setTrails] = useState([]);
+
+    const getTrailsAsync = async () => {
+        try {
+            const result = await getTrails(name);
+            setTrails(result);
+            console.log("getTrails()->", result);
+        } catch (error) {
+            console.error("Err in getTrailsAsync() ->", error);
+        }
+    };
+
+    useEffect(() => {
+        getTrailsAsync();
+    }, []);
+
+    const trailList = () => {
+        const allTrails = require('../json/trail_data.json');
+        let trailListToReturn = [];
+
+        for (let i = 0; i < allTrails.length; i++) {
+            //need to add trails to db
+            for (let j = 0; j < trails.length; i++) {
+                if (allTrails[i].name == trails[j].name) {
+                    console.log("looking at ->", allTrails[i].name, " and ", trails[j].name)
+                    trailListToReturn.push(allTrails[i]);
+                };
+            };
+        };
+        return trailListToReturn;
+    };
+
     return (
-        <Pressable style={savedStyles.savedFolder} >
-            <Text style={savedStyles.folderText}>{name}</Text>
-        </Pressable>
+        <View>
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={showModal}
+                onRequestClose={() => {
+                    setModal(!showModal);
+                }}
+            >
+                <View style={savedStyles.folderModalContainer}>
+                    <View style={savedStyles.folderModal}>
+                        <Text style={savedStyles.title}>{name}</Text>
+                        <GestureHandlerRootView>
+                            <ScrollView>
+                                {trailList().map((trail, index) => (
+                                    <Trail key={index} trail={trail} />
+                                ))}
+                            </ScrollView>
+                        </GestureHandlerRootView>
+                    </View>
+                </View>
+            </Modal>
+            <Pressable style={savedStyles.savedFolder} onPress={openModal}>
+                <Text style={savedStyles.folderText}>{name}</Text>
+            </Pressable>
+        </View>
     );
 }
 
-const AddFolder = () => {
+const AddFolder = ({ folderFunc }) => {
 
     const [seeModal, setModal] = useState(false);
     const [inputText, changeText] = useState("");
+
     const openModal = () => (setModal(true), defaultImpact());
     const closeModal = () => (setModal(false), defaultImpact());
+
+    const addOnButtonPress = async () => {
+        addFolderDb(inputText);
+        folderFunc();
+        closeModal();
+    };
 
     return (
 
@@ -171,7 +238,7 @@ const AddFolder = () => {
                             onChangeText={changeText} />
 
                         <View style={savedStyles.buttonContainer}>
-                            <Pressable onPress={() => (closeModal())} style={savedStyles.button}>
+                            <Pressable onPress={() => (closeModal(), addOnButtonPress())} style={savedStyles.button}>
                                 <Text style={{ fontSize: smallTextSize }}>Create</Text>
                             </Pressable>
 
@@ -188,33 +255,33 @@ const AddFolder = () => {
             </Pressable>
         </View >
     )
-}
+};
 
 export default function Saved() {
     const [folders, setFolders] = useState([]);
 
-    useEffect(() => {
-        async function getAllFoldersAsync() {
-            try {
-                const result = await getAllFolders();
-                setFolders(result);
-                console.log("getAllFolders() ->", result);
-            } catch (error) {
-                console.error("Err in getAllFoldersAsync() ->", error);
-            }
+    const getAllFoldersAsync = async () => {
+        try {
+            const result = await getAllFolders();
+            setFolders(result);
+            console.log("getAllFolders() ->", result);
+        } catch (error) {
+            console.error("Err in getAllFoldersAsync() ->", error);
         }
+    };
 
+    useEffect(() => {
         getAllFoldersAsync();
     }, []);
 
     return (
         <GestureHandlerRootView style={coreStyles.gestureHandlerRootView}>
-            <Text style={coreStyles.h1}>Folders</Text>
+            <Text style={savedStyles.title}>Folders</Text>
             <ScrollView>
                 {folders.map((folder, index) => (
                     <Folder key={index} name={folder.name} />
                 ))}
-                <AddFolder />
+                <AddFolder folderFunc={getAllFoldersAsync} />
             </ScrollView>
         </GestureHandlerRootView>
     )
@@ -260,6 +327,7 @@ const savedStyles = StyleSheet.create({
     },
     folderText: {
         fontSize: smallTextSize + 6,
+        fontWeight: 'bold',
     },
     input: {
         alignSelf: 'center',
@@ -286,5 +354,27 @@ const savedStyles = StyleSheet.create({
         justifyContent: 'center',
         alignContent: 'center',
         backgroundColor: Colours.complementary,
+    },
+
+    title: {
+        fontWeight: 'bold',
+        fontSize: smallTextSize + 20,
+        alignSelf: "center",
+        margin: 10,
+    },
+
+    folderModal: {
+        backgroundColor: Colours.secondary,
+        width: '100%',
+        height: '50%',
+        borderRadius: 20,
+    },
+
+    folderModalContainer: {
+        alignItems: 'center',
+        alignContent: 'center',
+        justifyContent: 'center',
+        alignContent: 'center',
+        flex: 1,
     },
 })
