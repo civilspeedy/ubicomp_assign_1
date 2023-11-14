@@ -12,19 +12,19 @@ const createTrailTable = () => {
     // from Week6_Part2(Thursday)-1.pdf
     database.transaction(transaction => {
         transaction.executeSql(
-            "CREATE TABLE saved_trails IF NOT EXISTS (id INTEGER PRIMARY KEY AUTOINCREMENT, trail_name VARCHAR(20), distance DECIMAL, difficulty VARCHAR(1), distance_from_user DECIMAL, folder_name VARCHAR(20))",
+            "CREATE TABLE IF NOT EXISTS saved_trails (id INTEGER PRIMARY KEY AUTOINCREMENT, trail_name VARCHAR(20), folder_name VARCHAR(20))",
             null,
             () => console.log("saved_trails table created"),
-            (e) => console.error("err -> ", e)
+            (e) => console.error("err in createTrailTable() -> ", e)
         );
     });
 }
 
 /**Inserts a trail into the saved_trails table */
-const addTrail = (name, distance, difficulty, distanceFromUser, folderName) => {
+export const addTrail = (name, folderName) => {
     database.transaction(transaction => {
         transaction.executeSql(
-            "INSERT INTO saved_trails (trail_name, distance, difficulty, distance_from_user, folder_name) VALUES (?, ?, ?, ?, ?)",
+            "INSERT INTO saved_trails (trail_name, folder_name) VALUES (?, ?)",
             [name, distance, difficulty, distanceFromUser, folderName],
             () => console.log("trail add Success"),
             (e) => console.error("err in addTrail() -> ", e)
@@ -70,7 +70,8 @@ const getAllTrails = () => {
 };
 
 /**drops saved_trails table and creates it again */
-const dropTrails = () => {
+const resetTrails = () => {
+    console.log("here")
     database.transaction(transaction => {
         transaction.executeSql("DROP TABLE IF EXISTS saved_trails",
             null,
@@ -136,6 +137,8 @@ const getAllFolders = () => {
     });
 };
 
+
+
 const Folder = ({ name }) => {
     const [showModal, setModal] = useState(false);
     const openModal = () => setModal(true);
@@ -157,12 +160,12 @@ const Folder = ({ name }) => {
         getTrailsAsync();
     }, []);
 
+
     const trailList = () => {
         const allTrails = require('../json/trail_data.json');
         let trailListToReturn = [];
 
         for (let i = 0; i < allTrails.length; i++) {
-            //need to add trails to db
             for (let j = 0; j < trails.length; i++) {
                 if (allTrails[i].name == trails[j].name) {
                     console.log("looking at ->", allTrails[i].name, " and ", trails[j].name)
@@ -257,6 +260,8 @@ const AddFolder = ({ folderFunc }) => {
     )
 };
 
+export let globalFolders = [];
+
 export default function Saved() {
     const [folders, setFolders] = useState([]);
 
@@ -273,6 +278,8 @@ export default function Saved() {
     useEffect(() => {
         getAllFoldersAsync();
     }, []);
+
+    globalFolders = folders;
 
     return (
         <GestureHandlerRootView style={coreStyles.gestureHandlerRootView}>

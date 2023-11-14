@@ -1,7 +1,9 @@
 import React, { useState } from "react"
 import { Modal, Pressable, View, Text, Image, StyleSheet } from "react-native"
-import { coreStyles, Colours, smallTextSize } from "../../styles/styles";
-import BouncyCheckbox from "react-native-bouncy-checkbox";
+import { coreStyles, Colours, smallTextSize, defaultImpact } from "../../styles/styles";
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { addTrail, globalFolders } from "../Saved";
+import { ScrollView } from "react-native-gesture-handler";
 
 const startTrail = (trail) => {
     defaultImpact()
@@ -20,8 +22,21 @@ const Card = ({ trail }) => {
 
         </View>
     )
-}
+};
 
+const saveModal = () => {
+    return (
+        <Modal>
+            <View>
+                <ScrollView>
+
+                </ScrollView>
+            </View>
+        </Modal>
+    );
+};
+
+console.log("global folders ", globalFolders);
 const CardStats = ({ trail }) => {
     return (
         <View style={trailStyles.cardStats}>
@@ -33,6 +48,21 @@ const CardStats = ({ trail }) => {
 }
 
 const TrailModal = ({ trail, closeTrail }) => {
+    const [saved, setSaved] = useState(true);
+    const [buttonIcon, setIcon] = useState("cards-heart-outline");
+    const saveButtonPress = () => {
+        setSaved(!saved);
+        defaultImpact();
+        console.log(saved);
+        if (saved == true) {
+            setIcon("cards-heart");
+        }
+        if (saved == false) {
+            setIcon("cards-heart-outline");
+        }
+    };
+
+
     return (
         <View style={trailStyles.trailModal}>
             <Text style={coreStyles.h1}>{trail.name}</Text>
@@ -43,13 +73,9 @@ const TrailModal = ({ trail, closeTrail }) => {
                 <Text style={{ padding: 10 }}>Start Trail</Text>
             </Pressable>
 
-            <BouncyCheckbox
-                fillColor='#00FF28'
-                unfillColor='white'
-                size={60}
-                disableText={true}
-                innerIconStyle={{ borderColor: 'black', borderWidth: 3 }}
-            />
+            <Pressable style={trailStyles.saveButton} onPress={saveButtonPress}>
+                <MaterialCommunityIcons name={buttonIcon} size={75} color={Colours.complementary} />
+            </Pressable>
 
             <Pressable style={trailStyles.button} onPress={closeTrail}><Text style={{ fontSize: 15, padding: 10 }}>Close</Text></Pressable>
         </View>
@@ -62,6 +88,8 @@ export default function Trail({ trail }) {
 
     const openTrail = () => setModal(true);
     const closeTrail = () => setModal(false);
+
+
 
     return (
         <View>
@@ -99,10 +127,10 @@ const trailStyles = StyleSheet.create({
         marginTop: 15,
     },
     saveButton: {
-        borderRadius: 5,
-        backgroundColor: 'cyan',
-        padding: 2,
+        margin: 10,
+        padding: 20,
     },
+
     description: {
         borderColor: Colours.border,
         borderWidth: 3,
