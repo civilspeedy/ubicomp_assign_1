@@ -3,7 +3,6 @@ import { Modal, Pressable, StyleSheet, Text, TextInput, View } from "react-nativ
 import { Colours, coreStyles, defaultImpact, smallTextSize } from "../styles/styles";
 import { GestureHandlerRootView, ScrollView } from "react-native-gesture-handler";
 import * as sql from 'expo-sqlite';
-import Trail from "./subPages/Trail";
 
 const database = sql.openDatabase('userSaved.db');
 
@@ -192,7 +191,7 @@ const Folder = ({ name }) => {
                         <GestureHandlerRootView>
                             <ScrollView>
                                 {trailList().map((trail, index) => (
-                                    <Trail key={index} trail={trail} />
+                                    <View></View>
                                 ))}
                             </ScrollView>
                         </GestureHandlerRootView>
@@ -260,8 +259,8 @@ const AddFolder = ({ folderFunc }) => {
     )
 };
 
-export let globalFolders = [];
 
+export let globalFolders = [];
 export default function Saved() {
     const [folders, setFolders] = useState([]);
 

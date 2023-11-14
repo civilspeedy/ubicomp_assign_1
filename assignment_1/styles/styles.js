@@ -37,19 +37,6 @@ export const coreStyles = StyleSheet.create({
         backgroundColor: 'white',
     },
 
-    holePunchAvoider: {
-        flex: 0.05,
-        alignContent: 'stretch',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'black',
-    },
-
-    navBar: {
-        flex: 1,
-        width: '100%',
-        height: '90%',
-    },
 
     gestureHandlerRootView: {
         flex: 1,

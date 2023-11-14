@@ -4,6 +4,7 @@ import { coreStyles, Colours, smallTextSize, defaultImpact } from "../../styles/
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { addTrail, globalFolders } from "../Saved";
 import { ScrollView } from "react-native-gesture-handler";
+import DropDownPicker from "react-native-dropdown-picker";
 
 const startTrail = (trail) => {
     defaultImpact()
@@ -24,19 +25,60 @@ const Card = ({ trail }) => {
     )
 };
 
-const saveModal = () => {
-    return (
-        <Modal>
-            <View>
-                <ScrollView>
 
-                </ScrollView>
-            </View>
-        </Modal>
+const SaveModal = ({ closeTrail }) => {
+    const [seeModal, setModal] = useState(false);
+    const [seePicker, setPicker] = useState(false);
+    const [selection, setSelection] = useState(null);
+    const [saved, setSaved] = useState(true);
+    const [buttonIcon, setIcon] = useState("cards-heart-outline");
+
+    const openModal = () => setModal(true);
+    const closeModal = () => setModal(false);
+
+    const saveButtonPress = () => {
+        setSaved(!saved);
+        defaultImpact();
+        console.log(saved);
+
+        if (saved === true) {
+            closeTrail();
+            openModal();
+            setIcon("cards-heart");
+        }
+
+        if (saved === false) {
+            setIcon("cards-heart-outline");
+        }
+    };
+
+    return (
+        <View>
+            <Modal style={{ alignItems: 'flex-end', flex: 1 }}
+                animationType='slide'
+                transparent={true}
+                visible={seeModal}
+                onRequestClose={() => {
+                    setModal(!seeModal)
+                }}>
+                <View style={{ flex: 1 }}>
+                    <DropDownPicker
+                        open={seePicker}
+                        value={selection}
+                        items={globalFolders}
+                        setOpen={setPicker}
+                        setValue={setSelection}
+                    />
+                </View>
+            </Modal>
+
+            <Pressable style={trailStyles.saveButton} onPress={saveButtonPress}>
+                <MaterialCommunityIcons name={buttonIcon} size={75} color={Colours.complementary} />
+            </Pressable>
+        </View>
     );
 };
 
-console.log("global folders ", globalFolders);
 const CardStats = ({ trail }) => {
     return (
         <View style={trailStyles.cardStats}>
@@ -48,21 +90,11 @@ const CardStats = ({ trail }) => {
 }
 
 const TrailModal = ({ trail, closeTrail }) => {
-    const [saved, setSaved] = useState(true);
-    const [buttonIcon, setIcon] = useState("cards-heart-outline");
-    const saveButtonPress = () => {
-        setSaved(!saved);
-        defaultImpact();
-        console.log(saved);
-        if (saved == true) {
-            setIcon("cards-heart");
-        }
-        if (saved == false) {
-            setIcon("cards-heart-outline");
-        }
-    };
+    const [seeSaveModal, setSaveModal] = useState(false)
+    const openSave = () => setSaveModal(true);
+    const closeSave = () => setSaveModal(false);
 
-
+    //needs fixing
     return (
         <View style={trailStyles.trailModal}>
             <Text style={coreStyles.h1}>{trail.name}</Text>
@@ -72,10 +104,9 @@ const TrailModal = ({ trail, closeTrail }) => {
             <Pressable style={trailStyles.button} onPress={startTrail}>
                 <Text style={{ padding: 10 }}>Start Trail</Text>
             </Pressable>
+            <SaveModal closeTrail={() => { closeTrail(); closeSave(); }} />
 
-            <Pressable style={trailStyles.saveButton} onPress={saveButtonPress}>
-                <MaterialCommunityIcons name={buttonIcon} size={75} color={Colours.complementary} />
-            </Pressable>
+
 
             <Pressable style={trailStyles.button} onPress={closeTrail}><Text style={{ fontSize: 15, padding: 10 }}>Close</Text></Pressable>
         </View>
@@ -88,7 +119,6 @@ export default function Trail({ trail }) {
 
     const openTrail = () => setModal(true);
     const closeTrail = () => setModal(false);
-
 
 
     return (
