@@ -23,10 +23,10 @@ const createTrailTable = () => {
 }
 
 /**Inserts a trail into the saved_trails table */
-export const addTrail = (name, folderName) => {
+export const addTrail = (name) => {
     database.transaction(transaction => {
         transaction.executeSql(
-            "INSERT INTO saved_trails (trail_name) SELECT ? WHERE NOT EXISTS (SELECT 1 FROM saved_trails WHERE trail_name = ?)",
+            "INSERT INTO saved_trails (trail_name) VALUES (?)",
             [name],
             () => console.log("trail add Success"),
             (e) => console.error("err in addTrail() -> ", e)
@@ -35,7 +35,7 @@ export const addTrail = (name, folderName) => {
 };
 
 /**Fetches a trail  from saved_trails*/
-const getTrails = (name) => {
+const getTrail = (name) => {
     //needs an async useState when called
     return new Promise((resolve, reject) => { // chatGPT was asked how to return a value in function containing expo sqlite. Lines 33, 38 and 42.
         database.transaction(transaction => {
@@ -48,13 +48,14 @@ const getTrails = (name) => {
                 (e) => {
                     console.error("err in getTrails() -> ", e);
                     reject(e);
-                }
+                },
+                () => { return false }
             );
         });
     });
 };
 
-export const deleteTrail = ({ name }) => {
+export const deleteTrails = ({ name }) => {
     database.transaction(transaction => {
         transaction.executeSql("DELETE FROM trail WHERE folder_name=?",
             [name],
@@ -101,7 +102,7 @@ export default function Saved() {
         try {
             const result = await getAllTrails();
             setTrails(result);
-            console.log("getAllFolders() ->", result);
+            console.log("getSaved() ->", result);
         } catch (error) {
             console.error("Err in  getSaved() ->", error);
         }

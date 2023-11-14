@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { Modal, Pressable, View, Text, Image, StyleSheet } from "react-native"
 import { coreStyles, Colours, smallTextSize, defaultImpact } from "../../styles/styles";
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { addTrail, deleteTrail, getAllTrails } from "../Saved";
+import MaterialCommunityIcons from 'react-native-vector-icons';
 import { ScrollView } from "react-native-gesture-handler";
 import DropDownPicker from "react-native-dropdown-picker";
 
@@ -20,7 +19,6 @@ const Card = ({ trail }) => {
 
                 <CardStats trail={trail} />
             </View>
-
         </View>
     )
 };
@@ -37,24 +35,17 @@ const CardStats = ({ trail }) => {
 
 const TrailModal = ({ trail, closeTrail }) => {
     const [saved, setSaved] = useState(true);
-
     const [buttonIcon, setIcon] = useState("cards-heart-outline");
+
     const fillHeart = () => setIcon("cards-heart");
     const emptyHeart = () => setIcon("cards-heart-outline");
 
     const heartPress = () => {
         defaultImpact();
         setSaved(!saved);
-        console.log("saved =", saved)
-        if (saved == false) {
-            emptyHeart();
-        }
-        if (saved == true) {
-            fillHeart();
-        }
+        console.log("saved =", saved);
+        saved ? emptyHeart() : fillHeart();
     };
-
-    //need to implament way to check if already saved
 
     return (
         <View style={trailStyles.trailModal}>
@@ -68,16 +59,13 @@ const TrailModal = ({ trail, closeTrail }) => {
                 <Text style={{ padding: 10 }}>Start Trail</Text>
             </Pressable>
 
-            <Pressable style={trailStyles.saveButton} onPress={heartPress}>
-                <MaterialCommunityIcons name={buttonIcon} size={75} color={Colours.complementary} />
-            </Pressable>
-
             <Pressable style={trailStyles.button} onPress={closeTrail}>
                 <Text style={{ fontSize: 15, padding: 10 }}>Close</Text>
             </Pressable>
         </View>
-    )
-}
+    );
+};
+
 
 /**Trail is a pressable that toggles a modal to appear showcasing more detail around a trail*/
 export default function Trail({ trail }) {
