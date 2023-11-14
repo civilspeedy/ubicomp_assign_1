@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react"
 import { Modal, Pressable, View, Text, Image, StyleSheet } from "react-native"
 import { coreStyles, Colours, smallTextSize, defaultImpact } from "../../styles/styles";
-import MaterialCommunityIcons from 'react-native-vector-icons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { ScrollView } from "react-native-gesture-handler";
 import DropDownPicker from "react-native-dropdown-picker";
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 
 const startTrail = (trail) => {
     defaultImpact()
@@ -44,19 +45,32 @@ const TrailModal = ({ trail, closeTrail }) => {
         defaultImpact();
         setSaved(!saved);
         console.log("saved =", saved);
-        saved ? emptyHeart() : fillHeart();
+        if (saved == true) {
+            fillHeart();
+        };
+        if (saved == false) {
+            emptyHeart();
+        }
     };
 
     return (
         <View style={trailStyles.trailModal}>
             <Text style={coreStyles.h1}>{trail.name}</Text>
 
-            <CardStats trail={trail} />
+            <View style={trailStyles.inModalStats}>
+                <Text style={trailStyles.statstext}><Text style={{ fontWeight: 'bold' }}>Distance: </Text>{trail.distance} </Text>
+                <Text style={trailStyles.statstext}><Text style={{ fontWeight: 'bold' }}>Difficulty:</Text> {trail.difficulty} </Text>
+                <Text style={trailStyles.statstext}><Text style={{ fontWeight: 'bold' }}>Distance From You:</Text> {trail.distanceFromUser} </Text>
+            </View>
 
             <Text style={trailStyles.description}>{trail.description}</Text>
 
             <Pressable style={trailStyles.button} onPress={startTrail}>
                 <Text style={{ padding: 10 }}>Start Trail</Text>
+            </Pressable>
+
+            <Pressable style={trailStyles.saveButton} onPress={heartPress}>
+                <MaterialCommunityIcons name={buttonIcon} size={75} color={Colours.complementary} />
             </Pressable>
 
             <Pressable style={trailStyles.button} onPress={closeTrail}>
@@ -153,5 +167,9 @@ const trailStyles = StyleSheet.create({
 
     statstext: {
         fontSize: smallTextSize,
+    },
+
+    inModalStats: {
+        flexDirection: 'row',
     },
 });
