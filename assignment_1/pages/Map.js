@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, LogBox, Pressable } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 import { Marker } from "react-native-maps";
 import MapView from "react-native-maps/lib/MapView";
@@ -7,12 +7,22 @@ import { Colours, smallTextSize } from "../styles/styles";
 import { CardStats } from "./subPages/Trail";
 import { Text } from "react-native";
 
+LogBox.ignoreLogs(['Warning:']); //aware of error caused by dropDownPicker, error message slowing down app testing
+
 const trailsJson = require("../json/trail_data.json");
 
-const MapSettings = () => {
+const MapSettings = ({ mapJumpFunc }) => {
     const [pickerState, setPicker] = useState(false);
     const [pickerValue, setValue] = useState("");
     const [pickerItems, setItems] = useState([]);
+    const [selected, setSelected] = useState(null);
+
+    const onTrailSelect = (trail) => {
+        const getSelected = pickerItems.find(item => item.value === trail)?.value;
+        if (getSelected) {
+            setSelected(getSelected);
+        }
+    };
 
 
     useEffect(() => {
@@ -54,6 +64,7 @@ const MapSettings = () => {
                     setOpen={setPicker}
                     setValue={setValue}
                     setItems={setItems}
+                    onChangeValue={(value) => { setValue(value), onTrailSelect(value), mapJumpFunc(value); }}
                     textStyle={{ fontSize: smallTextSize, fontWeight: 'bold' }}
                     dropDownContainerStyle={mapStyles.dropDown}
                     listItemContainer={{ backgroundColor: 'blue', padding: 10, alignContent: 'center' }}
@@ -66,6 +77,14 @@ const MapSettings = () => {
                 <Text style={{ fontSize: smallTextSize }}>
                     Distance From You: {pickerValue.distanceFromUser} Miles
                 </Text>
+                <Text>Start Coordinates:</Text>
+                <Text>Long: {pickerValue.startLong} Lat: {pickerValue.startLat}</Text>
+                <Text>Finish Coordinates:</Text>
+                <Text>Long: {pickerValue.endLong} Lat: {pickerValue.endLat}</Text>
+
+                <Pressable style={mapStyles.startButton}>
+                    <Text style={{ fontSize: 30, fontWeight: 'bold' }}>Start</Text>
+                </Pressable>
 
             </View>
         </View>
@@ -73,34 +92,45 @@ const MapSettings = () => {
 };
 
 export default function Map() {
+
+    const formatedSelection = (trail) => {
+        return {
+            latitude: trail.startLat,
+            longitude: trail.startLong,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+        };
+    };
+
+    const initialRegion = {
+        latitude: 50.7209,
+        longitude: -1.8904,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
+    };
+
+    const [selected, setSelected] = useState(null);
+    const selectedHandle = (trail) => (setSelected(formatedSelection(trail)), console.log("current selected", formatedSelection(trail)));
+
     return (
         <View style={mapStyles.mapContainer}>
             <MapView
                 style={mapStyles.map}
-                initialRegion={{
-                    latitude: 50.7209,
-                    longitude: -1.8904,
-                    latitudeDelta: 0.0922,
-                    longitudeDelta: 0.0421,
-                }}
+                region={selected ? selected : initialRegion}
             >
-                {
-                    trailsJson.map((trail) => (
-                        <Marker
-                            key={trail.id}
-                            coordinate={{ latitude: trail.startLat, longitude: trail.startLong }}
-                            title={trail.name}
-                        />
-                    ))
-                }
-
-
+                {trailsJson.map((trail) => (
+                    <Marker
+                        key={trail.id}
+                        coordinate={{ latitude: trail.startLat, longitude: trail.startLong }}
+                        title={trail.name}
+                    />
+                ))}
             </MapView>
-            <MapSettings />
-        </View >
-
-    )
+            <MapSettings mapJumpFunc={selectedHandle} />
+        </View>
+    );
 };
+
 
 const mapStyles = StyleSheet.create({
     pickerStyle: {
@@ -150,5 +180,16 @@ const mapStyles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         marginTop: 20,
+    },
+
+    startButton: {
+        backgroundColor: Colours.complementary,
+        alignContent: 'center',
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 10,
+        width: 100,
+        height: 50,
+        borderRadius: 10,
     },
 });
