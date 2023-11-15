@@ -10,7 +10,6 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import { smallTextSize } from './styles/styles';
 import { StyleSheet } from 'react-native';
 
-
 const Tab = createMaterialTopTabNavigator();
 
 export default function App() {

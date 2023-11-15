@@ -1,15 +1,82 @@
-import React from "react";
-import { View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { StyleSheet, View } from "react-native";
+import DropDownPicker from "react-native-dropdown-picker";
 import { Marker } from "react-native-maps";
 import MapView from "react-native-maps/lib/MapView";
+import { Colours, smallTextSize } from "../styles/styles";
+import { CardStats } from "./subPages/Trail";
+import { Text } from "react-native";
 
 const trailsJson = require("../json/trail_data.json");
 
+const MapSettings = () => {
+    const [pickerState, setPicker] = useState(false);
+    const [pickerValue, setValue] = useState("");
+    const [pickerItems, setItems] = useState([]);
+
+
+    useEffect(() => {
+        const itemList = trailsJson.map((pickerTrail, index) => ({
+            key: pickerTrail.id,
+            label: pickerTrail.name,
+            value: {
+                difficulty: pickerTrail.difficulty,
+                distance: pickerTrail.distance,
+                distanceFromUser: pickerTrail.distanceFromUser,
+                startLat: pickerTrail.startLat,
+                startLong: pickerTrail.startLong,
+                endLat: pickerTrail.endLat,
+                endLong: pickerTrail.endLong
+            },
+        }));
+        setItems(itemList);
+    }, []);
+
+    const expandDifficulty = (dif) => {
+        switch (dif) {
+            case 'E':
+                return 'Easy';
+            case 'M':
+                return 'Medium';
+            case 'H':
+                return 'Hard';
+        };
+    };
+
+    return (
+        <View style={mapStyles.mapSettings}>
+            <View style={{ margin: 10 }}>
+                <DropDownPicker
+                    style={mapStyles.pickerStyle}
+                    open={pickerState}
+                    value={pickerValue}
+                    items={pickerItems}
+                    setOpen={setPicker}
+                    setValue={setValue}
+                    setItems={setItems}
+                    textStyle={{ fontSize: smallTextSize, fontWeight: 'bold' }}
+                    dropDownContainerStyle={mapStyles.dropDown}
+                    listItemContainer={{ backgroundColor: 'blue', padding: 10, alignContent: 'center' }}
+                    listItemLabelStyle={mapStyles.labelStyle} />
+            </View>
+            <View style={mapStyles.trailInfo}>
+                <Text style={{ fontSize: smallTextSize }}>
+                    Distance: {pickerValue.distance} Miles | Difficulty: {expandDifficulty(pickerValue.difficulty)}
+                </Text>
+                <Text style={{ fontSize: smallTextSize }}>
+                    Distance From You: {pickerValue.distanceFromUser} Miles
+                </Text>
+
+            </View>
+        </View>
+    );
+};
+
 export default function Map() {
     return (
-        <View style={{ flex: 0.8 }}>
+        <View style={mapStyles.mapContainer}>
             <MapView
-                style={{ flex: 1 }}
+                style={mapStyles.map}
                 initialRegion={{
                     latitude: 50.7209,
                     longitude: -1.8904,
@@ -18,14 +85,70 @@ export default function Map() {
                 }}
             >
                 {
-                    trailsJson.map((trail, index) => (
+                    trailsJson.map((trail) => (
                         <Marker
-                            key={index}
+                            key={trail.id}
                             coordinate={{ latitude: trail.startLat, longitude: trail.startLong }}
-                            title={trail.name} />
+                            title={trail.name}
+                        />
                     ))
                 }
+
+
             </MapView>
+            <MapSettings />
         </View >
+
     )
-}
+};
+
+const mapStyles = StyleSheet.create({
+    pickerStyle: {
+        flex: 1,
+        alignContent: 'center',
+        alignSelf: 'center',
+        width: '75%',
+        margin: 10,
+        borderWidth: 3,
+        backgroundColor: Colours.primary
+    },
+
+    map: {
+        flex: 1,
+    },
+
+    mapContainer: {
+        flex: 0.75
+    },
+
+    mapSettings: {
+        flex: 0.25,
+    },
+
+    dropDown: {
+        margin: 9,
+        width: '75%',
+        alignSelf: 'center',
+        alignContent: 'center',
+        borderWidth: 3,
+        backgroundColor: Colours.primary
+    },
+
+    itemContainer: {
+        marginVertical: 10,
+        backgroundColor: 'red'
+    },
+
+    labelStyle: {
+        alignContent: 'center',
+        alignSelf: 'center',
+        flex: 1,
+        width: '100%',
+        padding: 10,
+    },
+    trailInfo: {
+        flex: 1,
+        alignItems: 'center',
+        marginTop: 20,
+    },
+});

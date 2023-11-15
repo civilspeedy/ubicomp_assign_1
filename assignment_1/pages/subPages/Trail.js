@@ -24,7 +24,7 @@ const Card = ({ trail }) => {
     )
 };
 
-const CardStats = ({ trail }) => {
+export const CardStats = ({ trail }) => {
     return (
         <View style={trailStyles.cardStats}>
             <Text style={trailStyles.statstext}><Text style={{ fontWeight: 'bold' }}>Distance: </Text>{trail.distance}</Text>
@@ -101,7 +101,7 @@ export default function Trail({ trail }) {
                 <TrailModal trail={trail} closeTrail={closeTrail} />
             </Modal>
 
-            <Pressable onPress={openTrail} style={{ flex: 1, }}>
+            <Pressable onPress={openTrail} style={{ flex: 1 }}>
                 <Card trail={trail} />
             </Pressable>
 
