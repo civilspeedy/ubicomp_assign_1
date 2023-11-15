@@ -9,6 +9,8 @@ import NearYou from './pages/NearYou';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { smallTextSize } from './styles/styles';
 import { StyleSheet } from 'react-native';
+import WeatherToast from './pages/WeatherToast';
+import Toast from 'react-native-toast-message';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -27,6 +29,7 @@ export default function App() {
           <Tab.Screen name="Map" component={Map} />
           <Tab.Screen name="Saved" component={Saved} />
         </Tab.Navigator>
+        <Toast />
       </View>
     </NavigationContainer>
   )

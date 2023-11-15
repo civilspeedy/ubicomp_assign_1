@@ -4,6 +4,7 @@ import { Colours, coreStyles, defaultImpact, smallTextSize } from "../styles/sty
 import { GestureHandlerRootView, ScrollView } from "react-native-gesture-handler";
 import * as sql from 'expo-sqlite';
 import Trail from "./subPages/Trail";
+import WeatherToast from "./WeatherToast";
 
 
 const database = sql.openDatabase('userSaved.db');
@@ -96,6 +97,7 @@ const resetTrails = () => {
 };
 
 export default function Saved() {
+
     const [trails, setTrails] = useState([]);
 
     const getSaved = async () => {
@@ -103,8 +105,8 @@ export default function Saved() {
             const result = await getAllTrails();
             setTrails(result);
             console.log("getSaved() ->", result);
-        } catch (error) {
-            console.error("Err in  getSaved() ->", error);
+        } catch (e) {
+            console.error("Err in  getSaved() ->", e);
         }
     };
 
@@ -123,6 +125,7 @@ export default function Saved() {
 
     return (
         <GestureHandlerRootView style={coreStyles.gestureHandlerRootView}>
+            <WeatherToast />
             <ScrollView>
                 {savedList.map((trail, index) => (
                     <Trail key={index} trail={trail} />

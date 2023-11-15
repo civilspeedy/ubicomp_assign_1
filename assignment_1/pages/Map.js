@@ -3,27 +3,16 @@ import { StyleSheet, View, LogBox, Pressable } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 import { Marker } from "react-native-maps";
 import MapView from "react-native-maps/lib/MapView";
-import { Colours, smallTextSize } from "../styles/styles";
-import { CardStats } from "./subPages/Trail";
+import { Colours, defaultImpact, smallTextSize } from "../styles/styles";
 import { Text } from "react-native";
 
-LogBox.ignoreLogs(['Warning:']); //aware of error caused by dropDownPicker, error message slowing down app testing
-
+LogBox.ignoreLogs(['Warning:']);
 const trailsJson = require("../json/trail_data.json");
 
 const MapSettings = ({ mapJumpFunc }) => {
     const [pickerState, setPicker] = useState(false);
     const [pickerValue, setValue] = useState("");
     const [pickerItems, setItems] = useState([]);
-    const [selected, setSelected] = useState(null);
-
-    const onTrailSelect = (trail) => {
-        const getSelected = pickerItems.find(item => item.value === trail)?.value;
-        if (getSelected) {
-            setSelected(getSelected);
-        }
-    };
-
 
     useEffect(() => {
         const itemList = trailsJson.map((pickerTrail, index) => ({
@@ -53,6 +42,10 @@ const MapSettings = ({ mapJumpFunc }) => {
         };
     };
 
+    const startButtonPress = () => {
+        defaultImpact();
+    };
+
     return (
         <View style={mapStyles.mapSettings}>
             <View style={{ margin: 10 }}>
@@ -64,7 +57,7 @@ const MapSettings = ({ mapJumpFunc }) => {
                     setOpen={setPicker}
                     setValue={setValue}
                     setItems={setItems}
-                    onChangeValue={(value) => { setValue(value), onTrailSelect(value), mapJumpFunc(value); }}
+                    onChangeValue={(value) => { setValue(value), mapJumpFunc(value); }}
                     textStyle={{ fontSize: smallTextSize, fontWeight: 'bold' }}
                     dropDownContainerStyle={mapStyles.dropDown}
                     listItemContainer={{ backgroundColor: 'blue', padding: 10, alignContent: 'center' }}
@@ -82,8 +75,10 @@ const MapSettings = ({ mapJumpFunc }) => {
                 <Text>Finish Coordinates:</Text>
                 <Text>Long: {pickerValue.endLong} Lat: {pickerValue.endLat}</Text>
 
-                <Pressable style={mapStyles.startButton}>
-                    <Text style={{ fontSize: 30, fontWeight: 'bold' }}>Start</Text>
+                <Pressable style={mapStyles.startButton} onPress={startButtonPress}>
+                    <View style={{ flex: 1 }}>
+                        <Text style={{ fontSize: 30, fontWeight: 'bold', alignSelf: 'center', flex: 1 }}>Start</Text>
+                    </View>
                 </Pressable>
 
             </View>
@@ -97,16 +92,16 @@ export default function Map() {
         return {
             latitude: trail.startLat,
             longitude: trail.startLong,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
+            latitudeDelta: 0.0100,
+            longitudeDelta: 0.0100,
         };
     };
 
     const initialRegion = {
         latitude: 50.7209,
         longitude: -1.8904,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,
+        latitudeDelta: 0.0092,
+        longitudeDelta: 0.0042,
     };
 
     const [selected, setSelected] = useState(null);

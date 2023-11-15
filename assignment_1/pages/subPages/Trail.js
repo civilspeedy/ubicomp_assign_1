@@ -65,13 +65,15 @@ const TrailModal = ({ trail, closeTrail }) => {
 
             <Text style={trailStyles.description}>{trail.description}</Text>
 
-            <Pressable style={trailStyles.button} onPress={startTrail}>
-                <Text style={{ padding: 10 }}>Start Trail</Text>
-            </Pressable>
+            <View style={{ flexDirection: 'row' }}>
+                <Pressable style={trailStyles.startButton} onPress={startTrail}>
+                    <Text style={{ padding: 10 }}>Start Trail</Text>
+                </Pressable>
 
-            <Pressable style={trailStyles.saveButton} onPress={heartPress}>
-                <MaterialCommunityIcons name={buttonIcon} size={75} color={Colours.complementary} />
-            </Pressable>
+                <Pressable style={trailStyles.saveButton} onPress={heartPress}>
+                    <MaterialCommunityIcons name={buttonIcon} size={75} color={Colours.complementary} />
+                </Pressable>
+            </View>
 
             <Pressable style={trailStyles.button} onPress={closeTrail}>
                 <Text style={{ fontSize: 15, padding: 10 }}>Close</Text>
@@ -91,7 +93,7 @@ export default function Trail({ trail }) {
     return (
         <View>
             <Modal
-                style={{ alignItems: 'flex-end', flex: 1 }}
+                style={{ flex: 1 }}
                 animationType='slide'
                 transparent={true}
                 visible={seeModal}
@@ -112,8 +114,11 @@ export default function Trail({ trail }) {
 const trailStyles = StyleSheet.create({
     button: {
         backgroundColor: Colours.complementary,
-        borderRadius: 5,
+        borderRadius: 20,
         margin: 10,
+        height: 50,
+        justifyContent: 'center',
+        borderWidth: 3,
     },
     trailModal: {
         backgroundColor: Colours.secondary,
@@ -123,9 +128,19 @@ const trailStyles = StyleSheet.create({
         borderRadius: 20,
         marginTop: 15,
     },
-    saveButton: {
+
+    startButton: {
+        backgroundColor: Colours.complementary,
+        borderRadius: 20,
         margin: 10,
-        padding: 20,
+        height: 50,
+        justifyContent: 'center',
+        marginHorizontal: 30,
+        borderWidth: 3
+    },
+
+    saveButton: {
+        marginHorizontal: 30,
     },
 
     description: {
