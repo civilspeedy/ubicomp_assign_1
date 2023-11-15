@@ -5,6 +5,8 @@ import BouncyCheckbox from "react-native-bouncy-checkbox";
 import Slider from "@react-native-community/slider";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
+
+/**Object to keep track of what filters have been changed*/
 let filterJson = {
     maxDistanceFromUser: 10,
     maxDistance: 10,
@@ -18,6 +20,11 @@ const medFilter = (value) => filterJson.medium = value;
 const hardFilter = (value) => filterJson.hard = value;
 
 
+/**A custom slider component ranging from 0 to 10
+ * @param {Function}updateFunc used to pass useStates to be used in other components
+ * @param {Function}constValue the value effected by the useState 
+ * @returns {Slider}
+*/
 export const CustomSlider = ({ updateFunc, constValue }) => {
     return (
         <Slider style={filterPageStyles.distSlider}
@@ -32,6 +39,10 @@ export const CustomSlider = ({ updateFunc, constValue }) => {
     );
 }
 
+/**Component containing the modal housing all the filter options
+ * @param {Function}update passes the useState function to update the filters
+ * @returns {View}
+*/
 export default function Filters({ update }) {
     const [showModal, setModal] = useState(false);
 
@@ -62,7 +73,6 @@ export default function Filters({ update }) {
                 }}>
                 <View style={filterPageStyles.filterModalContainer}>
                     <View style={filterPageStyles.filterModal}>
-
                         <View style={filterPageStyles.overallSliderContainer}>
                             <View style={filterPageStyles.sliderContainer}>
                                 <Text style={filterPageStyles.sliderText}>Select Max Distance From You: <Text style={{ fontWeight: 'bold' }}>{maxDistanceFromUserValue}</Text> miles</Text>
@@ -78,8 +88,7 @@ export default function Filters({ update }) {
                         </View>
 
                         <View style={filterPageStyles.checkBoxContainer}>
-
-                            {/*from https://github.com/WrathChaos/react-native-bouncy-checkbox*/}
+                            {/*from fragment https://github.com/WrathChaos/react-native-bouncy-checkbox*/}
                             <View style={filterPageStyles.checkBoxTextContainer}>
                                 <BouncyCheckbox
                                     disableText={true}
@@ -90,6 +99,7 @@ export default function Filters({ update }) {
                                     isChecked={showEasy} />
                                 <Text>Easy</Text>
                             </View>
+
                             {/*chatgpt was asked how to store the state of checkbox -> onPress={(isChecked) => setEasy(isChecked)}*/}
                             <View style={filterPageStyles.checkBoxTextContainer}>
                                 <BouncyCheckbox
@@ -112,7 +122,6 @@ export default function Filters({ update }) {
                                     isChecked={showHard} />
                                 <Text>Hard</Text>
                             </View>
-
                         </View>
 
                         <Pressable style={{ margin: 20, backgroundColor: Colours.complementary, borderRadius: 10, padding: 10 }}

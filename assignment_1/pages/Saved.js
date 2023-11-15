@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Modal, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
-import { Colours, coreStyles, defaultImpact, smallTextSize } from "../styles/styles";
 import { GestureHandlerRootView, ScrollView } from "react-native-gesture-handler";
 import * as sql from 'expo-sqlite';
 import Trail from "./subPages/Trail";
@@ -10,7 +8,7 @@ import WeatherToast from "./WeatherToast";
 const database = sql.openDatabase('userSaved.db');
 const trailJson = require('../json/trail_data.json');
 
-/**Creates table containg all the saved trails */
+/**Create saved_trails table in database for storing saved trails*/
 const createTrailTable = () => {
     // from Week6_Part2(Thursday)-1.pdf
     database.transaction(transaction => {
@@ -23,7 +21,9 @@ const createTrailTable = () => {
     });
 }
 
-/**Inserts a trail into the saved_trails table */
+/**Inserts a trail name into the saved_trails table
+ * @param {String}name
+*/
 export const addTrail = (name) => {
     database.transaction(transaction => {
         transaction.executeSql(
@@ -35,7 +35,10 @@ export const addTrail = (name) => {
     });
 };
 
-/**Fetches a trail  from saved_trails*/
+/**Uses the give trail name to fetch a trail from saved_trail. Mostly to check if the trail is present in the database.
+ * @param {String}name
+ * @returns Array of trail properties
+*/
 const getTrail = (name) => {
     //needs an async useState when called
     return new Promise((resolve, reject) => { // chatGPT was asked how to return a value in function containing expo sqlite. Lines 33, 38 and 42.
@@ -56,7 +59,10 @@ const getTrail = (name) => {
     });
 };
 
-export const deleteTrails = ({ name }) => {
+/**Will delete a trail in the database based on the given trail name 
+ * @param {String}name
+*/
+export const deleteTrails = ( name ) => {
     database.transaction(transaction => {
         transaction.executeSql("DELETE FROM trail WHERE folder_name=?",
             [name],
@@ -66,7 +72,9 @@ export const deleteTrails = ({ name }) => {
     });
 };
 
-/**Fetches all the trails in saved_trails */
+/**Get's all entries in saved_trails
+ * @returns Array of all trails
+*/
 export const getAllTrails = () => {
     return new Promise((resolve, reject) => {
         database.transaction(transaction => {
@@ -83,7 +91,7 @@ export const getAllTrails = () => {
     });
 };
 
-/**drops saved_trails table and creates it again */
+/**Drops saved_trails table and calls createTrailTable to create the table again */
 const resetTrails = () => {
     console.log("here")
     database.transaction(transaction => {
@@ -96,9 +104,13 @@ const resetTrails = () => {
     createTrailTable();
 };
 
+/**Saved trails custom component page
+ * @returns Saved Trails page
+*/
 export default function Saved() {
-
     const [trails, setTrails] = useState([]);
+
+    console.log(trails);
 
     const getSaved = async () => {
         try {
@@ -124,7 +136,7 @@ export default function Saved() {
     };
 
     return (
-        <GestureHandlerRootView style={coreStyles.gestureHandlerRootView}>
+        <GestureHandlerRootView style={{flex: 1}}>
             <WeatherToast />
             <ScrollView>
                 {savedList.map((trail, index) => (
@@ -133,7 +145,4 @@ export default function Saved() {
             </ScrollView>
         </GestureHandlerRootView>
     )
-}
-
-const savedStyles = StyleSheet.create({
-})
+};

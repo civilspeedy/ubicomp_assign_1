@@ -14,6 +14,8 @@ import Toast from 'react-native-toast-message';
 
 const Tab = createMaterialTopTabNavigator();
 
+
+/**App component housing all other pages within a Navigation container */
 export default function App() {
   return (
     <NavigationContainer >

@@ -9,7 +9,9 @@ import { smallTextSize } from "../styles/styles";
 const trails = require('../json/trail_data.json');
 
 
-/**Loops through trails json and returns list of trails that comply with the user defined max distance from them */
+/**Loops through trails json and returns list of trails that comply with the user defined max distance from them
+ * @param {number}maxDistanceFromUser
+*/
 const getNearBy = (maxDistanceFromUser) => {
     const nearByList = []
     for (let i = 0; i < trails.length; i++) {
@@ -20,13 +22,13 @@ const getNearBy = (maxDistanceFromUser) => {
     return nearByList;
 };
 
+/**Component containing the page showcasing all the trails near the user */
 export default function NearYou() {
     const [maxDistanceFromUser, setMDFUV] = useState(10);
     const updateMDFUV = (value) => (setMDFUV(value), getNearBy(value))
 
     getNearBy(maxDistanceFromUser);
-
-    //needs a use state to update automatically
+    
     return (
         <GestureHandlerRootView style={{flex: 1}}>
             <View style={{flex: 0.1}}>

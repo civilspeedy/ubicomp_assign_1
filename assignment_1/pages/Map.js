@@ -9,6 +9,10 @@ import { Text } from "react-native";
 LogBox.ignoreLogs(['Warning:']);
 const trailsJson = require("../json/trail_data.json");
 
+/**Component used for controling the map and viewing selected trail data
+ * @param {Function}mapJumpFunc function for moving to marker
+ * @returns {View}
+*/
 const MapSettings = ({ mapJumpFunc }) => {
     const [pickerState, setPicker] = useState(false);
     const [pickerValue, setValue] = useState("");
@@ -86,6 +90,9 @@ const MapSettings = ({ mapJumpFunc }) => {
     );
 };
 
+/**Component for viewing the map and starting trails
+ * @returns {View}
+*/
 export default function Map() {
 
     const formatedSelection = (trail) => {

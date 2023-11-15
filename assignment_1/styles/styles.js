@@ -5,23 +5,28 @@ export const defaultImpact = () => Haptics.impactAsync();
 export const sliderImpacts = () => Haptics.selectionAsync();
 
 
-
-//2.625
 console.log("Pixel Ratio:", PixelRatio.get())
-//from https://stackoverflow.com/questions/33628677/react-native-responsive-font-size
-export let smallTextSize = 12;
-if (PixelRatio.get() > 3.125 || PixelRatio.get() < 3) {
-    smallTextSize = 16;
+/**Function to ajust the font size of small text used throughout the app 
+ * @returns {Integer}
+*/
+const getSmallTextSize = () => {
+    //fragment from https://stackoverflow.com/questions/33628677/react-native-responsive-font-size
+    if (PixelRatio.get() > 3.125 || PixelRatio.get() < 3) {
+        return 16.0;
+    };
+    if (PixelRatio.get() == 2.875) {
+        return 14.0;
+    };
+    if (PixelRatio.get() > 3.5 && PixelRatio.get() > 3) {
+        return  11.0;
+    };
+    return 12.0;
 }
-if (PixelRatio.get() == 2.875) {
-    smallTextSize = 14;
-}
-if (PixelRatio.get() > 3.5 && PixelRatio.get() > 3) {
-    smallTextSize = 11;
-}
-
 console.log("Small Text Size:", smallTextSize);
 
+export const smallTextSize = getSmallTextSize();
+
+/**Colours used throughout the app */
 export const Colours = {
     primary: '#C6EACD',
     secondary: '#A0DCAD',
@@ -35,55 +40,6 @@ export const coreStyles = StyleSheet.create({
         fontWeight: 'bold',
         flex: 1,
         backgroundColor: 'white',
-    },
-
-
-    gestureHandlerRootView: {
-        flex: 1,
-    },
-
-    h1: {
-        fontWeight: 'bold',
-        fontSize: 30,
-        paddingTop: 10,
-        paddingLeft: 5,
-        alignSelf: 'flex-start',
-        marginRight: 10,
-    },
-
-    homeHeader: {
-        flex: 1,
-        fontWeight: 'bold',
-        fontSize: 30,
-        paddingTop: 10,
-        paddingLeft: 5,
-        alignSelf: 'flex-start',
-        marginRight: 10,
-    },
-
-
-    cardDesc: {
-        textAlign: 'left',
-    },
-
-    mapContainer: {
-        flex: 1,
-    },
-
-    map: {
-        flex: 1,
-        width: '100%',
-        height: '100%'
-    },
-
-    mapControlsContainer: {
-        backgroundColor: 'white',
-        flex: 0.4,
-        color: 'black',
-    },
-
-    trailModalMapContainer: {
-        flex: 1,
     },
 
     bottomButtons: {
