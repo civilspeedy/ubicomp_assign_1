@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react"
-import { Modal, Pressable, View, Text, Image, StyleSheet } from "react-native"
+import { Modal, Pressable, View, Text, Image, StyleSheet, ViewComponent } from "react-native"
 import { coreStyles, Colours, smallTextSize, defaultImpact } from "../../styles/styles";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { ScrollView } from "react-native-gesture-handler";
-import DropDownPicker from "react-native-dropdown-picker";
-import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 
 const startTrail = (trail) => {
     defaultImpact()
 }
 
 
-/**A card is used to display the basic details of a trail*/
+/**A card is used to display the basic details of a trail for use in a pressable    
+ * @param {JSON}trail
+ * @returns {ViewComponent}
+*/
 const Card = ({ trail }) => {
     return (
         <View style={{ marginTop: 20, flex: 1, marginBottom: 3, }}>
@@ -24,6 +24,10 @@ const Card = ({ trail }) => {
     )
 };
 
+/**a small comonent for easy repititon of a trails stats
+ * @param {JSON}trail
+ * @returns {ViewComponent}
+*/
 export const CardStats = ({ trail }) => {
     return (
         <View style={trailStyles.cardStats}>
@@ -34,6 +38,10 @@ export const CardStats = ({ trail }) => {
     )
 }
 
+/**Components for use in the trail modal 
+ * @param {JSON}trail
+ * @param {View}
+*/
 const TrailModal = ({ trail, closeTrail }) => {
     const [saved, setSaved] = useState(true);
     const [buttonIcon, setIcon] = useState("cards-heart-outline");
@@ -83,12 +91,15 @@ const TrailModal = ({ trail, closeTrail }) => {
 };
 
 
-/**Trail is a pressable that toggles a modal to appear showcasing more detail around a trail*/
+/**Trail is a pressable that toggles a modal to appear showcasing more detail around a trail
+ * @param {JSON}trail
+ * @returns {ViewComponent}
+*/
 export default function Trail({ trail }) {
     const [seeModal, setModal] = useState(false); //Modal fragments from https://reactnative.dev/docs/modal
 
     const openTrail = () => setModal(true);
-    const closeTrail = () => setModal(false);
+    const closeTrail = () => (setModal(false), defaultImpact());
 
     return (
         <View>

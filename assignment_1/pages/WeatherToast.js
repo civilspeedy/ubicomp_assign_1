@@ -3,7 +3,9 @@ import Toast from "react-native-toast-message";
 const axios = require('axios').default;
 
 
-/**Procedure to fetch weather data in bournmouth call a toast notification to appear alerting the user to the current weather*/
+/**Procedure to fetch weather data in bournmouth call a toast notification to appear alerting the user to the current weather
+ * @link https://api.openweathermap.org
+*/
 export default function WeatherToast() {
     const [weatherData, setWeather] = useState(0);
     const key = '63ab2e7614be6a2162e2d2f440a21bbe';

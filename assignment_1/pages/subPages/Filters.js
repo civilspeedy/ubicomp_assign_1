@@ -88,7 +88,7 @@ export default function Filters({ update }) {
                         </View>
 
                         <View style={filterPageStyles.checkBoxContainer}>
-                            {/*from fragment https://github.com/WrathChaos/react-native-bouncy-checkbox*/}
+                            {/*from fragment https://github.com/WrathChaos/react-native-bouncy-checkbox */}
                             <View style={filterPageStyles.checkBoxTextContainer}>
                                 <BouncyCheckbox
                                     disableText={true}
