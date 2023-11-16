@@ -55,7 +55,7 @@ const TrailModal = ({ trail, closeTrail }) => {
 
     return (
         <View style={trailStyles.trailModal}>
-            <Text style={coreStyles.h1}>{trail.name}</Text>
+            <Text style={trailStyles.heading}>{trail.name}</Text>
 
             <View style={trailStyles.inModalStats}>
                 <Text style={trailStyles.statstext}><Text style={{ fontWeight: 'bold' }}>Distance: </Text>{trail.distance} </Text>
@@ -187,4 +187,9 @@ const trailStyles = StyleSheet.create({
     inModalStats: {
         flexDirection: 'row',
     },
+
+    heading: {
+        fontSize: 30,
+        fontWeight: 'bold'
+    }
 });

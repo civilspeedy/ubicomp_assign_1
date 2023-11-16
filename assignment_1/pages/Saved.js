@@ -62,7 +62,7 @@ const getTrail = (name) => {
 /**Will delete a trail in the database based on the given trail name 
  * @param {String}name
 */
-export const deleteTrails = ( name ) => {
+export const deleteTrails = (name) => {
     database.transaction(transaction => {
         transaction.executeSql("DELETE FROM trail WHERE folder_name=?",
             [name],
@@ -104,6 +104,7 @@ const resetTrails = () => {
     createTrailTable();
 };
 
+
 /**Saved trails custom component page
  * @returns Saved Trails page
 */
@@ -136,7 +137,7 @@ export default function Saved() {
     };
 
     return (
-        <GestureHandlerRootView style={{flex: 1}}>
+        <GestureHandlerRootView style={{ flex: 1 }}>
             <WeatherToast />
             <ScrollView>
                 {savedList.map((trail, index) => (
