@@ -124,7 +124,7 @@ export default function Filters({ update }) {
                             </View>
                         </View>
 
-                        <Pressable style={{ margin: 20, backgroundColor: Colours.complementary, borderRadius: 10, padding: 10 }}
+                        <Pressable style={{ margin: 20, backgroundColor: Colours.complementary, borderRadius: 10, padding: 10, borderWidth: 3 }}
                             onPress={closeModal}>
                             <Text style={{ alignSelf: 'center' }}>Close and Apply</Text>
                         </Pressable>

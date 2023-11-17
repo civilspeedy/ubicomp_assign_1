@@ -193,5 +193,6 @@ const mapStyles = StyleSheet.create({
         width: 100,
         height: 50,
         borderRadius: 10,
+        borderWidth: 3
     },
 });
