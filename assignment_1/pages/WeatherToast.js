@@ -8,7 +8,6 @@ const axios = require('axios').default;
 */
 export default function WeatherToast() {
     const [weatherData, setWeather] = useState(0);
-    const key = '63ab2e7614be6a2162e2d2f440a21bbe';
 
     useEffect(() => {
         const getWeather = async () => {
